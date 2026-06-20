@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Arcadia Platform</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+
+font-family:"Vazirmatn",sans-serif;
+
+background:
+radial-gradient(circle at 20% 20%,#0b1a3a,transparent 40%),
+radial-gradient(circle at 80% 10%,#0c214f,transparent 40%),
+#030712;
+
+color:white;
+
+overflow-x:hidden;
+
+}
+
+/* stars */
+
+.stars{
+
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+z-index:-1;
+
+}
+
+.star{
+
+position:absolute;
+background:white;
+border-radius:50%;
+opacity:.8;
+box-shadow:0 0 8px #4ea1ff;
+
+animation:starMove 6s ease-in-out infinite;
+
+}
+
+@keyframes starMove{
+
+0%{transform:translateY(0)}
+
+50%{transform:translateY(-10px)}
+
+100%{transform:translateY(0)}
+
+}
+
+/* header */
+
+header{
+
+position:fixed;
+top:0;
+width:100%;
+
+background:rgba(3,7,18,.7);
+
+backdrop-filter:blur(10px);
+
+border-bottom:1px solid rgba(255,255,255,.05);
+
+z-index:10;
+
+}
+
+.nav{
+
+max-width:1200px;
+
+margin:auto;
+
+display:flex;
+
+align-items:center;
+
+justify-content:space-between;
+
+padding:18px 30px;
+
+}
+
+.brand{
+
+display:flex;
+
+align-items:center;
+
+gap:10px;
+
+font-weight:700;
+
+font-size:20px;
+
+}
+
+.logo{
+
+width:34px;
+height:34px;
+
+background:linear-gradient(135deg,#2f80ff,#00c6ff);
+
+border-radius:8px;
+
+}
+
+.menu{
+
+display:flex;
+gap:30px;
+
+}
+
+.menu a{
+
+text-decoration:none;
+color:#cfd8ff;
+font-size:14px;
+transition:.3s;
+
+}
+
+.menu a:hover{
+
+color:#2f80ff;
+
+}
+
+.login{
+
+background:#2f80ff;
+
+padding:8px 18px;
+
+border-radius:8px;
+
+font-size:14px;
+
+text-decoration:none;
+
+color:white;
+
+}
+
+/* hero */
+
+.hero{
+
+min-height:100vh;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+text-align:center;
+
+padding-top:120px;
+
+}
+
+.hero-container{
+
+max-width:850px;
+
+}
+
+.hero h1{
+
+font-size:40px;
+margin-bottom:10px;
+
+}
+
+.hero h2{
+
+font-size:60px;
+
+font-weight:900;
+
+color:#2f80ff;
+
+margin-bottom:25px;
+
+}
+
+.hero p{
+
+opacity:.85;
+
+line-height:2;
+
+font-size:17px;
+
+margin:8px 0;
+
+}
+
+.cta{
+
+display:inline-block;
+
+margin-top:35px;
+
+padding:15px 40px;
+
+border-radius:12px;
+
+background:linear-gradient(90deg,#2f80ff,#00aaff);
+
+box-shadow:0 0 20px rgba(47,128,255,.6);
+
+text-decoration:none;
+
+color:white;
+
+font-weight:700;
+
+}
+
+/* departments */
+
+.departments{
+
+padding:100px 20px;
+
+}
+
+.section-title{
+
+text-align:center;
+
+font-size:32px;
+
+font-weight:900;
+
+margin-bottom:15px;
+
+}
+
+.highlight{
+
+color:#2f80ff;
+
+}
+
+.section-desc{
+
+max-width:650px;
+
+margin:auto;
+
+text-align:center;
+
+opacity:.8;
+
+margin-bottom:60px;
+
+line-height:2;
+
+}
+
+.cards{
+
+max-width:1100px;
+
+margin:auto;
+
+display:flex;
+
+flex-wrap:wrap;
+
+gap:25px;
+
+justify-content:center;
+
+}
+
+.card{
+
+width:220px;
+
+background:#0b1220;
+
+border-radius:14px;
+
+padding:25px;
+
+text-align:center;
+
+transition:.3s;
+
+}
+
+.card:hover{
+
+transform:translateY(-8px);
+
+box-shadow:0 0 25px rgba(47,128,255,.4);
+
+}
+
+.icon{
+
+width:45px;
+
+height:45px;
+
+background:#2f80ff;
+
+border-radius:10px;
+
+margin:auto;
+
+margin-bottom:15px;
+
+}
+
+.card h3{
+
+margin-bottom:10px;
+
+}
+
+.card p{
+
+font-size:13px;
+
+opacity:.8;
+
+line-height:1.8;
+
+}
+
+.card-btn{
+
+display:inline-block;
+
+margin-top:15px;
+
+padding:7px 14px;
+
+border:1px solid #8094b3;
+
+border-radius:6px;
+
+font-size:12px;
+
+text-decoration:none;
+
+color:#bcd0ff;
+
+}
+
+.card-btn:hover{
+
+background:#2f80ff;
+
+color:white;
+
+border-color:#2f80ff;
+
+}
+
+/* footer */
+
+footer{
+
+background:#02050b;
+
+padding:70px 30px 20px;
+
+border-top:1px solid rgba(255,255,255,.05);
+
+}
+
+.footer-container{
+
+max-width:1100px;
+
+margin:auto;
+
+display:flex;
+
+flex-wrap:wrap;
+
+gap:40px;
+
+justify-content:space-between;
+
+}
+
+.footer-col{
+
+flex:1 1 220px;
+
+}
+
+.footer-logo{
+
+font-size:20px;
+
+font-weight:700;
+
+margin-bottom:15px;
+
+}
+
+.footer-col ul{
+
+list-style:none;
+
+}
+
+.footer-col li{
+
+margin-bottom:10px;
+
+}
+
+.footer-col a{
+
+text-decoration:none;
+
+color:#9ca3af;
+
+}
+
+.footer-col a:hover{
+
+color:#2f80ff;
+
+}
+
+.footer-bottom{
+
+margin-top:40px;
+
+padding-top:20px;
+
+border-top:1px solid rgba(255,255,255,.05);
+
+text-align:center;
+
+opacity:.7;
+
+font-size:13px;
+
+}
+.nav-right{
+display:flex;
+align-items:center;
+gap:15px;
+}
+
+.hamburger{
+display:none;
+font-size:26px;
+cursor:pointer;
+}
+
+/* کارت‌ها ریسپانسیو */
+
+.cards{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+gap:25px;
+max-width:1100px;
+margin:auto;
+}
+
+/* تصاویر */
+
+img{
+max-width:100%;
+height:auto;
+}
+
+/* ===================
+   MOBILE
+=================== */
+
+@media (max-width:768px){
+
+.menu{
+position:fixed;
+top:80px;
+right:-100%;
+width:220px;
+height:100vh;
+background:#020617;
+flex-direction:column;
+padding:30px;
+transition:.4s;
+gap:20px;
+}
+
+.menu.active{
+right:0;
+}
+
+.hamburger{
+display:block;
+}
+
+.hero h2{
+font-size:34px;
+}
+
+.hero p{
+font-size:15px;
+}
+
+.story-sub{
+font-size:28px;
+}
+
+.story-desc{
+font-size:16px;
+}
+
+.footer-grid{
+grid-template-columns:1fr;
+text-align:center;
+}
+
+}
+
+
+</style>
+
+</head>
+
+<body>
+
+<div class="stars"></div>
+
+<header>
+    <div class="nav">
+  
+      <div class="brand">
+        <img src="arcadia_logo.jpg" class="logo">
+        <span>ARCADIA</span>
+      </div>
+  
+      <nav class="menu" id="menu">
+        <a href="eror.html">آموزشگاه</a>
+        <a href="eror.html">سبد خرید</a>
+        <li><a href="nagh.html">نقشه راه</a></li>
+        <li><a href="mo.html">خالق آرکادیا</a></li>
+        <li><a href="story.html">داستان ما</a></li>
+      </nav>
+  
+      <div class="nav-right">
+        <a href="#" class="login-btn">ورود</a>
+  
+        <div class="hamburger" id="hamburger">
+          ☰
+        </div>
+      </div>
+  
+    </div>
+  </header>
+  
+
+<section class="hero">
+
+<div class="hero-container">
+
+<h1>پلتفرم آرکادیا</h1>
+
+<h2>با آرکادیا آینده دیجیتال را خلق کن</h2>
+
+<p>
+آرکادیا یک اکوسیستم فناوری برای توسعه‌دهندگان و استارتاپ‌هاست
+که ابزارهای هوش مصنوعی و وب۳ را ارائه می‌دهد.
+</p>
+
+<p>
+هدف ما ساخت زیرساختی برای نسل بعدی محصولات دیجیتال است.
+</p>
+
+<a href="nagh.html" class="cta">آغاز ساخت آینده دیجیتال‌ت</a>
+
+
+</div>
+
+</section>
+
+<section class="departments">
+
+<h2 class="section-title">
+با دپارتمان‌های <span class="highlight">آرکادیا</span> آشنا شو
+</h2>
+
+<p class="section-desc">
+مجموعه‌ای از ابزارها و سرویس‌ها برای ساخت و رشد در دنیای تکنولوژی
+</p>
+
+<div class="cards">
+
+<div class="card">
+    <img src="novaai_logo.jpg" class="logo">
+<h3>Nova AI</h3>
+<p>نوا AI دپارتمان هوش مصنوعی آرکادیاست؛
+</p>
+<p>جایی که الگوریتم‌ها فقط اجرا نمی‌شوند، بلکه رشد می‌کنند.ما در Nova AI در حال توسعه ابزارها، مدل‌ها و زیرساخت‌هایی هستیم که به توسعه‌دهندگان و کسب‌وکارها کمک می‌کند سریع‌تر، هوشمندتر و خلاقانه‌تر بسازند.در حال بروز رسانی ...
+
+
+</p>
+<a class="card-btn">به زودی ...</a>
+</div>
+
+<div class="card">
+    <img src="metachain_logo.jpg" class="logo">
+<h3>MetaChain</h3>
+<p>زیرساخت نسل بعدی اینترنت غیرمتمرکز
+</p>
+<p>MetaChain دپارتمان وب۳ و بلاکچین آرکادیاست؛ جایی که فناوری‌های غیرمتمرکز به ابزارهای واقعی برای ساخت محصولات دیجیتال تبدیل می‌شوند.هدف ما ساده است:
+
+    ساخت پلی میان اینترنت امروز و اینترنت غیرمتمرکز آینده.
+
+
+</p>
+<a class="card-btn">جایی که اتصال معنا میشود!</a>
+</div>
+
+<div class="card">
+    <img src="sh.jpg" class="logo">
+
+<h3>آموزش</h3>
+<p>جایی برای یادگیری مهارت‌هایی که آینده فناوری را می‌سازند.
+
+    از برنامه‌نویسی و هوش مصنوعی تا Web3؛ یاد بگیر، بساز و وارد دنیای واقعی تکنولوژی شو.
+    
+    دوره‌ها با تمرکز بر پروژه‌های واقعی و تجربه عملی طراحی شده‌اند.
+ ما در این مسیر همیشه کنارتیم و حمایتت میکنیم</p>
+<a class="card-btn">اینجا آموزش ببین: لایف استایل دیجیتالت رو بساز</a>
+</div>
+
+<div class="card">
+    <img src="kh.jpg" class="logo">
+<h3>خدمات</h3>
+<p> از مشاوره تخصصی و تحلیل ایده‌ها تا توسعه نرم‌افزارهای سفارشی و پشتیبانی سازمانی؛ در آرکادیا کنار شما هستیم تا مسیر تبدیل ایده به محصول را هموار کنیم و لایف استایل دیجیتال شما رو پی ریزی و بنیان گذاری کنیم هدف ما تبدیل ایده به محصول است.
+</p>
+<a class="card-btn">لایف استایل دیجیتالت همینجاست</a>
+</div>
+
+<div class="card">
+    <img src="l.jpg" class="logo">
+
+<h3>بلاگ</h3>
+<p>جدیدترین خبرها، تحلیل‌ها و بررسی‌های دنیای فناوری؛ از بلاکچین و هوش مصنوعی، تا موبایل ها و ماهواره ها، همگی با زبانی ساده و تحلیلی حرفه‌ای!آرکادیا تکست و آرکادیا کست های آموزشی رایگان و کاربردی! همیشه به‌روز بمون.</p>
+<a class="card-btn">در دنیای فناوری چه خبره؟</a>
+</div>
+<div class="card">
+    <img src="s.jpg" class="logo">
+
+    <h3>مشاوره</h3>
+    <p>
+
+        «سردرگمی بین شاخه‌های مختلف برنامه‌نویسی؟ طبیعی است! قبل از اینکه وقتت را پای آموزش‌های اشتباه هدر بدهی، بیا با هم یک گپ کوتاه بزنیم. شماره‌ات را بگذار تا با هم “نقشه راه” اختصاصی‌ات را در آرکادیا رسم کنیم.»</p>
+    <a class="card-btn">دیباگ کردن مسیر حرفه‌ای، تخصص ماست!</a>
+    </div>
+    <div class="card">
+        <img src="f.jpg" class="logo">
+
+        <h3>رزومه</h3>
+        <p>در دنیای صفر و یک ها تجربه حرف اول رو میزنه ازین بخش میتونی تجربه حرفه ای مارو در انواع حوزه ها ببینی 
+            از طراحی سایت شخصی تا همکاری با شرکت های بین المللی 
+        </p>            
+            
+        <a class="card-btn">ابزار و استایلت اینجاست مهندس!</a>
+        </div>
+        <div class="card">
+            <img src="li.jpg" class="logo">
+
+            <h3>لایو</h3>
+            <p>در بخش لایو آرکادیا رویدادها، گفتگوها و برنامه‌های زنده فناوری را دنبال کن.
+
+                از معرفی پروژه‌ها تا بحث‌های تخصصی با توسعه‌دهندگان و سازندگان.
+                
+                جایی برای یادگیری لحظه‌ای، تعامل مستقیم و کشف ایده‌های تازه.
+                </p>
+            <a class="card-btn">همراهیمون کن</a>
+            </div>
+                        
+</div>
+
+</section>
+
+<footer id="about">
+
+
+<div class="footer-container">
+
+<div class="footer-col">
+
+<div class="footer-logo">آرکادیا</div>
+
+<p>
+در حال ساخت آینده‌ای بهتر با فناوری‌های نوین
+</p>
+<p></p>
+
+</div>
+
+<div class="footer-col">
+
+<h4>درباره ما</h4>
+
+<ul>
+
+    <li><a href="story.html">داستان ما</a></li>
+<li><a href="eror.html">رسالت ما</a></li>
+<li><a href="eror.html">هم مسیر های ما</a></li>
+<li><a href="eror.html">مسیرهای شغلی</a></li>
+<li><a href="eror.html">اسپانسر</a></li>
+
+</ul>
+
+</div>
+
+<div class="footer-col">
+
+<h4>مقالات</h4>
+
+<ul>
+
+<li><a href="eror.html">هوش مصنوعی؛ دستیار یا جایگزین برنامه‌نویس؟</a></li>
+<li><a href="eror.html">یادگیری ماشین به زبان آدمیزاد!</a></li>
+<li><a href="eror.html">چرا وب ۳.۰ دنیای ما را نجات می‌دهد؟</a></li>
+
+</ul>
+
+</div>
+
+</div>
+
+<div class="footer-bottom">
+
+© 2025 Arcadia Platform
+
+</div>
+
+</footer>
+
+<script>
+
+const container=document.querySelector(".stars")
+
+for(let i=0;i<180;i++){
+
+const star=document.createElement("div")
+
+star.className="star"
+
+let size=Math.random()*3+1
+
+star.style.width=size+"px"
+star.style.height=size+"px"
+
+star.style.top=Math.random()*200+"vh"
+star.style.left=Math.random()*100+"vw"
+
+star.style.animationDuration=(4+Math.random()*5)+"s"
+
+container.appendChild(star)
+
+}
+const hamburger = document.getElementById("hamburger");
+const menu = document.getElementById("menu");
+
+hamburger.onclick = () => {
+menu.classList.toggle("active");
+};
+
+</script>
+
+
+</body>
+</html>

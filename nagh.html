@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>نقشه راه‌های آرکادیا</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+
+font-family:"Vazirmatn",sans-serif;
+
+background:#050816;
+color:white;
+min-height:100vh;
+overflow-x:hidden;
+
+}
+
+/* پس زمینه ستاره ای */
+
+.stars{
+position:fixed;
+width:100%;
+height:100%;
+top:0;
+left:0;
+z-index:-1;
+}
+
+/* بخش */
+
+.roadmaps{
+
+padding:100px 20px;
+text-align:center;
+
+}
+
+.roadmap-title{
+
+font-size:40px;
+margin-bottom:60px;
+font-weight:600;
+
+}
+
+/* گرید */
+
+.roadmap-container{
+
+max-width:900px;
+margin:auto;
+
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:35px;
+
+}
+
+/* کارت */
+
+.roadmap-card{
+
+background:rgba(255,255,255,0.05);
+
+border:1px solid rgba(255,255,255,0.1);
+
+backdrop-filter:blur(10px);
+
+border-radius:22px;
+
+overflow:hidden;
+
+text-decoration:none;
+color:white;
+
+transition:0.35s;
+
+}
+
+.roadmap-card:hover{
+
+transform:translateY(-10px);
+
+box-shadow:0 20px 40px rgba(0,0,0,0.5);
+
+}
+
+/* تصویر */
+
+.roadmap-card img{
+
+width:100%;
+height:220px;
+
+object-fit:cover;
+
+}
+
+/* عنوان */
+
+.roadmap-card h3{
+
+padding:22px;
+font-size:20px;
+
+}
+
+/* موبایل */
+
+@media(max-width:700px){
+
+.roadmap-container{
+
+grid-template-columns:1fr;
+
+}
+
+}
+/* ===== موبایل حرفه ای ===== */
+
+@media (max-width:700px){
+
+.roadmaps{
+padding:70px 15px;
+}
+
+.roadmap-title{
+font-size:28px;
+margin-bottom:35px;
+}
+
+.roadmap-container{
+grid-template-columns:1fr;
+gap:22px;
+max-width:500px;
+}
+
+.roadmap-card{
+border-radius:18px;
+}
+
+.roadmap-card img{
+height:180px;
+}
+
+.roadmap-card h3{
+font-size:18px;
+padding:16px;
+}
+
+}
+
+
+</style>
+
+</head>
+
+
+<body>
+
+<canvas class="stars"></canvas>
+
+<section class="roadmaps">
+
+<h2 class="roadmap-title">نقشه راه‌های آرکادیا</h2>
+
+<div class="roadmap-container">
+
+<a href="eror.html" class="roadmap-card">
+<img src="ha.jpg">
+<h3>هک و امنیت</h3>
+</a>
+
+<a href="eror.html" class="roadmap-card">
+<img src="shabake.jpg">
+<h3>شبکه</h3>
+</a>
+
+<a href="web_n.html" class="roadmap-card">
+<img src="web.jpg">
+<h3>توسعه وب</h3>
+</a>
+
+<a href="eror.html" class="roadmap-card">
+<img src="ai.jpg">
+<h3>هوش مصنوعی</h3>
+</a>
+
+<a href="eror.html" class="roadmap-card">
+<img src="arcadia_logo.jpg">
+<h3>کودک و نوجوان</h3>
+</a>
+
+<a href="eror.html" class="roadmap-card">
+<img src="arcadia_logo.jpg">
+<h3>مهارت‌های نرم</h3>
+</a>
+
+</div>
+
+</section>
+
+
+<script>
+
+const canvas=document.querySelector(".stars")
+const ctx=canvas.getContext("2d")
+
+canvas.width=window.innerWidth
+canvas.height=window.innerHeight
+
+let stars=[]
+
+for(let i=0;i<150;i++){
+
+stars.push({
+
+x:Math.random()*canvas.width,
+y:Math.random()*canvas.height,
+size:Math.random()*2
+
+})
+
+}
+
+function draw(){
+
+ctx.clearRect(0,0,canvas.width,canvas.height)
+
+ctx.fillStyle="white"
+
+stars.forEach(star=>{
+
+ctx.beginPath()
+ctx.arc(star.x,star.y,star.size,0,Math.PI*2)
+ctx.fill()
+
+})
+
+requestAnimationFrame(draw)
+
+}
+
+draw()
+canvas.width=window.innerWidth
+canvas.height=window.innerHeight
+
+window.addEventListener("resize",()=>{
+
+canvas.width=window.innerWidth
+canvas.height=window.innerHeight
+
+})
+
+
+</script>
+
+</body>
+
+</html>

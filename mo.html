@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arcadia Platform | آرکادیا</title>
+
+    <!-- فونت وزیر متن از گوگل فونت -->
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+
+    <style>
+        /* تنظیمات پایه */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Vazirmatn", sans-serif;
+            background: 
+                radial-gradient(circle at 20% 20%, #0b224e, transparent 40%),
+                radial-gradient(circle at 80% 10%, #0c214f, transparent 40%),
+                #030712;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* ستاره‌های پس‌زمینه */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            opacity: .8;
+            box-shadow: 0 0 8px #4ea1ff;
+            animation: starMove 6s ease-in-out infinite;
+        }
+
+        @keyframes starMove {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        /* هدر شیشه‌ای و مدرن مطابق تصویر کاربر */
+        header {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 95%;
+            max-width: 1200px;
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            z-index: 1000;
+            padding: 10px 20px;
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 900;
+            font-size: 22px;
+        }
+
+        .logo-img {
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #2f80ff, #00c6ff);
+        }
+
+        .menu {
+            display: flex;
+            gap: 25px;
+        }
+
+        .menu a {
+            text-decoration: none;
+            color: #d1d5db;
+            font-size: 15px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .menu a:hover {
+            color: #38bdf8;
+        }
+
+        .login-btn {
+            background: #38bdf8;
+            color: #030712;
+            padding: 10px 25px;
+            border-radius: 50px; /* شکل کپسولی مطابق عکس */
+            font-weight: 700;
+            text-decoration: none;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        .login-btn:hover {
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.6);
+            transform: scale(1.05);
+        }
+
+        /* بخش Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding-top: 100px;
+        }
+
+        .hero h1 {
+            font-size: 22px;
+            font-weight: 400;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+
+        .hero h2 {
+            font-size: 55px;
+            font-weight: 900;
+            color: white;
+            line-height: 1.2;
+            margin-bottom: 30px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            opacity: 0.7;
+            max-width: 600px;
+            margin: 0 auto 40px;
+            line-height: 1.8;
+        }
+
+        /* بخش داستان آرکادیا (درخواستی کاربر) */
+        .story-section {
+            padding: 100px 20px;
+            background: rgba(3, 7, 18, 0.5);
+        }
+
+        .story-container {
+            max-width: 900px;
+            margin: auto;
+            text-align: center;
+        }
+
+        .story-box {
+            background: #2f80ff;
+            padding: 15px 40px;
+            border-radius: 50px;
+            display: inline-block;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(47, 128, 255, 0.4);
+        }
+
+        .story-box h2 {
+            font-size: 28px;
+            font-weight: 900;
+            color: white;
+        }
+
+        .story-sub {
+            font-size: 45px;
+            font-weight: 900;
+            margin-bottom: 40px;
+            color: white;
+        }
+
+        .story-status {
+            font-size: 18px;
+            opacity: 0.6;
+            margin-bottom: 40px;
+        }
+
+        .story-image-placeholder {
+            width: 100%;
+            height: 400px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 30px;
+            border: 1px dashed rgba(255,255,255,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 50px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .story-content {
+            text-align: right;
+            padding: 0 20px;
+        }
+
+        .story-bold {
+            font-size: 24px;
+            font-weight: 900;
+            color: #38bdf8;
+            margin-bottom: 20px;
+        }
+
+        .story-desc {
+            font-size: 18px;
+            line-height: 2;
+            opacity: 0.8;
+        }
+
+        /* فوتر */
+        footer {
+            background: #02050b;
+            padding: 80px 20px 30px;
+            border-top: 1px solid rgba(255,255,255,.05);
+            margin-top: 100px;
+        }
+
+        .footer-grid {
+            max-width: 1100px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+        }
+
+        .footer-col h4 {
+            margin-bottom: 20px;
+            color: #38bdf8;
+            font-weight: 700;
+        }
+
+        .footer-col ul { list-style: none; }
+        .footer-col li { margin-bottom: 12px; }
+        .footer-col a { text-decoration: none; color: #9ca3af; transition: 0.3s; }
+        .footer-col a:hover { color: white; }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            font-size: 13px;
+            opacity: 0.5;
+        }
+        /* استایل بخش تایم‌لاین */
+.timeline-section {
+    padding: 100px 20px;
+    background: transparent;
+    text-align: center;
+    position: relative;
+    overflow-x: auto; /* برای موبایل که بشه اسکرول کرد */
+}
+
+.timeline-title {
+    font-size: 32px;
+    font-weight: 900;
+    color: #38bdf8;
+    margin-bottom: 80px;
+}
+
+.timeline-container {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1100px;
+    margin: 0 auto;
+    position: relative;
+    padding: 40px 0;
+    min-width: 800px; /* جلوگیری از فشرده شدن در دسکتاپ */
+}
+
+.timeline-line {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #2f80ff, #38bdf8, transparent);
+    transform: translateY(-50%);
+    z-index: 1;
+}
+
+.timeline-item {
+    position: relative;
+    z-index: 2;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.timeline-date {
+    font-size: 14px;
+    font-weight: 700;
+    color: #38bdf8;
+    margin-bottom: 15px;
+    background: rgba(56, 189, 248, 0.1);
+    padding: 4px 12px;
+    border-radius: 20px;
+}
+
+.timeline-dot {
+    width: 20px;
+    height: 20px;
+    background: #030712;
+    border: 3px solid #2f80ff;
+    border-radius: 50%;
+    transition: 0.3s;
+    box-shadow: 0 0 10px rgba(47, 128, 255, 0.5);
+}
+
+.timeline-item:hover .timeline-dot {
+    transform: scale(1.3);
+    background: #38bdf8;
+    box-shadow: 0 0 20px #38bdf8;
+}
+
+.timeline-dot.active {
+    background: #38bdf8;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0px rgba(56, 189, 248, 0.7); }
+    100% { box-shadow: 0 0 0 15px rgba(56, 189, 248, 0); }
+}
+
+.timeline-content {
+    margin-top: 15px;
+    font-size: 14px;
+    font-weight: 600;
+    opacity: 0.8;
+    max-width: 150px;
+    line-height: 1.6;
+}
+/* ===== موبایل ===== */
+
+@media (max-width: 768px){
+
+header{
+width:92%;
+padding:10px 15px;
+}
+
+.menu{
+position:fixed;
+top:90px;
+right:-100%;
+flex-direction:column;
+background:rgba(15,23,42,0.95);
+width:220px;
+padding:25px;
+border-radius:20px;
+gap:18px;
+transition:0.4s;
+}
+
+.menu.active{
+right:20px;
+}
+
+.hero{
+padding:120px 20px 40px;
+}
+
+.hero h2{
+font-size:34px;
+}
+
+.hero p{
+font-size:15px;
+}
+
+.story-sub{
+font-size:28px;
+}
+
+.story-image-placeholder{
+height:260px;
+}
+
+.story-image-placeholder img{
+width:100%;
+height:100%;
+object-fit:cover;
+border-radius:30px;
+}
+
+.story-content{
+text-align:center;
+padding:0;
+}
+
+.story-bold{
+font-size:20px;
+}
+
+.story-desc{
+font-size:15px;
+line-height:1.9;
+}
+
+.footer-grid{
+grid-template-columns:1fr;
+text-align:center;
+}
+
+}
+.menu-toggle{
+display:none;
+font-size:24px;
+cursor:pointer;
+}
+
+@media (max-width:768px){
+
+.menu-toggle{
+display:block;
+}
+
+.menu{
+display:flex;
+}
+
+}
+
+
+
+    </style>
+</head>
+<body>
+
+    <div class="stars" id="starContainer"></div>
+
+    <header>
+        <div class="nav">
+            <div class="brand">
+                <span>ARCADIA</span>
+            </div>
+            <div class="menu-toggle" id="menuToggle">☰</div>
+
+            <nav class="menu">
+                <a href="eror.html">آموزشگاه</a>
+                <a href="eror.html">سبد خرید</a>
+                <li><a href="nagh.html">نقشه راه</a></li>
+                <li><a href="index.html">صفحه اصلی </a></li>
+                <li><a href="mo.html">خالق آرکادیا</a></li>
+                <li><a href="story.html">درباره ما</a></li>
+            </nav>
+            <a href="eror.html" class="login-btn">ورود / ثبت نام</a>
+        </div>
+    </header>
+
+    
+
+    <!-- سکشن داستان آرکادیا مطابق عکس و توضیحات -->
+    <section class="story-section">
+        <div class="story-container">
+            <div class="story-box">
+                <h2>موسس آرکادیا</h2>
+            </div>
+            
+            <h3 class="story-sub">جهانی برای مهندسان صفر و یک...</h3>
+            
+            <p class="story-status">در دست تدوین متن...</p>
+
+         
+            </div>
+
+            <div class="story-content">
+                <h4 class="story-bold">آینده ساخته نمی‌شود؛ نوشته می‌شود، خط به خط، با کد.</h4>
+                <p class="story-desc">
+                    سلام، من مائده احسانی هستم؛ بیشتر با اسم «کاتیا» شناخته می‌شم.
+
+                    مهندس کامپیوتر در حوزه امنیت و بنیان‌گذار مجموعه آرکادیا. آرکادیا جاییه که سعی کردیم تکنولوژی رو از یک ابزار ساده به یک اکوسیستم واقعی برای ساختن آینده تبدیل کنیم.
+                    
+                    تمرکز اصلی من روی ساخت سیستم‌های هوشمند، امنیت دیجیتال و زیرساخت‌های نسل جدید وب بوده. در آرکادیا پروژه‌هایی مثل «نوا» در حوزه هوش مصنوعی و «متاچین» در حوزه Web3 رو توسعه می‌دیم؛ پروژه‌هایی که هدفشون ساده‌ست:
+                    
+                    ساختن ابزارهایی که زندگی دیجیتال رو امن‌تر، هوشمندتر و آزادتر کنه.
+                    
+                    من باور دارم تکنولوژی فقط کد و الگوریتم نیست؛
+                    
+                    تکنولوژی یعنی توانایی ساختن چیزهایی که قبلاً وجود نداشتند.
+                    
+                    اگر شما هم به آینده فناوری، نوآوری و ساختن چیزهای بزرگ علاقه دارید، خوشحال می‌شم بخشی از مسیر آرکادیا باشید.
+                </p>
+            </div>
+        </div>
+    </section>
+        </div>
+    </div>
+</section>
+
+
+    <footer id="about">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>آرکادیا</h4>
+                <p style="font-size: 14px; opacity: 0.7; line-height: 1.8;">پیشرو در ارائه خدمات هوش مصنوعی و زیرساخت‌های نوین تکنولوژی.</p>
+            </div>
+            <div class="footer-col">
+                <h4>دسترسی سریع</h4>
+                <ul>
+                    <li><a href="#">داستان ما</a></li>
+                    <li><a href="#">دپارتمان‌ها</a></li>
+                    <li><a href="#">فرصت‌های شغلی</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>ارتباط با ما</h4>
+                <ul>
+                    <li><a href="#">تلگرام</a></li>
+                    <li><a href="#">اینستاگرام</a></li>
+                    <li><a href="#">ایمیل پشتیبانی</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 Arcadia Platform | تمام حقوق برای مجموعه آرکادیا محفوظ است.
+        </div>
+    </footer>
+
+    <script>
+        // ایجاد ستاره‌ها به صورت داینامیک
+        const container = document.getElementById("starContainer");
+        for(let i=0; i<150; i++) {
+            const star = document.createElement("div");
+            star.className = "star";
+            let size = Math.random() * 3 + 1;
+            star.style.width = size + "px";
+            star.style.height = size + "px";
+            star.style.top = Math.random() * 100 + "vh";
+            star.style.left = Math.random() * 100 + "vw";
+            star.style.animationDuration = (4 + Math.random() * 5) + "s";
+            star.style.opacity = Math.random();
+            container.appendChild(star);
+        }
+        const toggle = document.getElementById("menuToggle");
+const menu = document.querySelector(".menu");
+
+toggle.onclick = () => {
+menu.classList.toggle("active");
+}
+
+    </script>
+</body>
+</html>

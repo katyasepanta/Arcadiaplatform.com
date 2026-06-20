@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>نقشه راه وب | آرکادیا</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;700;900&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-blue: #00c6ff;
+            --accent-gold: #ffd700;
+            --discount-red: #ff4e50;
+            --free-green: #00ff88;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --body-bg: #030712;
+            --text-main: #ffffff;
+            --text-muted: rgba(255,255,255,0.72);
+            --card-radius: 30px;
+            --container-width: 1100px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: "Vazirmatn", sans-serif;
+            background:
+                radial-gradient(circle at top right, rgba(0, 198, 255, 0.12), transparent 35%),
+                radial-gradient(circle at bottom left, rgba(255, 215, 0, 0.08), transparent 30%),
+                var(--body-bg);
+            color: var(--text-main);
+            line-height: 1.8;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        canvas#stars {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        header {
+            text-align: center;
+            padding: 96px 20px 42px;
+        }
+
+        header h1 {
+            font-size: clamp(2rem, 6vw, 3.4rem);
+            font-weight: 900;
+            background: linear-gradient(135deg, #fff, var(--primary-blue));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+            line-height: 1.35;
+        }
+
+        header p {
+            opacity: 0.78;
+            font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+            max-width: 620px;
+            margin: 0 auto;
+        }
+
+        .intro-section {
+            max-width: 850px;
+            margin: 0 auto 55px;
+            padding: 0 22px;
+            text-align: center;
+        }
+
+        .intro-section h2 {
+            font-size: clamp(1.35rem, 4vw, 2rem);
+            font-weight: 900;
+            margin-bottom: 16px;
+            color: #fff;
+        }
+
+        .intro-section p {
+            color: var(--text-muted);
+            font-size: clamp(0.95rem, 2.8vw, 1.05rem);
+            line-height: 2.1;
+            background: rgba(255,255,255,0.035);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 24px;
+            padding: 22px;
+            backdrop-filter: blur(10px);
+        }
+
+        .roadmap-container {
+            position: relative;
+            max-width: var(--container-width);
+            margin: 0 auto 100px;
+            padding: 20px;
+        }
+
+        .roadmap-container::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(
+                to bottom,
+                transparent,
+                var(--primary-blue),
+                var(--primary-blue),
+                transparent
+            );
+            z-index: 1;
+        }
+
+        .roadmap-item {
+            position: relative;
+            width: 100%;
+            margin-bottom: 100px;
+            display: flex;
+            justify-content: flex-end;
+            content-visibility: auto;
+            contain-intrinsic-size: 500px;
+        }
+
+        .roadmap-item:nth-child(even) {
+            justify-content: flex-start;
+        }
+
+        .roadmap-dot {
+            position: absolute;
+            left: 50%;
+            top: 40px;
+            transform: translateX(-50%);
+            width: 22px;
+            height: 22px;
+            background: var(--body-bg);
+            border: 4px solid var(--primary-blue);
+            border-radius: 50%;
+            z-index: 2;
+            box-shadow: 0 0 20px var(--primary-blue);
+        }
+
+        .course-card {
+            width: 45%;
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--card-radius);
+            padding: 25px;
+            transition: 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+            z-index: 3;
+            display: flex;
+            flex-direction: column;
+            min-height: 100%;
+        }
+
+        @media (hover: hover) and (pointer: fine) {
+            .course-card:hover {
+                transform: translateY(-12px) scale(1.02);
+                border-color: var(--primary-blue);
+                box-shadow: 0 20px 40px rgba(0, 198, 255, 0.2);
+            }
+
+            .course-card:hover .course-poster img {
+                transform: scale(1.1) rotate(1deg);
+            }
+
+            .course-btn:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 8px 25px rgba(0, 198, 255, 0.5);
+            }
+        }
+
+        .course-poster {
+            width: 100%;
+            height: 200px;
+            border-radius: 20px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            background: #111827;
+        }
+
+        .course-poster img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.6s;
+        }
+
+        .course-card h3 {
+            font-size: 1.25rem;
+            color: #fff;
+            margin-bottom: 10px;
+            font-weight: 800;
+            line-height: 1.7;
+        }
+
+        .badge-row {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+
+        .badge {
+            font-size: 0.7rem;
+            padding: 4px 12px;
+            border-radius: 999px;
+            background: rgba(255,255,255,0.1);
+            color: #ddd;
+            white-space: nowrap;
+        }
+
+        .badge.phase {
+            border: 1px solid var(--primary-blue);
+            color: var(--primary-blue);
+        }
+
+        .badge.free-info {
+            background: rgba(0, 255, 136, 0.15);
+            color: var(--free-green);
+            border: 1px solid var(--free-green);
+        }
+
+        .price-box {
+            background: rgba(0,0,0,0.3);
+            border-radius: 18px;
+            padding: 15px;
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .old-price {
+            font-size: 0.82rem;
+            text-decoration: line-through;
+            opacity: 0.45;
+        }
+
+        .new-price {
+            font-size: 1.12rem;
+            font-weight: 900;
+            color: #fff;
+        }
+
+        .fest-label {
+            font-size: 0.68rem;
+            color: var(--discount-red);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: bold;
+        }
+
+        .course-btn {
+            margin-top: auto;
+            text-decoration: none;
+            text-align: center;
+            padding: 14px 18px;
+            min-height: 50px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(45deg, var(--primary-blue), #0082ff);
+            border-radius: 15px;
+            color: #030712;
+            font-weight: 900;
+            transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(0, 198, 255, 0.3);
+            touch-action: manipulation;
+        }
+
+        .course-btn:active {
+            transform: scale(0.98);
+        }
+
+        .card-free .new-price {
+            color: var(--free-green);
+        }
+
+        .card-free .course-btn {
+            background: var(--free-green);
+            box-shadow: 0 4px 15px rgba(0, 255, 136, 0.25);
+        }
+
+        .card-vip {
+            border: 2px solid var(--accent-gold);
+            background: rgba(255, 215, 0, 0.05);
+        }
+
+        .card-vip h3 {
+            color: var(--accent-gold);
+        }
+
+        .card-vip .course-btn {
+            background: var(--accent-gold);
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.25);
+        }
+
+        .badge-vip {
+            border: 1px solid var(--accent-gold);
+            color: var(--accent-gold);
+        }
+
+        /* Tablet */
+        @media (max-width: 850px) {
+            header {
+                padding: 76px 18px 34px;
+            }
+
+            .intro-section {
+                margin-bottom: 40px;
+            }
+
+            .roadmap-container {
+                padding: 10px 16px 20px;
+                margin-bottom: 70px;
+            }
+
+            /*
+                چون صفحه راست‌چین است، تایم‌لاین در موبایل سمت راست قرار می‌گیرد.
+                اینطوری چشم کاربر کمتر پینگ‌پنگ بازی می‌کند 😄
+            */
+            .roadmap-container::before {
+                right: 24px;
+                left: auto;
+                transform: none;
+            }
+
+            .roadmap-dot {
+                right: 14px;
+                left: auto;
+                transform: none;
+                width: 20px;
+                height: 20px;
+                top: 34px;
+            }
+
+            .roadmap-item,
+            .roadmap-item:nth-child(even) {
+                justify-content: flex-start;
+                margin-bottom: 54px;
+                padding-right: 48px;
+            }
+
+            .course-card {
+                width: 100%;
+                border-radius: 24px;
+                padding: 20px;
+            }
+
+            .course-poster {
+                height: clamp(160px, 42vw, 230px);
+                border-radius: 18px;
+            }
+        }
+
+        /* Mobile */
+        @media (max-width: 600px) {
+            :root {
+                --card-radius: 22px;
+            }
+
+            body {
+                line-height: 1.75;
+            }
+
+            header {
+                padding: 58px 16px 28px;
+            }
+
+            header h1 {
+                margin-bottom: 12px;
+            }
+
+            header p {
+                max-width: 340px;
+            }
+
+            .intro-section {
+                padding: 0 16px;
+                margin-bottom: 30px;
+                text-align: right;
+            }
+
+            .intro-section h2 {
+                text-align: center;
+            }
+
+            .intro-section p {
+                padding: 18px;
+                border-radius: 20px;
+                line-height: 2;
+            }
+
+            .roadmap-container {
+                padding: 8px 12px 10px;
+            }
+
+            .roadmap-container::before {
+                right: 21px;
+                width: 2px;
+            }
+
+            .roadmap-dot {
+                right: 12px;
+                top: 30px;
+                width: 18px;
+                height: 18px;
+                border-width: 3px;
+            }
+
+            .roadmap-item,
+            .roadmap-item:nth-child(even) {
+                padding-right: 42px;
+                margin-bottom: 38px;
+            }
+
+            .course-card {
+                padding: 16px;
+                border-radius: 20px;
+                backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(10px);
+            }
+
+            .course-poster {
+                height: 155px;
+                margin-bottom: 13px;
+                border-radius: 16px;
+            }
+
+            .course-card h3 {
+                font-size: 1rem;
+                margin-bottom: 10px;
+            }
+
+            .badge-row {
+                gap: 6px;
+                margin-bottom: 12px;
+            }
+
+            .badge {
+                font-size: 0.65rem;
+                padding: 3px 9px;
+            }
+
+            .price-box {
+                padding: 13px;
+                margin-bottom: 16px;
+                border-radius: 15px;
+            }
+
+            .new-price {
+                font-size: 1rem;
+            }
+
+            .old-price {
+                font-size: 0.76rem;
+            }
+
+            .course-btn {
+                min-height: 48px;
+                padding: 12px 14px;
+                border-radius: 14px;
+                font-size: 0.92rem;
+            }
+        }
+
+        /* Very small mobile */
+        @media (max-width: 380px) {
+            .roadmap-item,
+            .roadmap-item:nth-child(even) {
+                padding-right: 36px;
+            }
+
+            .roadmap-container::before {
+                right: 18px;
+            }
+
+            .roadmap-dot {
+                right: 9px;
+            }
+
+            .course-card {
+                padding: 14px;
+            }
+
+            .course-poster {
+                height: 135px;
+            }
+
+            .badge {
+                font-size: 0.6rem;
+                padding: 3px 8px;
+            }
+        }
+
+        /* Accessibility / Performance */
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+
+            canvas#stars {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<canvas id="stars" aria-hidden="true"></canvas>
+
+<header>
+    <h1>نقشه راه توسعه وب‌سایت</h1>
+    <p>از اولین خط کد تا رسیدن به رتبه اول گوگل در دپارتمان آرکادیا 🌸</p>
+</header>
+
+<section class="intro-section">
+    <h2>از اولین خط کد تا مقصدِ استخدامی</h2>
+    <p>
+        «دنیای وب، اقیانوسی بی‌انتهاست؛ اما هیچ اقیانوسی بدون نقشه، فتح نمی‌شود.
+        ما در آرکادیا، بر اساس تجربه‌ی پروژه‌های واقعی و استانداردهای ۲۰۲۶، مسیری را برایت ترسیم کرده‌ایم که در آن از اصولِ پایه‌ای طراحی
+        (Figma) عبور می‌کنی، با جادوی جاوااسکریپت به صفحات جان می‌دهی و در نهایت با قدرت پایتون و فلسک، به یک متخصص تمام‌عیار تبدیل می‌شوی.
+        این نقشه، فقط یک آموزش نیست؛ تعهدِ ما برای همراهی با تو تا رسیدن به رتبه اول گوگل و اولین قرارداد کاری حرفه‌ای توست.
+        به دنیای توسعه‌دهندگان آرکادیا خوش آمدی.»
+    </p>
+</section>
+
+<div class="roadmap-container">
+
+    <!-- 1 -->
+    <div class="roadmap-item">
+        <div class="roadmap-dot"></div>
+        <div class="course-card card-free">
+            <div class="course-poster">
+                <img src="torbo.jpg" alt="برنامه‌نویسی" loading="lazy">
+            </div>
+            <div class="badge-row">
+                <span class="badge">بدون فازبندی</span>
+            </div>
+            <h3>✔️ ورود به دنیای برنامه‌نویسی</h3>
+            <div class="price-box">
+                <span class="old-price">650.000 تومان</span>
+                <span class="new-price">رایگان 🔥</span>
+            </div>
+            <a href="eror.html" class="course-btn">شروع یادگیری رایگان</a>
+        </div>
+    </div>
+
+    <!-- 2 -->
+    <div class="roadmap-item">
+        <div class="roadmap-dot"></div>
+        <div class="course-card">
+            <div class="course-poster">
+                <img src="torbo.jpg" alt="فیگما" loading="lazy">
+            </div>
+            <div class="badge-row">
+                <span class="badge">بدون فازبندی</span>
+            </div>
+            <h3>✔️ مقدماتی تا پیشرفته فیگما</h3>
+            <div class="price-box">
+                <span class="old-price">800.000 تومان</span>
+                <span class="fest-label">قیمت جشنواره:</span>
+                <span class="new-price">300.000 تومان</span>
+            </div>
+            <a href="eror.html" class="course-btn">مشاهده دوره</a>
+        </div>
+    </div>
+
+    <!-- 3 -->
+    <div class="roadmap-item">
+        <div class="roadmap-dot"></div>
+        <div class="course-card">
+            <div class="course-poster">
+                <img src="torbo.jpg" alt="HTML CSS" loading="lazy">
+            </div>
+            <div class="badge-row">
+                <span class="badge phase">دارای 2 فاز</span>
+                <span class="badge free-info">فاز اول رایگان 🎁</span>
+            </div>
+            <h3>✔️ اچ تی ام ال / سی اس اس</h3>
+            <div class="price-box">
+                <span class="old-price">2.800.000 تومان</span>
+                <span class="fest-label">قیمت جشنواره:</span>
+                <span class="new-price">1.200.000 تومان</span>
+            </div>
+            <a href="eror.html" class="course-btn">مشاهده دوره</a>
+        </div>
+    </div>
+
+    <!-- 4 -->
+    <div class="roadmap-item">
+        <div class="roadmap-dot"></div>
+        <div class="course-card">
+            <div class="course-poster">
+                <img src="torbo.jpg" alt="JS" loading="lazy">
+            </div>
+            <div class="badge-row">
+                <span class="badge phase">دارای 3 فاز</span>
+            </div>
+            <h3>✔️ متخصص جاوااسکریپت</h3>
+            <div class="price-box">
+                <span class="old-price">3,900,000 تومان</span>
+                <span class="fest-label">قیمت جشنواره:</span>
+                <span class="new-price">2.100.000 تومان</span>
+            </div>
+            <a href="eror.html" class="course-btn">مشاهده دوره</a>
+        </div>
+    </div>
+
+    <!-- 5 -->
+    <div class="roadmap-item">
+        <div class="roadmap-dot"></div>
+        <div class="course-card">
+            <div class="course-poster">
+                <img src="torbo.jpg" alt="Bootstrap" loading="lazy">
+            </div>
+            <div class="badge-row">
+                <span class="badge">بدون فازبندی</span>
+            </div>
+            <h3>✔️ بوت استرپ</h3>
+            <div class="price-box">
+                <span class="old-price">830,000 تومان</span>
+                <span class="fest-label">قیمت جشنواره:</span>
+                <span class="new-price">166,000 تومان</span>
+            </div>
+            <a href="eror.html" class="course-btn">مشاهده دوره</a>
+        </div>
+    </div>
+
+    <!-- 6 -->
+    <div class="roadmap-item">
+        <div class="roadmap-dot"></div>
+        <div class="course-card">
+            <div class="course-poster">
+                <img src="torbo.jpg" alt="React" loading="lazy">
+            </div>
+            <div class="badge-row">
+                <span class="badge phase">دارای 2 فاز</span>
+            </div>
+            <h3>✔️ متخصص ری اکت</h3>
+            <div class="price-box">
+                <span class="old-price">3,200,000 تومان</span>
+                <span class="fest-label">قیمت جشنواره:</span>
+                <span class="new-price">640,000 تومان</span>
+            </div>
+            <a href="eror.html" class="course-btn">مشاهده دوره</a>
+        </div>
+    </div>
+
+    <!-- 7 -->
+    <div class="roadmap-item">
+        <div class="roadmap-dot"></div>
+        <div class="course-card">
+            <div class="course-poster">
+                <img src="torbo.jpg" alt="Python" loading="lazy">
+            </div>
+            <div class="badge-row">
+                <span class="badge phase">دارای 3 فاز</span>
+            </div>
+            <h3>✔️ متخصص پایتون</h3>
+            <div class="price-box">
+                <span class="old-price">4,200,000 تومان</span>
+                <span class="fest-label">قیمت جشنواره:</span>
+                <span class="new-price">840,000 تومان</span>
+            </div>
+            <a href="eror.html" class="course-btn">مشاهده دوره</a>
+        </div>
+    </div>
+
+    <!-- 8 -->
+    <div class="roadmap-item">
+        <div class="roadmap-dot"></div>
+        <div class="course-card">
+            <div class="course-poster">
+                <img src="torbo.jpg" alt="Flask" loading="lazy">
+            </div>
+            <div class="badge-row">
+                <span class="badge phase">دارای 2 فاز</span>
+            </div>
+            <h3>✔️ متخصص فلسک</h3>
+            <div class="price-box">
+                <span class="old-price">3,000,000 تومان</span>
+                <span class="fest-label">قیمت جشنواره:</span>
+                <span class="new-price">600,000 تومان</span>
+            </div>
+            <a href="eror.html" class="course-btn">مشاهده دوره</a>
+        </div>
+    </div>
+
+    <!-- 9 -->
+    <div class="roadmap-item">
+        <div class="roadmap-dot"></div>
+        <div class="course-card card-free">
+            <div class="course-poster">
+                <img src="torbo.jpg" alt="Postman" loading="lazy">
+            </div>
+            <div class="badge-row">
+                <span class="badge">بدون فازبندی</span>
+            </div>
+            <h3>✔️ پستمن (Postman)</h3>
+            <div class="price-box">
+                <span class="old-price">350,000 تومان</span>
+                <span class="new-price">رایگان 🔥</span>
+            </div>
+            <a href="eror.html" class="course-btn">مشاهده دوره</a>
+        </div>
+    </div>
+
+    <!-- 10 -->
+    <div class="roadmap-item">
+        <div class="roadmap-dot"></div>
+        <div class="course-card">
+            <div class="course-poster">
+                <img src="torbo.jpg" alt="Git" loading="lazy">
+            </div>
+            <div class="badge-row">
+                <span class="badge">بدون فازبندی</span>
+            </div>
+            <h3>✔️ گیت و گیت هاب</h3>
+            <div class="price-box">
+                <span class="old-price">160,000 تومان</span>
+                <span class="fest-label">قیمت جشنواره:</span>
+                <span class="new-price">32,000 تومان</span>
+            </div>
+            <a href="eror.html" class="course-btn">مشاهده دوره</a>
+        </div>
+    </div>
+
+    <!-- 11 -->
+    <div class="roadmap-item">
+        <div class="roadmap-dot"></div>
+        <div class="course-card card-free">
+            <div class="course-poster">
+                <img src="torbo.jpg" alt="NPM" loading="lazy">
+            </div>
+            <div class="badge-row">
+                <span class="badge">آموزش ابزار</span>
+            </div>
+            <h3>✔️ زیر و بم ان پی ام (NPM)</h3>
+            <div class="price-box">
+                <span class="old-price">600,000 تومان</span>
+                <span class="new-price">رایگان 🎁</span>
+            </div>
+            <a href="eror.html" class="course-btn">مشاهده دوره</a>
+        </div>
+    </div>
+
+    <!-- 12 -->
+    <div class="roadmap-item">
+        <div class="roadmap-dot"></div>
+        <div class="course-card card-vip">
+            <div class="course-poster">
+                <img src="torbo.jpg" alt="SEO VIP" loading="lazy">
+            </div>
+            <div class="badge-row">
+                <span class="badge">بدون فازبندی</span>
+                <span class="badge badge-vip">VIP</span>
+            </div>
+            <h3>✔️ سئو وی آی پی (SEO)</h3>
+            <div class="price-box">
+                <span class="old-price">6,000,000 تومان</span>
+                <span class="fest-label">قیمت جشنواره:</span>
+                <span class="new-price">1,200,000 تومان</span>
+            </div>
+            <a href="eror.html" class="course-btn">ورود به سطح حرفه‌ای</a>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    const canvas = document.getElementById('stars');
+    const ctx = canvas.getContext('2d');
+
+    let stars = [];
+    let animationId = null;
+    let resizeTimer = null;
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function getStarCount() {
+        const width = window.innerWidth;
+
+        if (width <= 480) return 55;
+        if (width <= 768) return 90;
+        return 180;
+    }
+
+    function initStars() {
+        if (prefersReducedMotion) return;
+
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+        canvas.width = Math.floor(window.innerWidth * dpr);
+        canvas.height = Math.floor(window.innerHeight * dpr);
+
+        canvas.style.width = window.innerWidth + 'px';
+        canvas.style.height = window.innerHeight + 'px';
+
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+        stars = [];
+        const count = getStarCount();
+
+        for (let i = 0; i < count; i++) {
+            stars.push({
+                x: Math.random() * window.innerWidth,
+                y: Math.random() * window.innerHeight,
+                size: Math.random() * 1.7 + 0.2,
+                speed: Math.random() * 0.35 + 0.08,
+                opacity: Math.random() * 0.7 + 0.25
+            });
+        }
+    }
+
+    function animateStars() {
+        if (prefersReducedMotion) return;
+
+        ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+
+        stars.forEach(star => {
+            star.y += star.speed;
+
+            if (star.y > window.innerHeight) {
+                star.y = 0;
+                star.x = Math.random() * window.innerWidth;
+            }
+
+            ctx.beginPath();
+            ctx.fillStyle = `rgba(255, 255, 255, ${star.opacity})`;
+            ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
+            ctx.fill();
+        });
+
+        animationId = requestAnimationFrame(animateStars);
+    }
+
+    function handleResize() {
+        clearTimeout(resizeTimer);
+
+        resizeTimer = setTimeout(() => {
+            if (animationId) {
+                cancelAnimationFrame(animationId);
+            }
+
+            initStars();
+            animateStars();
+        }, 180);
+    }
+
+    if (!prefersReducedMotion) {
+        initStars();
+        animateStars();
+        window.addEventListener('resize', handleResize, { passive: true });
+    }
+</script>
+
+</body>
+</html>
