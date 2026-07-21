@@ -1,0 +1,2773 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="description"
+    content="خرید اشتراک پلاس، پرو و پریمیوم آرکادیا"
+  >
+
+  <title>خرید اشتراک | آرکادیا</title>
+
+  <!-- فونت وزیرمتن -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet"
+  >
+
+  <style>
+
+    /* =========================================
+       متغیرها و تنظیمات پایه
+    ========================================= */
+
+    :root{
+      --bg:#030711;
+      --bg-secondary:#061225;
+
+      --card-bg:rgba(8, 21, 45, .72);
+      --card-bg-solid:#08152e;
+
+      --text:#f7faff;
+      --muted:#97a7be;
+
+      --blue:#247cff;
+      --cyan:#00c6ff;
+      --purple:#925cff;
+      --pink:#ef4fa8;
+      --gold:#ffb938;
+      --green:#26dfa2;
+      --danger:#ff6680;
+
+      --border:rgba(128, 184, 255, .16);
+
+      --container:1180px;
+
+      --radius-lg:27px;
+      --radius-md:18px;
+      --radius-sm:13px;
+    }
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
+    body{
+      min-height:100vh;
+
+      color:var(--text);
+      background:
+        radial-gradient(
+          circle at 15% 10%,
+          rgba(36, 124, 255, .17),
+          transparent 30%
+        ),
+        radial-gradient(
+          circle at 85% 25%,
+          rgba(146, 92, 255, .13),
+          transparent 28%
+        ),
+        radial-gradient(
+          circle at 50% 95%,
+          rgba(0, 198, 255, .09),
+          transparent 35%
+        ),
+        var(--bg);
+
+      font-family:"Vazirmatn", sans-serif;
+
+      overflow-x:hidden;
+    }
+
+    body::before{
+      content:"";
+
+      position:fixed;
+      inset:0;
+      z-index:-3;
+
+      pointer-events:none;
+
+      background-image:
+        linear-gradient(
+          rgba(255,255,255,.018) 1px,
+          transparent 1px
+        ),
+        linear-gradient(
+          90deg,
+          rgba(255,255,255,.018) 1px,
+          transparent 1px
+        );
+
+      background-size:45px 45px;
+
+      mask-image:
+        linear-gradient(
+          to bottom,
+          #000 10%,
+          transparent 90%
+        );
+
+      -webkit-mask-image:
+        linear-gradient(
+          to bottom,
+          #000 10%,
+          transparent 90%
+        );
+    }
+
+    button,
+    input{
+      font:inherit;
+    }
+
+    button{
+      border:none;
+    }
+
+    a{
+      color:inherit;
+      text-decoration:none;
+    }
+
+    ul{
+      list-style:none;
+    }
+
+    .container{
+      width:min(calc(100% - 40px), var(--container));
+      margin-inline:auto;
+    }
+
+    .section{
+      position:relative;
+      padding:100px 0;
+    }
+
+
+    /* =========================================
+       نوار بالای صفحه
+    ========================================= */
+
+    .navbar{
+      position:sticky;
+      top:0;
+      z-index:1000;
+
+      border-bottom:1px solid rgba(255,255,255,.06);
+
+      background:rgba(3, 7, 17, .76);
+
+      backdrop-filter:blur(18px);
+      -webkit-backdrop-filter:blur(18px);
+    }
+
+    .navbar-content{
+      min-height:76px;
+
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:24px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+
+    .brand-logo{
+      width:46px;
+      height:46px;
+
+      border:1px solid rgba(0,198,255,.42);
+      border-radius:14px;
+
+      object-fit:cover;
+
+      box-shadow:
+        0 0 20px rgba(0,198,255,.19);
+    }
+
+    .brand-text{
+      display:flex;
+      flex-direction:column;
+
+      line-height:1.15;
+    }
+
+    .brand-text strong{
+      font-size:17px;
+      font-weight:900;
+      letter-spacing:1px;
+    }
+
+    .brand-text span{
+      margin-top:6px;
+
+      color:var(--muted);
+
+      font-size:11px;
+    }
+
+    .navbar-actions{
+      display:flex;
+      align-items:center;
+      gap:11px;
+    }
+
+    .nav-link{
+      min-height:42px;
+
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+
+      padding:0 16px;
+
+      border:1px solid rgba(255,255,255,.09);
+      border-radius:12px;
+
+      color:#d8e8fa;
+      background:rgba(255,255,255,.035);
+
+      font-size:12px;
+      font-weight:700;
+
+      transition:.3s ease;
+    }
+
+    .nav-link:hover{
+      border-color:rgba(0,198,255,.55);
+
+      color:#fff;
+      background:rgba(0,198,255,.075);
+
+      transform:translateY(-2px);
+    }
+
+
+    /* =========================================
+       هدر اصلی
+    ========================================= */
+
+    .subscription-hero{
+      position:relative;
+
+      min-height:590px;
+
+      display:flex;
+      align-items:center;
+
+      padding:105px 0 80px;
+
+      overflow:hidden;
+    }
+
+    .hero-orb{
+      position:absolute;
+      z-index:-1;
+
+      border-radius:50%;
+
+      filter:blur(100px);
+
+      animation:orbMove 7s ease-in-out infinite alternate;
+    }
+
+    .hero-orb-one{
+      top:-80px;
+      right:-130px;
+
+      width:430px;
+      height:430px;
+
+      background:rgba(0,198,255,.17);
+    }
+
+    .hero-orb-two{
+      bottom:-170px;
+      left:-100px;
+
+      width:410px;
+      height:410px;
+
+      background:rgba(146,92,255,.14);
+
+      animation-delay:-3s;
+    }
+
+    @keyframes orbMove{
+      from{
+        transform:translateY(-15px) scale(.9);
+        opacity:.5;
+      }
+
+      to{
+        transform:translateY(30px) scale(1.13);
+        opacity:1;
+      }
+    }
+
+    .hero-content{
+      max-width:880px;
+      margin-inline:auto;
+
+      text-align:center;
+    }
+
+    .hero-badge{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:9px;
+
+      padding:9px 15px;
+
+      border:1px solid rgba(0,198,255,.25);
+      border-radius:999px;
+
+      color:#8fe9ff;
+      background:rgba(0,198,255,.065);
+
+      font-size:12px;
+      font-weight:800;
+    }
+
+    .hero-badge-dot{
+      width:8px;
+      height:8px;
+
+      border-radius:50%;
+
+      background:var(--cyan);
+
+      box-shadow:
+        0 0 7px var(--cyan),
+        0 0 15px var(--cyan);
+
+      animation:badgePulse 1.6s ease-in-out infinite;
+    }
+
+    @keyframes badgePulse{
+      50%{
+        opacity:.35;
+        transform:scale(.7);
+      }
+    }
+
+    .hero-title{
+      margin-top:27px;
+
+      font-size:clamp(39px, 7vw, 72px);
+      line-height:1.3;
+      font-weight:900;
+      letter-spacing:-2px;
+    }
+
+    .hero-title span{
+      color:transparent;
+
+      background:
+        linear-gradient(
+          90deg,
+          #28d6ff,
+          #4389ff,
+          #a470ff
+        );
+
+      background-clip:text;
+      -webkit-background-clip:text;
+
+      filter:
+        drop-shadow(0 0 20px rgba(0,198,255,.2));
+    }
+
+    .hero-description{
+      max-width:750px;
+      margin:24px auto 0;
+
+      color:var(--muted);
+
+      font-size:clamp(15px, 2vw, 18px);
+      line-height:2.1;
+    }
+
+    .hero-actions{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      flex-wrap:wrap;
+      gap:13px;
+
+      margin-top:34px;
+    }
+
+    .hero-primary,
+    .hero-secondary{
+      min-height:52px;
+
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:9px;
+
+      padding:0 24px;
+
+      border-radius:14px;
+
+      font-size:14px;
+      font-weight:800;
+
+      transition:.3s ease;
+    }
+
+    .hero-primary{
+      background:
+        linear-gradient(
+          100deg,
+          #176cff,
+          #00b7e9
+        );
+
+      box-shadow:
+        0 12px 35px rgba(0,157,255,.24);
+    }
+
+    .hero-primary:hover{
+      transform:translateY(-4px);
+
+      box-shadow:
+        0 17px 42px rgba(0,182,233,.4);
+    }
+
+    .hero-secondary{
+      border:1px solid rgba(255,255,255,.11);
+
+      background:rgba(255,255,255,.04);
+    }
+
+    .hero-secondary:hover{
+      border-color:rgba(0,198,255,.45);
+
+      background:rgba(0,198,255,.07);
+
+      transform:translateY(-4px);
+    }
+
+    .hero-features{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      flex-wrap:wrap;
+      gap:20px 30px;
+
+      margin-top:43px;
+
+      color:#bfccdc;
+
+      font-size:12px;
+      font-weight:600;
+    }
+
+    .hero-feature{
+      display:flex;
+      align-items:center;
+      gap:8px;
+    }
+
+    .hero-check{
+      width:21px;
+      height:21px;
+
+      display:grid;
+      place-items:center;
+
+      border:1px solid rgba(38,223,162,.28);
+      border-radius:50%;
+
+      color:var(--green);
+      background:rgba(38,223,162,.07);
+
+      font-size:10px;
+    }
+
+
+    /* =========================================
+       سربرگ بخش‌ها
+    ========================================= */
+
+    .section-header{
+      max-width:770px;
+      margin:0 auto 48px;
+
+      text-align:center;
+    }
+
+    .section-label{
+      color:#6cddff;
+
+      font-size:12px;
+      font-weight:900;
+      letter-spacing:.4px;
+    }
+
+    .section-title{
+      margin-top:11px;
+
+      font-size:clamp(29px, 4vw, 44px);
+      line-height:1.45;
+      font-weight:900;
+    }
+
+    .section-title span{
+      color:#54d8ff;
+    }
+
+    .section-description{
+      margin-top:14px;
+
+      color:var(--muted);
+
+      font-size:14px;
+      line-height:2;
+    }
+
+
+    /* =========================================
+       انتخاب دوره پرداخت
+    ========================================= */
+
+    .billing-switch-wrapper{
+      display:flex;
+      justify-content:center;
+
+      margin-bottom:48px;
+    }
+
+    .billing-switch{
+      position:relative;
+
+      display:inline-flex;
+      align-items:center;
+      gap:5px;
+
+      padding:5px;
+
+      border:1px solid rgba(110,184,255,.15);
+      border-radius:16px;
+
+      background:rgba(7,18,40,.75);
+
+      box-shadow:
+        inset 0 0 20px rgba(0,198,255,.025);
+    }
+
+    .billing-btn{
+      position:relative;
+
+      min-width:135px;
+      min-height:45px;
+
+      padding:0 16px;
+
+      border-radius:12px;
+
+      color:#94a4ba;
+      background:transparent;
+
+      font-size:12px;
+      font-weight:800;
+
+      cursor:pointer;
+
+      transition:.3s ease;
+    }
+
+    .billing-btn.active{
+      color:#fff;
+
+      background:
+        linear-gradient(
+          100deg,
+          rgba(36,124,255,.9),
+          rgba(0,175,228,.88)
+        );
+
+      box-shadow:
+        0 6px 22px rgba(0,155,255,.25);
+    }
+
+    .discount-text{
+      display:inline-flex;
+
+      margin-right:5px;
+      padding:3px 6px;
+
+      border-radius:6px;
+
+      color:#73efc3;
+      background:rgba(38,223,162,.1);
+
+      font-size:9px;
+    }
+
+
+    /* =========================================
+       کارت پلن‌ها
+    ========================================= */
+
+    .plans-section{
+      padding-top:65px;
+    }
+
+    .plans-grid{
+      display:grid;
+      grid-template-columns:repeat(3, 1fr);
+      align-items:stretch;
+      gap:22px;
+    }
+
+    .plan-card{
+      --plan-color:var(--cyan);
+
+      position:relative;
+      isolation:isolate;
+
+      min-width:0;
+      min-height:650px;
+
+      padding:1px;
+
+      border-radius:var(--radius-lg);
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255,255,255,.2),
+          rgba(255,255,255,.025)
+        );
+
+      overflow:hidden;
+
+      transition:
+        transform .4s ease,
+        filter .4s ease;
+    }
+
+    .plan-card.plus{
+      --plan-color:#00c6ff;
+    }
+
+    .plan-card.pro{
+      --plan-color:#9665ff;
+
+      transform:translateY(-15px);
+    }
+
+    .plan-card.premium{
+      --plan-color:#ffb938;
+    }
+
+    .plan-card::before{
+      content:"";
+
+      position:absolute;
+      z-index:-2;
+
+      top:50%;
+      left:50%;
+
+      width:125%;
+      aspect-ratio:1;
+
+      opacity:0;
+
+      background:
+        conic-gradient(
+          transparent 0deg,
+          transparent 75deg,
+          var(--plan-color) 115deg,
+          #fff 132deg,
+          var(--plan-color) 150deg,
+          transparent 205deg,
+          transparent 360deg
+        );
+
+      transform:
+        translate(-50%, -50%)
+        rotate(0deg);
+
+      animation:planBorderRotate 5s linear infinite;
+
+      transition:opacity .4s ease;
+    }
+
+    .plan-card:hover::before,
+    .plan-card.recommended::before{
+      opacity:.7;
+    }
+
+    @keyframes planBorderRotate{
+      to{
+        transform:
+          translate(-50%, -50%)
+          rotate(360deg);
+      }
+    }
+
+    .plan-card:hover{
+      transform:translateY(-10px);
+
+      filter:
+        drop-shadow(0 22px 38px rgba(0,0,0,.35));
+    }
+
+    .plan-card.pro:hover{
+      transform:translateY(-23px);
+    }
+
+    .plan-inner{
+      position:relative;
+      z-index:1;
+
+      width:100%;
+      height:100%;
+      min-height:648px;
+
+      display:flex;
+      flex-direction:column;
+
+      padding:31px;
+
+      border-radius:calc(var(--radius-lg) - 1px);
+
+      background:
+        linear-gradient(
+          155deg,
+          rgba(12,29,61,.97),
+          rgba(4,11,27,.99)
+        );
+
+      overflow:hidden;
+    }
+
+    .plan-inner::before{
+      content:"";
+
+      position:absolute;
+      top:-120px;
+      left:-100px;
+      z-index:-1;
+
+      width:300px;
+      height:300px;
+
+      border-radius:50%;
+
+      background:var(--plan-color);
+
+      opacity:.075;
+      filter:blur(65px);
+
+      transition:.4s ease;
+    }
+
+    .plan-card:hover .plan-inner::before{
+      opacity:.15;
+      transform:scale(1.2);
+    }
+
+    .recommended-badge{
+      position:absolute;
+      top:0;
+      right:50%;
+
+      min-width:150px;
+
+      padding:8px 18px;
+
+      border-radius:0 0 14px 14px;
+
+      color:#fff;
+
+      background:
+        linear-gradient(
+          90deg,
+          #7846ee,
+          #a16cff
+        );
+
+      text-align:center;
+
+      font-size:11px;
+      font-weight:900;
+
+      transform:translateX(50%);
+
+      box-shadow:
+        0 8px 23px rgba(146,92,255,.28);
+    }
+
+    .plan-card.recommended .plan-inner{
+      padding-top:47px;
+    }
+
+    .plan-top{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:15px;
+    }
+
+    .plan-icon{
+      width:62px;
+      height:62px;
+
+      display:grid;
+      place-items:center;
+
+      border:1px solid
+        color-mix(
+          in srgb,
+          var(--plan-color) 35%,
+          transparent
+        );
+
+      border-radius:19px;
+
+      color:var(--plan-color);
+
+      background:
+        color-mix(
+          in srgb,
+          var(--plan-color) 9%,
+          transparent
+        );
+
+      font-size:28px;
+      font-weight:900;
+
+      box-shadow:
+        inset 0 0 22px
+        color-mix(
+          in srgb,
+          var(--plan-color) 8%,
+          transparent
+        );
+    }
+
+    .plan-name-en{
+      color:var(--plan-color);
+
+      font-size:11px;
+      font-weight:900;
+      letter-spacing:1.4px;
+    }
+
+    .plan-title{
+      margin-top:23px;
+
+      font-size:25px;
+      font-weight:900;
+    }
+
+    .plan-description{
+      min-height:81px;
+
+      margin-top:10px;
+
+      color:var(--muted);
+
+      font-size:13px;
+      line-height:1.95;
+    }
+
+    .price-box{
+      margin-top:20px;
+      padding:20px 0;
+
+      border-top:1px solid rgba(255,255,255,.07);
+      border-bottom:1px solid rgba(255,255,255,.07);
+    }
+
+    .price-line{
+      display:flex;
+      align-items:flex-end;
+      flex-wrap:wrap;
+      gap:7px;
+    }
+
+    .plan-price{
+      color:#fff;
+
+      font-size:33px;
+      line-height:1;
+      font-weight:900;
+    }
+
+    .price-currency{
+      color:#b8c4d4;
+
+      font-size:12px;
+      font-weight:700;
+    }
+
+    .billing-period-label{
+      margin-top:10px;
+
+      color:#77879d;
+
+      font-size:11px;
+      line-height:1.7;
+    }
+
+    .saving-message{
+      display:none;
+
+      margin-top:8px;
+
+      color:#5ceab8;
+
+      font-size:11px;
+      font-weight:700;
+    }
+
+    .saving-message.show{
+      display:block;
+    }
+
+    .plan-features-title{
+      margin-top:23px;
+
+      color:#eef5ff;
+
+      font-size:12px;
+      font-weight:800;
+    }
+
+    .plan-features{
+      display:flex;
+      flex-direction:column;
+      gap:13px;
+
+      margin-top:17px;
+      margin-bottom:25px;
+    }
+
+    .plan-features li{
+      display:flex;
+      align-items:flex-start;
+      gap:10px;
+
+      color:#d3deec;
+
+      font-size:12.5px;
+      line-height:1.75;
+    }
+
+    .feature-check{
+      flex:0 0 auto;
+
+      width:20px;
+      height:20px;
+
+      display:grid;
+      place-items:center;
+
+      margin-top:2px;
+
+      border-radius:50%;
+
+      color:var(--plan-color);
+
+      background:
+        color-mix(
+          in srgb,
+          var(--plan-color) 11%,
+          transparent
+        );
+
+      font-size:10px;
+      font-weight:900;
+    }
+
+    .plan-footer{
+      margin-top:auto;
+    }
+
+
+    /* =========================================
+       دکمه خرید نئونی
+    ========================================= */
+
+    .buy-plan-btn{
+      position:relative;
+      isolation:isolate;
+
+      width:100%;
+      min-height:53px;
+
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+
+      padding:0 18px;
+
+      border-radius:14px;
+
+      color:#fff;
+      background:#071329;
+
+      font-size:13px;
+      font-weight:900;
+
+      cursor:pointer;
+      overflow:hidden;
+
+      box-shadow:
+        0 0 13px
+        color-mix(
+          in srgb,
+          var(--plan-color) 24%,
+          transparent
+        );
+
+      transition:
+        transform .3s ease,
+        box-shadow .3s ease;
+    }
+
+    .buy-plan-btn::before{
+      content:"";
+
+      position:absolute;
+      z-index:-2;
+
+      top:50%;
+      left:50%;
+
+      width:145%;
+      aspect-ratio:1;
+
+      background:
+        conic-gradient(
+          transparent 0deg,
+          transparent 65deg,
+          var(--plan-color) 105deg,
+          #fff 124deg,
+          var(--plan-color) 145deg,
+          transparent 195deg,
+          transparent 360deg
+        );
+
+      transform:
+        translate(-50%, -50%)
+        rotate(0deg);
+
+      animation:buttonLightRotate 3s linear infinite;
+    }
+
+    .buy-plan-btn::after{
+      content:"";
+
+      position:absolute;
+      z-index:-1;
+
+      inset:2px;
+
+      border-radius:12px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #0b1b3a,
+          #050d20
+        );
+    }
+
+    @keyframes buttonLightRotate{
+      to{
+        transform:
+          translate(-50%, -50%)
+          rotate(360deg);
+      }
+    }
+
+    .buy-plan-btn:hover{
+      transform:translateY(-3px);
+
+      box-shadow:
+        0 0 17px
+        color-mix(
+          in srgb,
+          var(--plan-color) 65%,
+          transparent
+        ),
+        0 0 38px
+        color-mix(
+          in srgb,
+          var(--plan-color) 25%,
+          transparent
+        );
+    }
+
+    .buy-plan-btn:hover::before{
+      animation-duration:1.4s;
+    }
+
+    .buy-plan-btn:active{
+      transform:scale(.97);
+    }
+
+    .buy-plan-btn span{
+      position:relative;
+      z-index:2;
+    }
+
+    .btn-arrow{
+      font-size:18px;
+
+      transition:transform .3s ease;
+    }
+
+    .buy-plan-btn:hover .btn-arrow{
+      transform:translateX(-5px);
+    }
+
+    .plan-note{
+      margin-top:12px;
+
+      color:#75859a;
+
+      text-align:center;
+
+      font-size:10px;
+      line-height:1.7;
+    }
+
+
+    /* =========================================
+       نوار اعتماد
+    ========================================= */
+
+    .trust-bar{
+      margin-top:50px;
+      padding:20px 25px;
+
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      flex-wrap:wrap;
+      gap:18px 36px;
+
+      border:1px solid rgba(255,255,255,.07);
+      border-radius:18px;
+
+      color:#b7c4d5;
+      background:rgba(255,255,255,.025);
+
+      font-size:12px;
+    }
+
+    .trust-item{
+      display:flex;
+      align-items:center;
+      gap:9px;
+    }
+
+    .trust-icon{
+      width:29px;
+      height:29px;
+
+      display:grid;
+      place-items:center;
+
+      border-radius:9px;
+
+      color:#67e5ff;
+      background:rgba(0,198,255,.075);
+
+      font-size:12px;
+    }
+
+
+    /* =========================================
+       جدول مقایسه
+    ========================================= */
+
+    .comparison-section{
+      padding-top:120px;
+    }
+
+    .comparison-wrapper{
+      border:1px solid var(--border);
+      border-radius:23px;
+
+      background:rgba(8,20,44,.55);
+
+      backdrop-filter:blur(16px);
+      -webkit-backdrop-filter:blur(16px);
+
+      overflow-x:auto;
+
+      box-shadow:
+        0 20px 60px rgba(0,0,0,.23);
+    }
+
+    .comparison-table{
+      width:100%;
+      min-width:760px;
+
+      border-collapse:collapse;
+    }
+
+    .comparison-table th,
+    .comparison-table td{
+      padding:19px 22px;
+
+      border-bottom:1px solid rgba(255,255,255,.065);
+
+      text-align:center;
+
+      font-size:12px;
+    }
+
+    .comparison-table th{
+      color:#edf5ff;
+      background:rgba(255,255,255,.025);
+
+      font-size:13px;
+      font-weight:900;
+    }
+
+    .comparison-table th:first-child,
+    .comparison-table td:first-child{
+      width:36%;
+      text-align:right;
+    }
+
+    .comparison-table td:first-child{
+      color:#c6d2e1;
+      font-weight:600;
+    }
+
+    .comparison-table td{
+      color:#9cacc0;
+    }
+
+    .comparison-table tbody tr{
+      transition:background .25s ease;
+    }
+
+    .comparison-table tbody tr:hover{
+      background:rgba(0,198,255,.035);
+    }
+
+    .comparison-table tbody tr:last-child td{
+      border-bottom:none;
+    }
+
+    .table-plan-plus{
+      color:var(--cyan) !important;
+    }
+
+    .table-plan-pro{
+      color:#a77dff !important;
+    }
+
+    .table-plan-premium{
+      color:var(--gold) !important;
+    }
+
+    .yes{
+      color:var(--green) !important;
+      font-size:15px !important;
+      font-weight:900;
+    }
+
+    .no{
+      color:#58667a !important;
+    }
+
+    .limited{
+      color:#dbe6f4 !important;
+      font-weight:700;
+    }
+
+
+    /* =========================================
+       بخش سؤال‌های متداول
+    ========================================= */
+
+    .faq-grid{
+      max-width:900px;
+      margin-inline:auto;
+
+      display:flex;
+      flex-direction:column;
+      gap:13px;
+    }
+
+    .faq-item{
+      border:1px solid rgba(123,181,255,.13);
+      border-radius:17px;
+
+      background:rgba(8,20,44,.52);
+
+      overflow:hidden;
+
+      transition:
+        border-color .3s ease,
+        background .3s ease;
+    }
+
+    .faq-item.active{
+      border-color:rgba(0,198,255,.4);
+      background:rgba(9,27,57,.72);
+    }
+
+    .faq-question{
+      width:100%;
+
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+
+      padding:20px 22px;
+
+      color:#eef6ff;
+      background:transparent;
+
+      text-align:right;
+
+      font-size:13px;
+      font-weight:800;
+
+      cursor:pointer;
+    }
+
+    .faq-icon{
+      flex:0 0 auto;
+
+      width:28px;
+      height:28px;
+
+      display:grid;
+      place-items:center;
+
+      border-radius:9px;
+
+      color:#65dfff;
+      background:rgba(0,198,255,.07);
+
+      font-size:18px;
+
+      transition:transform .3s ease;
+    }
+
+    .faq-item.active .faq-icon{
+      transform:rotate(45deg);
+    }
+
+    .faq-answer{
+      max-height:0;
+
+      overflow:hidden;
+
+      transition:max-height .35s ease;
+    }
+
+    .faq-answer p{
+      padding:0 22px 21px;
+
+      color:var(--muted);
+
+      font-size:12.5px;
+      line-height:2;
+    }
+
+
+    /* =========================================
+       فراخوان نهایی
+    ========================================= */
+
+    .final-cta{
+      position:relative;
+      isolation:isolate;
+
+      padding:60px 35px;
+
+      border:1px solid rgba(0,198,255,.17);
+      border-radius:27px;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(12,34,70,.78),
+          rgba(5,13,31,.88)
+        );
+
+      text-align:center;
+
+      overflow:hidden;
+    }
+
+    .final-cta::before{
+      content:"";
+
+      position:absolute;
+      top:-180px;
+      right:50%;
+      z-index:-1;
+
+      width:550px;
+      height:350px;
+
+      border-radius:50%;
+
+      background:rgba(0,198,255,.12);
+
+      filter:blur(85px);
+
+      transform:translateX(50%);
+    }
+
+    .final-cta h2{
+      font-size:clamp(27px, 4vw, 42px);
+      line-height:1.5;
+      font-weight:900;
+    }
+
+    .final-cta h2 span{
+      color:#58dcff;
+    }
+
+    .final-cta p{
+      max-width:680px;
+      margin:14px auto 0;
+
+      color:var(--muted);
+
+      font-size:14px;
+      line-height:2;
+    }
+
+    .final-cta-btn{
+      min-height:51px;
+
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:9px;
+
+      margin-top:28px;
+      padding:0 25px;
+
+      border-radius:14px;
+
+      color:#fff;
+
+      background:
+        linear-gradient(
+          100deg,
+          #176cff,
+          #00b7e9
+        );
+
+      font-size:13px;
+      font-weight:900;
+
+      box-shadow:
+        0 12px 35px rgba(0,157,255,.25);
+
+      transition:.3s ease;
+    }
+
+    .final-cta-btn:hover{
+      transform:translateY(-4px);
+
+      box-shadow:
+        0 18px 43px rgba(0,182,233,.4);
+    }
+
+
+    /* =========================================
+       فوتر
+    ========================================= */
+
+    .footer{
+      margin-top:30px;
+      padding:32px 0;
+
+      border-top:1px solid rgba(255,255,255,.06);
+
+      color:#7e8da2;
+      background:rgba(2,6,15,.5);
+
+      text-align:center;
+      font-size:11px;
+      line-height:1.9;
+    }
+
+
+    /* =========================================
+       ریسپانسیو
+    ========================================= */
+
+    @media (max-width:1000px){
+
+      .plans-grid{
+        grid-template-columns:repeat(2, 1fr);
+      }
+
+      .plan-card.pro{
+        transform:none;
+      }
+
+      .plan-card.pro:hover{
+        transform:translateY(-10px);
+      }
+
+      .plan-card.premium{
+        grid-column:1 / -1;
+
+        width:calc(50% - 11px);
+        margin-inline:auto;
+      }
+
+    }
+
+    @media (max-width:760px){
+
+      .section{
+        padding:75px 0;
+      }
+
+      .subscription-hero{
+        min-height:auto;
+        padding:85px 0 70px;
+      }
+
+      .hero-title{
+        letter-spacing:-1px;
+      }
+
+      .plans-grid{
+        grid-template-columns:1fr;
+      }
+
+      .plan-card.premium{
+        grid-column:auto;
+
+        width:100%;
+      }
+
+      .plan-card,
+      .plan-inner{
+        min-height:auto;
+      }
+
+      .plan-description{
+        min-height:auto;
+      }
+
+      .comparison-section{
+        padding-top:90px;
+      }
+
+    }
+
+    @media (max-width:560px){
+
+      .container{
+        width:min(calc(100% - 24px), var(--container));
+      }
+
+      .navbar-content{
+        min-height:68px;
+      }
+
+      .brand-logo{
+        width:40px;
+        height:40px;
+      }
+
+      .brand-text span{
+        display:none;
+      }
+
+      .nav-link{
+        min-height:39px;
+
+        padding:0 11px;
+
+        font-size:10px;
+      }
+
+      .hero-actions{
+        flex-direction:column;
+      }
+
+      .hero-primary,
+      .hero-secondary{
+        width:100%;
+      }
+
+      .hero-features{
+        align-items:flex-start;
+        flex-direction:column;
+
+        width:max-content;
+        max-width:100%;
+
+        margin-inline:auto;
+      }
+
+      .billing-switch{
+        width:100%;
+      }
+
+      .billing-btn{
+        flex:1;
+
+        min-width:0;
+        padding:0 8px;
+
+        font-size:11px;
+      }
+
+      .plan-inner{
+        padding:24px;
+      }
+
+      .plan-card.recommended .plan-inner{
+        padding-top:45px;
+      }
+
+      .final-cta{
+        padding:45px 22px;
+      }
+
+    }
+
+    @media (prefers-reduced-motion:reduce){
+
+      html{
+        scroll-behavior:auto;
+      }
+
+      *,
+      *::before,
+      *::after{
+        animation-duration:.01ms !important;
+        animation-iteration-count:1 !important;
+        transition-duration:.01ms !important;
+      }
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- ======================================
+       نوار بالا
+  ======================================= -->
+
+  <nav class="navbar">
+
+    <div class="container navbar-content">
+
+      <a href="index.html" class="brand">
+
+        <!-- مسیر لوگوی اصلی را جایگزین کن -->
+        <img
+          src="arcadia_logo.jpg"
+          alt="لوگوی آرکادیا"
+          class="brand-logo"
+        >
+
+        <span class="brand-text">
+          <strong>ARCADIA</strong>
+          <span>Membership Plans</span>
+        </span>
+
+      </a>
+
+      <div class="navbar-actions">
+
+        <a href="login.html" class="nav-link">
+          حساب کاربری
+        </a>
+
+        <a href="index.html" class="nav-link">
+          بازگشت
+          <span>←</span>
+        </a>
+
+      </div>
+
+    </div>
+
+  </nav>
+
+
+  <!-- ======================================
+       هدر صفحه
+  ======================================= -->
+
+  <header class="subscription-hero">
+
+    <div class="hero-orb hero-orb-one"></div>
+    <div class="hero-orb hero-orb-two"></div>
+
+    <div class="container">
+
+      <div class="hero-content">
+
+        <div class="hero-badge">
+          <span class="hero-badge-dot"></span>
+          عضویت حرفه‌ای در اکوسیستم آرکادیا
+        </div>
+
+        <h1 class="hero-title">
+          پلنی برای
+          <span>نسخه حرفه‌ای‌تر تو</span>
+        </h1>
+
+        <p class="hero-description">
+          با انتخاب اشتراک مناسب، به مسیرهای آموزشی تخصصی، ابزارهای
+          هوشمند، پروژه‌های حرفه‌ای و خدمات ویژه آرکادیا دسترسی پیدا
+          کنید و مسیر پیشرفت خود را سریع‌تر و هدفمندتر ادامه دهید.
+        </p>
+
+        <div class="hero-actions">
+
+          <a href="#plans" class="hero-primary">
+            مشاهده اشتراک‌ها
+            <span>↓</span>
+          </a>
+
+          <a href="#comparison" class="hero-secondary">
+            مقایسه امکانات
+          </a>
+
+        </div>
+
+        <div class="hero-features">
+
+          <div class="hero-feature">
+            <span class="hero-check">✓</span>
+            فعال‌سازی سریع اشتراک
+          </div>
+
+          <div class="hero-feature">
+            <span class="hero-check">✓</span>
+            پرداخت امن
+          </div>
+
+          <div class="hero-feature">
+            <span class="hero-check">✓</span>
+            امکان ارتقای پلن
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </header>
+
+
+  <!-- ======================================
+       کارت‌های اشتراک
+  ======================================= -->
+
+  <main>
+
+    <section class="section plans-section" id="plans">
+
+      <div class="container">
+
+        <div class="section-header">
+
+          <span class="section-label">
+            اشتراک‌های آرکادیا
+          </span>
+
+          <h2 class="section-title">
+            پلن مناسب مسیرت را
+            <span>انتخاب کن</span>
+          </h2>
+
+          <p class="section-description">
+            می‌توانید اشتراک را به‌صورت ماهانه تهیه کنید یا با انتخاب
+            پرداخت سالانه، هزینه کمتری بپردازید.
+          </p>
+
+        </div>
+
+
+        <!-- انتخاب دوره پرداخت -->
+
+        <div class="billing-switch-wrapper">
+
+          <div
+            class="billing-switch"
+            role="group"
+            aria-label="انتخاب دوره پرداخت"
+          >
+
+            <button
+              type="button"
+              class="billing-btn active"
+              data-period="monthly"
+            >
+              پرداخت ماهانه
+            </button>
+
+            <button
+              type="button"
+              class="billing-btn"
+              data-period="yearly"
+            >
+              پرداخت سالانه
+              <span class="discount-text">۲۰٪ تخفیف</span>
+            </button>
+
+          </div>
+
+        </div>
+
+
+        <div class="plans-grid">
+
+          <!-- =========================
+               اشتراک Plus
+          ========================== -->
+
+          <article class="plan-card plus">
+
+            <div class="plan-inner">
+
+              <div class="plan-top">
+
+                <div class="plan-icon">+</div>
+
+                <span class="plan-name-en">
+                  ARCADIA PLUS
+                </span>
+
+              </div>
+
+              <h3 class="plan-title">
+                اشتراک پلاس
+              </h3>
+
+              <p class="plan-description">
+                مناسب دانشجویان و افرادی که می‌خواهند مسیر یادگیری خود
+                را با امکانات بیشتر و دسترسی منظم‌تر آغاز کنند.
+              </p>
+
+              <div class="price-box">
+
+                <div class="price-line">
+
+                  <strong
+                    class="plan-price"
+                    data-monthly="390000"
+                    data-yearly="24000000"
+                  >
+                    3.000.000
+                  </strong>
+
+                  <span class="price-currency">
+                    تومان
+                  </span>
+
+                </div>
+
+                <p class="billing-period-label">
+                  پرداخت به‌صورت ماهانه
+                </p>
+
+                <p class="saving-message">
+                  با پرداخت سالانه12.000.000 تومان کمتر پرداخت می‌کنید.
+                </p>
+
+              </div>
+
+              <p class="plan-features-title">
+                امکانات این اشتراک:
+              </p>
+
+              <ul class="plan-features">
+
+                <li>
+                  <span class="feature-check">✓</span>
+                  دسترسی به دوره‌های پایه آرکادیا
+                </li>
+
+                <li>
+                  <span class="feature-check">✓</span>
+                  دسترسی به نقشه‌های راه عمومی
+                </li>
+
+                <li>
+                  <span class="feature-check">✓</span>
+                  تمرین‌ها و پروژه‌های آموزشی
+                </li>
+
+                <li>
+                  <span class="feature-check">✓</span>
+                  عضویت در انجمن دانشجویان آرکادیا
+                </li>
+
+                <li>
+                  <span class="feature-check">✓</span>
+                  پشتیبانی عمومی آموزشی
+                </li>
+
+              </ul>
+
+              <div class="plan-footer">
+
+                <a
+                  href="checkout.html?plan=plus&period=monthly"
+                  class="buy-plan-btn"
+                  data-plan="plus"
+                >
+                  <span>خرید اشتراک پلاس</span>
+                  <span class="btn-arrow">←</span>
+                </a>
+
+                <p class="plan-note">
+                  مناسب برای شروع یادگیری و رشد مستمر
+                </p>
+
+              </div>
+
+            </div>
+
+          </article>
+
+
+          <!-- =========================
+               اشتراک Pro
+          ========================== -->
+
+          <article class="plan-card pro recommended">
+
+            <div class="plan-inner">
+
+              <span class="recommended-badge">
+                محبوب‌ترین انتخاب
+              </span>
+
+              <div class="plan-top">
+
+                <div class="plan-icon">◆</div>
+
+                <span class="plan-name-en">
+                  ARCADIA PRO
+                </span>
+
+              </div>
+
+              <h3 class="plan-title">
+                اشتراک پرو
+              </h3>
+
+              <p class="plan-description">
+                مناسب برنامه‌نویسان و متخصصانی که به دوره‌های پیشرفته،
+                ابزارهای حرفه‌ای و مسیرهای تخصصی نیاز دارند.
+              </p>
+
+              <div class="price-box">
+
+                <div class="price-line">
+
+                  <strong
+                    class="plan-price"
+                    data-monthly="790000"
+                    data-yearly="185000000"
+                  >
+                    18.000.000
+                  </strong>
+
+                  <span class="price-currency">
+                    تومان
+                  </span>
+
+                </div>
+
+                <p class="billing-period-label">
+                  پرداخت به‌صورت ماهانه
+                </p>
+
+                <p class="saving-message">
+                  با پرداخت سالانه 31.000.000 تومان کمتر پرداخت می‌کنید.
+                </p>
+
+              </div>
+
+              <p class="plan-features-title">
+                همه امکانات پلاس، به‌علاوه:
+              </p>
+
+              <ul class="plan-features">
+
+                <li>
+                  <span class="feature-check">✓</span>
+                  دسترسی به تمام دوره‌های تخصصی
+                </li>
+
+                <li>
+                  <span class="feature-check">✓</span>
+                  نقشه‌های راه پیشرفته و پروژه‌محور
+                </li>
+
+                <li>
+                  <span class="feature-check">✓</span>
+                  دسترسی گسترده‌تر به هوش مصنوعی نوا
+                </li>
+
+                <li>
+                  <span class="feature-check">✓</span>
+                  بررسی پروژه و بازخورد تخصصی
+                </li>
+
+                <li>
+                  <span class="feature-check">✓</span>
+                  تخفیف رزرو مشاوره اساتید
+                </li>
+
+                <li>
+                  <span class="feature-check">✓</span>
+                  گواهی تکمیل مسیرهای حرفه‌ای
+                </li>
+
+              </ul>
+
+              <div class="plan-footer">
+
+                <a
+                  href="checkout.html?plan=pro&period=monthly"
+                  class="buy-plan-btn"
+                  data-plan="pro"
+                >
+                  <span>خرید اشتراک پرو</span>
+                  <span class="btn-arrow">←</span>
+                </a>
+
+                <p class="plan-note">
+                  بهترین انتخاب برای رشد حرفه‌ای
+                </p>
+
+              </div>
+
+            </div>
+
+          </article>
+
+
+          <!-- =========================
+               اشتراک Premium
+          ========================== -->
+
+          <article class="plan-card premium">
+
+            <div class="plan-inner">
+
+              <div class="plan-top">
+
+                <div class="plan-icon">✦</div>
+
+                <span class="plan-name-en">
+                  ARCADIA PREMIUM
+                </span>
+
+              </div>
+
+              <h3 class="plan-title">
+                اشتراک پریمیوم
+              </h3>
+
+              <p class="plan-description">
+                تجربه کامل آرکادیا برای کاربران حرفه‌ای، مدیران،
+                بنیان‌گذاران و افرادی که به خدمات اختصاصی نیاز دارند.
+              </p>
+
+              <div class="price-box">
+
+                <div class="price-line">
+
+                  <strong
+                    class="plan-price"
+                    data-monthly="1490000"
+                    data-yearly="270000000"
+                  >
+                    33.000.000
+                  </strong>
+
+                  <span class="price-currency">
+                    تومان
+                  </span>
+
+                </div>
+
+                <p class="billing-period-label">
+                  پرداخت به‌صورت ماهانه
+                </p>
+
+                <p class="saving-message">
+                  با پرداخت سالانه 126.000.000 تومان کمتر پرداخت می‌کنید.
+                </p>
+
+              </div>
+
+              <p class="plan-features-title">
+                همه امکانات پرو، به‌علاوه:
+              </p>
+
+              <ul class="plan-features">
+
+                <li>
+                  <span class="feature-check">✓</span>
+                  نقشه راه کاملاً شخصی‌سازی‌شده
+                </li>
+
+                <li>
+                  <span class="feature-check">✓</span>
+                  جلسه مشاوره خصوصی دوره‌ای
+                </li>
+
+                <li>
+                  <span class="feature-check">✓</span>
+                  دسترسی کامل‌تر به خدمات نوا
+                </li>
+
+                <li>
+                  <span class="feature-check">✓</span>
+                  اولویت در پشتیبانی و بررسی پروژه
+                </li>
+
+                <li>
+                  <span class="feature-check">✓</span>
+                  دسترسی به رویدادها و جلسات ویژه
+                </li>
+
+                <li>
+                  <span class="feature-check">✓</span>
+                  پیشنهادهای اختصاصی همکاری با آرکادیا
+                </li>
+
+              </ul>
+
+              <div class="plan-footer">
+
+                <a
+                  href="checkout.html?plan=premium&period=monthly"
+                  class="buy-plan-btn"
+                  data-plan="premium"
+                >
+                  <span>خرید اشتراک پریمیوم</span>
+                  <span class="btn-arrow">←</span>
+                </a>
+
+                <p class="plan-note">
+                  حداکثر امکانات، پشتیبانی و شخصی‌سازی
+                </p>
+
+              </div>
+
+            </div>
+
+          </article>
+
+        </div>
+
+
+        <!-- نوار اعتماد -->
+
+        <div class="trust-bar">
+
+          <div class="trust-item">
+            <span class="trust-icon">⌁</span>
+            پرداخت از درگاه امن
+          </div>
+
+          <div class="trust-item">
+            <span class="trust-icon">✓</span>
+            فعال‌سازی خودکار اشتراک
+          </div>
+
+          <div class="trust-item">
+            <span class="trust-icon">↗</span>
+            امکان ارتقا به پلن بالاتر
+          </div>
+
+          <div class="trust-item">
+            <span class="trust-icon">◷</span>
+            پشتیبانی کاربران اشتراکی
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ======================================
+         جدول مقایسه
+    ======================================= -->
+
+    <section
+      class="section comparison-section"
+      id="comparison"
+    >
+
+      <div class="container">
+
+        <div class="section-header">
+
+          <span class="section-label">
+            مقایسه اشتراک‌ها
+          </span>
+
+          <h2 class="section-title">
+            جزئیات امکانات هر
+            <span>پلن</span>
+          </h2>
+
+          <p class="section-description">
+            اگر هنوز بین پلن‌ها مردد هستید، امکانات آن‌ها را کنار هم
+            مقایسه کنید. اینجا دیگر جای حدس‌زدن نیست؛ جدول آمده تا صلح
+            را به تصمیم‌گیری بازگرداند! 😄
+          </p>
+
+        </div>
+
+
+        <div class="comparison-wrapper">
+
+          <table class="comparison-table">
+
+            <thead>
+
+              <tr>
+                <th>امکانات</th>
+
+                <th class="table-plan-plus">
+                  پلاس
+                </th>
+
+                <th class="table-plan-pro">
+                  پرو
+                </th>
+
+                <th class="table-plan-premium">
+                  پریمیوم
+                </th>
+              </tr>
+
+            </thead>
+
+            <tbody>
+
+              <tr>
+                <td>دوره‌های پایه</td>
+                <td class="yes">✓</td>
+                <td class="yes">✓</td>
+                <td class="yes">✓</td>
+              </tr>
+
+              <tr>
+                <td>دوره‌های تخصصی و پیشرفته</td>
+                <td class="no">—</td>
+                <td class="yes">✓</td>
+                <td class="yes">✓</td>
+              </tr>
+
+              <tr>
+                <td>نقشه راه عمومی</td>
+                <td class="yes">✓</td>
+                <td class="yes">✓</td>
+                <td class="yes">✓</td>
+              </tr>
+
+              <tr>
+                <td>نقشه راه شخصی‌سازی‌شده</td>
+                <td class="no">—</td>
+                <td class="limited">محدود</td>
+                <td class="yes">✓</td>
+              </tr>
+
+              <tr>
+                <td>دسترسی به هوش مصنوعی نوا</td>
+                <td class="limited">پایه</td>
+                <td class="limited">پیشرفته</td>
+                <td class="limited">کامل</td>
+              </tr>
+
+              <tr>
+                <td>بررسی تخصصی پروژه</td>
+                <td class="no">—</td>
+                <td class="limited">ماهانه</td>
+                <td class="limited">اولویت‌دار</td>
+              </tr>
+
+              <tr>
+                <td>تخفیف مشاوره</td>
+                <td class="no">—</td>
+                <td class="limited">۱۵٪</td>
+                <td class="limited">۳۰٪</td>
+              </tr>
+
+              <tr>
+                <td>جلسه مشاوره اختصاصی</td>
+                <td class="no">—</td>
+                <td class="no">—</td>
+                <td class="yes">✓</td>
+              </tr>
+
+              <tr>
+                <td>پشتیبانی</td>
+                <td class="limited">عمومی</td>
+                <td class="limited">تخصصی</td>
+                <td class="limited">اولویت‌دار</td>
+              </tr>
+
+              <tr>
+                <td>رویدادهای اختصاصی آرکادیا</td>
+                <td class="no">—</td>
+                <td class="limited">منتخب</td>
+                <td class="yes">✓</td>
+              </tr>
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ======================================
+         سؤالات متداول
+    ======================================= -->
+
+    <section class="section" id="faq">
+
+      <div class="container">
+
+        <div class="section-header">
+
+          <span class="section-label">
+            سؤالات متداول
+          </span>
+
+          <h2 class="section-title">
+            قبل از خرید
+            <span>بدانید</span>
+          </h2>
+
+        </div>
+
+
+        <div class="faq-grid">
+
+          <article class="faq-item">
+
+            <button
+              type="button"
+              class="faq-question"
+              aria-expanded="false"
+            >
+              آیا بعد از خرید، اشتراک فوراً فعال می‌شود؟
+
+              <span class="faq-icon">+</span>
+            </button>
+
+            <div class="faq-answer">
+
+              <p>
+                بله، پس از پرداخت موفق، اشتراک به‌صورت خودکار روی حساب
+                کاربری شما فعال می‌شود و امکانات پلن در اختیارتان قرار
+                می‌گیرد.
+              </p>
+
+            </div>
+
+          </article>
+
+
+          <article class="faq-item">
+
+            <button
+              type="button"
+              class="faq-question"
+              aria-expanded="false"
+            >
+              آیا امکان ارتقای پلن وجود دارد؟
+
+              <span class="faq-icon">+</span>
+            </button>
+
+            <div class="faq-answer">
+
+              <p>
+                بله، در هر زمان می‌توانید اشتراک خود را از پلاس به پرو
+                یا پریمیوم ارتقا دهید. در نسخه نهایی سیستم، مابه‌التفاوت
+                براساس زمان باقی‌مانده محاسبه می‌شود.
+              </p>
+
+            </div>
+
+          </article>
+
+
+          <article class="faq-item">
+
+            <button
+              type="button"
+              class="faq-question"
+              aria-expanded="false"
+            >
+              اشتراک سالانه چه تفاوتی با اشتراک ماهانه دارد؟
+
+              <span class="faq-icon">+</span>
+            </button>
+
+            <div class="faq-answer">
+
+              <p>
+                امکانات هر دو یکسان است؛ تفاوت اصلی در دوره پرداخت و
+                هزینه نهایی است. با انتخاب اشتراک سالانه، ۲۰ درصد تخفیف
+                دریافت می‌کنید.
+              </p>
+
+            </div>
+
+          </article>
+
+
+          <article class="faq-item">
+
+            <button
+              type="button"
+              class="faq-question"
+              aria-expanded="false"
+            >
+              آیا می‌توانم اشتراک را برای شخص دیگری تهیه کنم؟
+
+              <span class="faq-icon">+</span>
+            </button>
+
+            <div class="faq-answer">
+
+              <p>
+                بله، می‌توان قابلیت خرید اشتراک هدیه را نیز در صفحه
+                پرداخت اضافه کرد تا اشتراک روی حساب کاربری فرد موردنظر
+                فعال شود.
+              </p>
+
+            </div>
+
+          </article>
+
+
+          <article class="faq-item">
+
+            <button
+              type="button"
+              class="faq-question"
+              aria-expanded="false"
+            >
+              آیا اطلاعات پرداخت من در آرکادیا ذخیره می‌شود؟
+
+              <span class="faq-icon">+</span>
+            </button>
+
+            <div class="faq-answer">
+
+              <p>
+                اطلاعات بانکی مستقیماً در درگاه پرداخت وارد می‌شود و
+                نباید در سرور آرکادیا ذخیره شود. آرکادیا فقط نتیجه تراکنش
+                و شناسه پیگیری را دریافت و ثبت می‌کند.
+              </p>
+
+            </div>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ======================================
+         فراخوان نهایی
+    ======================================= -->
+
+    <section class="section">
+
+      <div class="container">
+
+        <div class="final-cta">
+
+          <h2>
+            آماده‌ای مسیر حرفه‌ای خودت را
+            <span>شروع کنی؟</span>
+          </h2>
+
+          <p>
+            اشتراک متناسب با هدفت را انتخاب کن و به امکانات آموزشی،
+            تخصصی و هوشمند اکوسیستم آرکادیا دسترسی داشته باش.
+          </p>
+
+          <a href="#plans" class="final-cta-btn">
+            انتخاب اشتراک
+            <span>↑</span>
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- ======================================
+       فوتر
+  ======================================= -->
+
+  <footer class="footer">
+
+    <div class="container">
+      تمامی حقوق این صفحه متعلق به مجموعه آرکادیا است.
+      <br>
+      ARCADIA Membership System
+    </div>
+
+  </footer>
+
+
+  <!-- ======================================
+       جاوااسکریپت
+  ======================================= -->
+
+  <script>
+
+    /* =====================================
+       المان‌های موردنیاز
+    ===================================== */
+
+    const billingButtons = document.querySelectorAll(
+      ".billing-btn"
+    );
+
+    const priceElements = document.querySelectorAll(
+      ".plan-price"
+    );
+
+    const billingLabels = document.querySelectorAll(
+      ".billing-period-label"
+    );
+
+    const savingMessages = document.querySelectorAll(
+      ".saving-message"
+    );
+
+    const buyButtons = document.querySelectorAll(
+      ".buy-plan-btn"
+    );
+
+    let selectedPeriod = "monthly";
+
+
+    /* =====================================
+       تبدیل عدد به فرمت فارسی
+    ===================================== */
+
+    function formatPersianPrice(number){
+
+      return new Intl.NumberFormat("fa-IR").format(number);
+
+    }
+
+
+    /* =====================================
+       تغییر قیمت ماهانه و سالانه
+    ===================================== */
+
+    function updateBillingPeriod(period){
+
+      selectedPeriod = period;
+
+      billingButtons.forEach((button) => {
+
+        const isActive =
+          button.dataset.period === period;
+
+        button.classList.toggle(
+          "active",
+          isActive
+        );
+
+      });
+
+
+      priceElements.forEach((priceElement) => {
+
+        const selectedPrice =
+          priceElement.dataset[period];
+
+        priceElement.textContent =
+          formatPersianPrice(
+            Number(selectedPrice)
+          );
+
+      });
+
+
+      billingLabels.forEach((label) => {
+
+        label.textContent =
+          period === "monthly"
+            ? "پرداخت به‌صورت ماهانه"
+            : "پرداخت یک‌جای اشتراک سالانه با ۲۰٪ تخفیف";
+
+      });
+
+
+      savingMessages.forEach((message) => {
+
+        message.classList.toggle(
+          "show",
+          period === "yearly"
+        );
+
+      });
+
+
+      buyButtons.forEach((button) => {
+
+        const planName =
+          button.dataset.plan;
+
+        button.href =
+          `checkout.html?plan=${planName}&period=${period}`;
+
+      });
+
+    }
+
+
+    billingButtons.forEach((button) => {
+
+      button.addEventListener("click", () => {
+
+        updateBillingPeriod(
+          button.dataset.period
+        );
+
+      });
+
+    });
+
+
+    /* =====================================
+       آکاردئون سؤالات متداول
+    ===================================== */
+
+    const faqItems = document.querySelectorAll(
+      ".faq-item"
+    );
+
+    faqItems.forEach((item) => {
+
+      const question =
+        item.querySelector(".faq-question");
+
+      const answer =
+        item.querySelector(".faq-answer");
+
+      question.addEventListener("click", () => {
+
+        const isOpen =
+          item.classList.contains("active");
+
+
+        faqItems.forEach((otherItem) => {
+
+          otherItem.classList.remove("active");
+
+          const otherQuestion =
+            otherItem.querySelector(".faq-question");
+
+          const otherAnswer =
+            otherItem.querySelector(".faq-answer");
+
+          otherQuestion.setAttribute(
+            "aria-expanded",
+            "false"
+          );
+
+          otherAnswer.style.maxHeight = null;
+
+        });
+
+
+        if(!isOpen){
+
+          item.classList.add("active");
+
+          question.setAttribute(
+            "aria-expanded",
+            "true"
+          );
+
+          answer.style.maxHeight =
+            answer.scrollHeight + "px";
+
+        }
+
+      });
+
+    });
+
+  </script>
+
+</body>
+</html>

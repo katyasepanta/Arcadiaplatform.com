@@ -1,0 +1,2092 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="ورود و ثبت‌نام در پلتفرم آموزشی آرکادیا"
+    >
+
+    <title>ورود و ثبت‌نام | آرکادیا</title>
+
+    <style>
+        :root {
+            --primary: #19e6ff;
+            --primary-rgb: 25, 230, 255;
+
+            --secondary: #8b5cf6;
+            --secondary-rgb: 139, 92, 246;
+
+            --success: #23d18b;
+            --danger: #ff5c7a;
+            --warning: #ffbf47;
+
+            --background: #050711;
+            --surface: rgba(14, 18, 35, 0.72);
+            --surface-light: rgba(255, 255, 255, 0.055);
+            --border: rgba(255, 255, 255, 0.11);
+
+            --text: #f5f7ff;
+            --muted: #9da7bd;
+
+            --radius-lg: 28px;
+            --radius-md: 16px;
+            --radius-sm: 12px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            color-scheme: dark;
+        }
+
+        body {
+            min-height: 100vh;
+            margin: 0;
+            padding: 32px 18px;
+
+            display: grid;
+            place-items: center;
+
+            overflow-x: hidden;
+
+            font-family:
+                Vazirmatn,
+                IRANSans,
+                "Segoe UI",
+                Tahoma,
+                sans-serif;
+
+            color: var(--text);
+            background:
+                radial-gradient(
+                    circle at 10% 15%,
+                    rgba(var(--primary-rgb), 0.15),
+                    transparent 27%
+                ),
+                radial-gradient(
+                    circle at 90% 85%,
+                    rgba(var(--secondary-rgb), 0.18),
+                    transparent 30%
+                ),
+                var(--background);
+        }
+
+        button,
+        input {
+            font: inherit;
+        }
+
+        button,
+        a {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        .background-grid {
+            position: fixed;
+            inset: 0;
+            z-index: -3;
+
+            opacity: 0.22;
+
+            background-image:
+                linear-gradient(
+                    rgba(255, 255, 255, 0.035) 1px,
+                    transparent 1px
+                ),
+                linear-gradient(
+                    90deg,
+                    rgba(255, 255, 255, 0.035) 1px,
+                    transparent 1px
+                );
+
+            background-size: 42px 42px;
+            mask-image:
+                radial-gradient(circle at center, #000 25%, transparent 85%);
+        }
+
+        .orb {
+            position: fixed;
+            z-index: -2;
+
+            border-radius: 50%;
+            filter: blur(90px);
+            opacity: 0.25;
+
+            pointer-events: none;
+            animation: float 12s ease-in-out infinite alternate;
+        }
+
+        .orb-one {
+            top: -120px;
+            left: -80px;
+
+            width: 380px;
+            height: 380px;
+
+            background: var(--primary);
+        }
+
+        .orb-two {
+            right: -100px;
+            bottom: -130px;
+
+            width: 430px;
+            height: 430px;
+
+            background: var(--secondary);
+            animation-delay: -5s;
+        }
+
+        @keyframes float {
+            to {
+                transform: translate3d(55px, 35px, 0) scale(1.08);
+            }
+        }
+
+        .auth-layout {
+            width: min(100%, 1050px);
+
+            display: grid;
+            grid-template-columns: 0.9fr 1.1fr;
+
+            overflow: hidden;
+
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+
+            background: var(--surface);
+            box-shadow:
+                0 30px 90px rgba(0, 0, 0, 0.48),
+                0 0 0 1px rgba(var(--primary-rgb), 0.03);
+
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+        }
+
+        /* بخش معرفی آرکادیا */
+
+        .brand-panel {
+            position: relative;
+
+            min-height: 690px;
+            padding: 56px 46px;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+
+            overflow: hidden;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(var(--primary-rgb), 0.11),
+                    rgba(var(--secondary-rgb), 0.1)
+                );
+        }
+
+        .brand-panel::before {
+            content: "";
+
+            position: absolute;
+            inset: 1px;
+
+            border-radius: inherit;
+            pointer-events: none;
+
+            background:
+                radial-gradient(
+                    circle at 50% 5%,
+                    rgba(255, 255, 255, 0.12),
+                    transparent 35%
+                );
+        }
+
+        .brand {
+            position: relative;
+            z-index: 1;
+        }
+
+        .brand-logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+
+            margin-bottom: 45px;
+
+            font-size: 1.45rem;
+            font-weight: 900;
+            letter-spacing: 3px;
+        }
+
+        .brand-logo__icon {
+            width: 42px;
+            height: 42px;
+
+            display: grid;
+            place-items: center;
+
+            border: 1px solid rgba(var(--primary-rgb), 0.5);
+            border-radius: 14px;
+
+            color: var(--primary);
+            background: rgba(var(--primary-rgb), 0.1);
+
+            box-shadow:
+                inset 0 0 20px rgba(var(--primary-rgb), 0.08),
+                0 0 25px rgba(var(--primary-rgb), 0.12);
+        }
+
+        .brand-panel h1 {
+            margin: 0 0 18px;
+
+            font-size: clamp(2rem, 4vw, 3.3rem);
+            line-height: 1.25;
+        }
+
+        .gradient-text {
+            background:
+                linear-gradient(
+                    90deg,
+                    var(--primary),
+                    #c4b5fd
+                );
+
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .brand-description {
+            max-width: 430px;
+            margin: 0;
+
+            color: var(--muted);
+            font-size: 1rem;
+            line-height: 2;
+        }
+
+        .features {
+            position: relative;
+            z-index: 1;
+
+            display: grid;
+            gap: 15px;
+
+            margin: 42px 0;
+            padding: 0;
+
+            list-style: none;
+        }
+
+        .features li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            color: #dbe1ef;
+        }
+
+        .feature-icon {
+            flex: 0 0 28px;
+
+            width: 28px;
+            height: 28px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 9px;
+
+            color: var(--primary);
+            background: rgba(var(--primary-rgb), 0.1);
+        }
+
+        .security-note {
+            position: relative;
+            z-index: 1;
+
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            color: var(--muted);
+            font-size: 0.84rem;
+        }
+
+        /* بخش فرم‌ها */
+
+        .form-panel {
+            min-height: 690px;
+            padding: 46px 56px;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .auth-tabs {
+            position: relative;
+
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+
+            margin-bottom: 30px;
+            padding: 5px;
+
+            border: 1px solid var(--border);
+            border-radius: 14px;
+
+            background: rgba(255, 255, 255, 0.035);
+        }
+
+        .tab-indicator {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+
+            width: calc(50% - 5px);
+            height: calc(100% - 10px);
+
+            border: 1px solid rgba(var(--primary-rgb), 0.25);
+            border-radius: 10px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(var(--primary-rgb), 0.15),
+                    rgba(var(--secondary-rgb), 0.13)
+                );
+
+            box-shadow: 0 0 24px rgba(var(--primary-rgb), 0.08);
+
+            transition:
+                transform 0.35s cubic-bezier(.2, .8, .2, 1);
+        }
+
+        .auth-tabs[data-active="register"] .tab-indicator {
+            transform: translateX(-100%);
+        }
+
+        .tab-button {
+            position: relative;
+            z-index: 1;
+
+            padding: 11px;
+
+            border: 0;
+            border-radius: 10px;
+
+            color: var(--muted);
+            background: transparent;
+
+            cursor: pointer;
+            transition: color 0.25s ease;
+        }
+
+        .tab-button.active {
+            color: var(--text);
+            font-weight: 800;
+        }
+
+        .form-header {
+            margin-bottom: 25px;
+        }
+
+        .form-header h2 {
+            margin: 0 0 9px;
+            font-size: 1.6rem;
+        }
+
+        .form-header p {
+            margin: 0;
+
+            color: var(--muted);
+            font-size: 0.92rem;
+            line-height: 1.8;
+        }
+
+        .auth-form {
+            display: none;
+            animation: form-in 0.38s ease;
+        }
+
+        .auth-form.active {
+            display: block;
+        }
+
+        @keyframes form-in {
+            from {
+                opacity: 0;
+                transform: translateY(9px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fields {
+            display: grid;
+            gap: 16px;
+        }
+
+        .field-group {
+            display: grid;
+            gap: 8px;
+        }
+
+        .field-label {
+            color: #dfe5f3;
+            font-size: 0.88rem;
+            font-weight: 700;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        .input-wrapper input {
+            width: 100%;
+            min-height: 52px;
+
+            padding: 12px 46px 12px 44px;
+
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            outline: none;
+
+            color: var(--text);
+            background: var(--surface-light);
+
+            transition:
+                border-color 0.2s ease,
+                box-shadow 0.2s ease,
+                background 0.2s ease;
+        }
+
+        .input-wrapper input::placeholder {
+            color: #727c91;
+        }
+
+        .input-wrapper input:hover {
+            border-color: rgba(255, 255, 255, 0.18);
+        }
+
+        .input-wrapper input:focus {
+            border-color: rgba(var(--primary-rgb), 0.7);
+
+            background: rgba(var(--primary-rgb), 0.035);
+
+            box-shadow:
+                0 0 0 4px rgba(var(--primary-rgb), 0.09),
+                0 0 22px rgba(var(--primary-rgb), 0.07);
+        }
+
+        .input-wrapper input.invalid {
+            border-color: rgba(255, 92, 122, 0.8);
+            box-shadow: 0 0 0 4px rgba(255, 92, 122, 0.08);
+        }
+
+        .input-icon {
+            position: absolute;
+            top: 50%;
+            right: 15px;
+
+            transform: translateY(-50%);
+
+            color: #808aa0;
+            pointer-events: none;
+        }
+
+        .password-toggle {
+            position: absolute;
+            top: 50%;
+            left: 8px;
+
+            width: 36px;
+            height: 36px;
+
+            display: grid;
+            place-items: center;
+
+            transform: translateY(-50%);
+
+            border: 0;
+            border-radius: 9px;
+
+            color: #9aa4b9;
+            background: transparent;
+
+            cursor: pointer;
+        }
+
+        .password-toggle:hover,
+        .password-toggle:focus-visible {
+            color: var(--primary);
+            background: rgba(var(--primary-rgb), 0.08);
+            outline: none;
+        }
+
+        .field-error {
+            min-height: 18px;
+
+            color: var(--danger);
+            font-size: 0.78rem;
+            line-height: 1.5;
+        }
+
+        .password-strength {
+            display: none;
+            gap: 6px;
+
+            margin-top: 2px;
+        }
+
+        .password-strength.visible {
+            display: flex;
+        }
+
+        .strength-bar {
+            flex: 1;
+            height: 4px;
+
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.09);
+
+            transition: background 0.25s ease;
+        }
+
+        .password-hint {
+            display: none;
+
+            margin: 0;
+            color: var(--muted);
+            font-size: 0.76rem;
+            line-height: 1.7;
+        }
+
+        .password-hint.visible {
+            display: block;
+        }
+
+        .form-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 14px;
+
+            margin: 17px 0;
+        }
+
+        .checkbox-label {
+            display: inline-flex;
+            align-items: flex-start;
+            gap: 9px;
+
+            color: var(--muted);
+            font-size: 0.84rem;
+            line-height: 1.7;
+
+            cursor: pointer;
+        }
+
+        .checkbox-label input {
+            width: 16px;
+            height: 16px;
+            margin-top: 3px;
+
+            accent-color: var(--primary);
+        }
+
+        .text-button,
+        .text-link {
+            padding: 0;
+            border: 0;
+
+            color: var(--primary);
+            background: transparent;
+
+            font-size: 0.84rem;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .text-button:hover,
+        .text-link:hover {
+            text-decoration: underline;
+        }
+
+        /* دکمه نئونی */
+
+        .neon-button {
+            position: relative;
+
+            width: 100%;
+            min-height: 52px;
+
+            overflow: hidden;
+            isolation: isolate;
+
+            border: 0;
+            border-radius: 13px;
+
+            color: #061016;
+            background:
+                linear-gradient(
+                    100deg,
+                    var(--primary),
+                    #8df4ff,
+                    #b59cff
+                );
+
+            font-weight: 900;
+            cursor: pointer;
+
+            box-shadow:
+                0 12px 34px rgba(var(--primary-rgb), 0.16),
+                inset 0 1px 0 rgba(255, 255, 255, 0.55);
+
+            transition:
+                transform 0.2s ease,
+                box-shadow 0.2s ease,
+                opacity 0.2s ease;
+        }
+
+        .neon-button::before {
+            content: "";
+
+            position: absolute;
+            inset: -100%;
+
+            z-index: -1;
+
+            background:
+                conic-gradient(
+                    from 0deg,
+                    transparent 0 25%,
+                    rgba(255, 255, 255, 0.75),
+                    transparent 45% 100%
+                );
+
+            animation: rotate-light 3s linear infinite;
+        }
+
+        .neon-button::after {
+            content: "";
+
+            position: absolute;
+            inset: 2px;
+            z-index: -1;
+
+            border-radius: 11px;
+
+            background:
+                linear-gradient(
+                    100deg,
+                    var(--primary),
+                    #8df4ff,
+                    #b59cff
+                );
+        }
+
+        @keyframes rotate-light {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .neon-button:hover {
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 16px 38px rgba(var(--primary-rgb), 0.25),
+                0 0 28px rgba(var(--primary-rgb), 0.15);
+        }
+
+        .neon-button:active {
+            transform: translateY(0);
+        }
+
+        .neon-button:disabled {
+            opacity: 0.65;
+            cursor: wait;
+            transform: none;
+        }
+
+        .separator {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+
+            margin: 22px 0;
+
+            color: #778197;
+            font-size: 0.8rem;
+        }
+
+        .separator::before,
+        .separator::after {
+            content: "";
+            flex: 1;
+
+            height: 1px;
+            background: var(--border);
+        }
+
+        .google-button {
+            width: 100%;
+            min-height: 50px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 11px;
+
+            border: 1px solid var(--border);
+            border-radius: 13px;
+
+            color: var(--text);
+            background: rgba(255, 255, 255, 0.045);
+
+            font-weight: 700;
+            cursor: pointer;
+
+            transition:
+                border-color 0.2s ease,
+                background 0.2s ease,
+                transform 0.2s ease;
+        }
+
+        .google-button:hover {
+            transform: translateY(-2px);
+
+            border-color: rgba(255, 255, 255, 0.22);
+            background: rgba(255, 255, 255, 0.075);
+        }
+
+        .google-icon {
+            width: 20px;
+            height: 20px;
+        }
+
+        .form-status {
+            min-height: 22px;
+            margin-top: 14px;
+
+            font-size: 0.84rem;
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        .form-status.success {
+            color: var(--success);
+        }
+
+        .form-status.error {
+            color: var(--danger);
+        }
+
+        .form-status.loading {
+            color: var(--primary);
+        }
+
+        /* مودال بازیابی رمز */
+
+        .modal {
+            position: fixed;
+            inset: 0;
+            z-index: 20;
+
+            display: none;
+            place-items: center;
+
+            padding: 20px;
+
+            background: rgba(2, 4, 12, 0.78);
+            backdrop-filter: blur(12px);
+        }
+
+        .modal.open {
+            display: grid;
+        }
+
+        .modal-card {
+            width: min(100%, 440px);
+            padding: 28px;
+
+            border: 1px solid var(--border);
+            border-radius: 22px;
+
+            background: #0d1222;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+
+            margin-bottom: 9px;
+        }
+
+        .modal-header h3 {
+            margin: 0;
+        }
+
+        .modal-description {
+            margin: 0 0 22px;
+
+            color: var(--muted);
+            line-height: 1.8;
+            font-size: 0.9rem;
+        }
+
+        .close-button {
+            width: 38px;
+            height: 38px;
+
+            border: 1px solid var(--border);
+            border-radius: 10px;
+
+            color: var(--text);
+            background: rgba(255, 255, 255, 0.04);
+
+            cursor: pointer;
+        }
+
+        /* واکنش‌گرایی */
+
+        @media (max-width: 860px) {
+            .auth-layout {
+                width: min(100%, 560px);
+                grid-template-columns: 1fr;
+            }
+
+            .brand-panel {
+                min-height: auto;
+                padding: 35px;
+            }
+
+            .brand-logo {
+                margin-bottom: 24px;
+            }
+
+            .features {
+                margin: 26px 0;
+            }
+
+            .security-note {
+                display: none;
+            }
+
+            .form-panel {
+                min-height: auto;
+                padding: 40px 35px;
+            }
+        }
+
+        @media (max-width: 500px) {
+            body {
+                padding: 12px;
+            }
+
+            .auth-layout {
+                border-radius: 21px;
+            }
+
+            .brand-panel {
+                padding: 28px 22px;
+            }
+
+            .brand-panel h1 {
+                font-size: 1.85rem;
+            }
+
+            .brand-description {
+                font-size: 0.91rem;
+            }
+
+            .features {
+                display: none;
+            }
+
+            .form-panel {
+                padding: 30px 20px;
+            }
+
+            .form-options {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="background-grid" aria-hidden="true"></div>
+    <div class="orb orb-one" aria-hidden="true"></div>
+    <div class="orb orb-two" aria-hidden="true"></div>
+
+    <main class="auth-layout">
+        <section class="brand-panel" aria-labelledby="brand-title">
+            <div class="brand">
+                <div class="brand-logo">
+                    <span class="brand-logo__icon" aria-hidden="true">A</span>
+                    <span>ARCADIA</span>
+                </div>
+
+                <h1 id="brand-title">
+                    آینده‌ات را در
+                    <span class="gradient-text">آرکادیا</span>
+                    بساز
+                </h1>
+
+                <p class="brand-description">
+                    به مسیرهای یادگیری تخصصی، پروژه‌های واقعی، منتورها
+                    و اکوسیستم فناوری آرکادیا دسترسی پیدا کن.
+                </p>
+
+                <ul class="features">
+                    <li>
+                        <span class="feature-icon">✓</span>
+                        نقشه‌راه‌های تخصصی و هدفمند
+                    </li>
+
+                    <li>
+                        <span class="feature-icon">✓</span>
+                        پروژه‌های عملی و تجربه‌محور
+                    </li>
+
+                    <li>
+                        <span class="feature-icon">✓</span>
+                        دسترسی به جامعه توسعه‌دهندگان
+                    </li>
+                </ul>
+            </div>
+
+            <div class="security-note">
+                <span aria-hidden="true">🛡️</span>
+                ارتباط امن و حفاظت از حساب کاربری
+            </div>
+        </section>
+
+        <section class="form-panel" aria-label="ورود و ثبت‌نام">
+            <div
+                class="auth-tabs"
+                id="authTabs"
+                data-active="login"
+                role="tablist"
+                aria-label="انتخاب نوع فرم"
+            >
+                <span class="tab-indicator" aria-hidden="true"></span>
+
+                <button
+                    class="tab-button active"
+                    id="loginTab"
+                    type="button"
+                    role="tab"
+                    aria-selected="true"
+                    aria-controls="loginForm"
+                    data-form="login"
+                >
+                    ورود
+                </button>
+
+                <button
+                    class="tab-button"
+                    id="registerTab"
+                    type="button"
+                    role="tab"
+                    aria-selected="false"
+                    aria-controls="registerForm"
+                    data-form="register"
+                >
+                    ثبت‌نام
+                </button>
+            </div>
+
+            <!-- فرم ورود -->
+
+            <form
+                id="loginForm"
+                class="auth-form active"
+                role="tabpanel"
+                aria-labelledby="loginTab"
+                novalidate
+            >
+                <div class="form-header">
+                    <h2>خوش برگشتی 👋</h2>
+                    <p>برای ادامه مسیر، وارد حساب آرکادیای خودت شو.</p>
+                </div>
+
+                <!-- این مقدار باید توسط بک‌اند تولید شود -->
+                <input
+                    type="hidden"
+                    name="_csrf"
+                    value="{{CSRF_TOKEN}}"
+                >
+
+                <div class="fields">
+                    <div class="field-group">
+                        <label class="field-label" for="loginEmail">
+                            ایمیل
+                        </label>
+
+                        <div class="input-wrapper">
+                            <span class="input-icon" aria-hidden="true">✉</span>
+
+                            <input
+                                id="loginEmail"
+                                name="email"
+                                type="email"
+                                inputmode="email"
+                                autocomplete="email"
+                                placeholder="example@arcadia.ir"
+                                required
+                            >
+                        </div>
+
+                        <div
+                            class="field-error"
+                            id="loginEmailError"
+                            aria-live="polite"
+                        ></div>
+                    </div>
+
+                    <div class="field-group">
+                        <label class="field-label" for="loginPassword">
+                            رمز عبور
+                        </label>
+
+                        <div class="input-wrapper">
+                            <span class="input-icon" aria-hidden="true">⌁</span>
+
+                            <input
+                                id="loginPassword"
+                                name="password"
+                                type="password"
+                                autocomplete="current-password"
+                                placeholder="رمز عبور خود را وارد کنید"
+                                required
+                            >
+
+                            <button
+                                class="password-toggle"
+                                type="button"
+                                data-target="loginPassword"
+                                aria-label="نمایش رمز عبور"
+                                aria-pressed="false"
+                            >
+                                ◉
+                            </button>
+                        </div>
+
+                        <div
+                            class="field-error"
+                            id="loginPasswordError"
+                            aria-live="polite"
+                        ></div>
+                    </div>
+                </div>
+
+                <div class="form-options">
+                    <label class="checkbox-label">
+                        <input
+                            type="checkbox"
+                            name="remember"
+                            value="true"
+                        >
+                        مرا به خاطر بسپار
+                    </label>
+
+                    <button
+                        class="text-button"
+                        id="openResetModal"
+                        type="button"
+                    >
+                        فراموشی رمز عبور
+                    </button>
+                </div>
+
+                <button class="neon-button" type="submit">
+                    <span class="button-text">ورود به آرکادیا</span>
+                </button>
+
+                <div class="separator">یا ادامه با</div>
+
+                <button
+                    class="google-button"
+                    type="button"
+                    data-google-auth
+                >
+                    <svg
+                        class="google-icon"
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                    >
+                        <path
+                            fill="#4285F4"
+                            d="M21.6 12.23c0-.71-.06-1.4-.18-2.07H12v3.92h5.38a4.6 4.6 0 0 1-2 3.02v2.55h3.24c1.9-1.75 2.98-4.33 2.98-7.42Z"
+                        />
+                        <path
+                            fill="#34A853"
+                            d="M12 22c2.7 0 4.98-.9 6.64-2.35l-3.24-2.55c-.9.6-2.05.96-3.4.96-2.61 0-4.82-1.76-5.61-4.13H3.04v2.62A10 10 0 0 0 12 22Z"
+                        />
+                        <path
+                            fill="#FBBC05"
+                            d="M6.39 13.93A6 6 0 0 1 6.07 12c0-.67.12-1.32.32-1.93V7.45H3.04A10 10 0 0 0 2 12c0 1.61.39 3.14 1.04 4.55l3.35-2.62Z"
+                        />
+                        <path
+                            fill="#EA4335"
+                            d="M12 5.94c1.47 0 2.79.51 3.83 1.5l2.88-2.88A9.65 9.65 0 0 0 12 2a10 10 0 0 0-8.96 5.45l3.35 2.62C7.18 7.7 9.39 5.94 12 5.94Z"
+                        />
+                    </svg>
+
+                    ورود با Google
+                </button>
+
+                <div
+                    class="form-status"
+                    aria-live="polite"
+                ></div>
+            </form>
+
+            <!-- فرم ثبت‌نام -->
+
+            <form
+                id="registerForm"
+                class="auth-form"
+                role="tabpanel"
+                aria-labelledby="registerTab"
+                hidden
+                novalidate
+            >
+                <div class="form-header">
+                    <h2>به آرکادیا خوش اومدی 🚀</h2>
+                    <p>حسابت را بساز؛ ماجراجویی از همین‌جا شروع می‌شود.</p>
+                </div>
+
+                <input
+                    type="hidden"
+                    name="_csrf"
+                    value="{{CSRF_TOKEN}}"
+                >
+
+                <div class="fields">
+                    <div class="field-group">
+                        <label class="field-label" for="registerName">
+                            نام و نام خانوادگی
+                        </label>
+
+                        <div class="input-wrapper">
+                            <span class="input-icon" aria-hidden="true">♙</span>
+
+                            <input
+                                id="registerName"
+                                name="name"
+                                type="text"
+                                autocomplete="name"
+                                minlength="3"
+                                maxlength="60"
+                                placeholder="نام کامل شما"
+                                required
+                            >
+                        </div>
+
+                        <div
+                            class="field-error"
+                            id="registerNameError"
+                            aria-live="polite"
+                        ></div>
+                    </div>
+
+                    <div class="field-group">
+                        <label class="field-label" for="registerEmail">
+                            ایمیل
+                        </label>
+
+                        <div class="input-wrapper">
+                            <span class="input-icon" aria-hidden="true">✉</span>
+
+                            <input
+                                id="registerEmail"
+                                name="email"
+                                type="email"
+                                inputmode="email"
+                                autocomplete="email"
+                                placeholder="example@arcadia.ir"
+                                required
+                            >
+                        </div>
+
+                        <div
+                            class="field-error"
+                            id="registerEmailError"
+                            aria-live="polite"
+                        ></div>
+                    </div>
+
+                    <div class="field-group">
+                        <label class="field-label" for="registerPassword">
+                            رمز عبور
+                        </label>
+
+                        <div class="input-wrapper">
+                            <span class="input-icon" aria-hidden="true">⌁</span>
+
+                            <input
+                                id="registerPassword"
+                                name="password"
+                                type="password"
+                                autocomplete="new-password"
+                                placeholder="حداقل ۸ کاراکتر"
+                                required
+                            >
+
+                            <button
+                                class="password-toggle"
+                                type="button"
+                                data-target="registerPassword"
+                                aria-label="نمایش رمز عبور"
+                                aria-pressed="false"
+                            >
+                                ◉
+                            </button>
+                        </div>
+
+                        <div
+                            class="password-strength"
+                            id="passwordStrength"
+                            aria-hidden="true"
+                        >
+                            <span class="strength-bar"></span>
+                            <span class="strength-bar"></span>
+                            <span class="strength-bar"></span>
+                            <span class="strength-bar"></span>
+                        </div>
+
+                        <p
+                            class="password-hint"
+                            id="passwordHint"
+                        >
+                            حداقل ۸ کاراکتر، شامل حرف بزرگ و کوچک انگلیسی،
+                            عدد و نماد.
+                        </p>
+
+                        <div
+                            class="field-error"
+                            id="registerPasswordError"
+                            aria-live="polite"
+                        ></div>
+                    </div>
+
+                    <div class="field-group">
+                        <label class="field-label" for="confirmPassword">
+                            تکرار رمز عبور
+                        </label>
+
+                        <div class="input-wrapper">
+                            <span class="input-icon" aria-hidden="true">✓</span>
+
+                            <input
+                                id="confirmPassword"
+                                name="confirmPassword"
+                                type="password"
+                                autocomplete="new-password"
+                                placeholder="رمز عبور را دوباره وارد کنید"
+                                required
+                            >
+
+                            <button
+                                class="password-toggle"
+                                type="button"
+                                data-target="confirmPassword"
+                                aria-label="نمایش تکرار رمز عبور"
+                                aria-pressed="false"
+                            >
+                                ◉
+                            </button>
+                        </div>
+
+                        <div
+                            class="field-error"
+                            id="confirmPasswordError"
+                            aria-live="polite"
+                        ></div>
+                    </div>
+                </div>
+
+                <div class="form-options">
+                    <label class="checkbox-label">
+                        <input
+                            id="acceptTerms"
+                            name="acceptTerms"
+                            type="checkbox"
+                            required
+                        >
+
+                        <span>
+                            با
+                            <a class="text-link" href="/terms">
+                                قوانین و شرایط استفاده
+                            </a>
+                            موافقم.
+                        </span>
+                    </label>
+                </div>
+
+                <div
+                    class="field-error"
+                    id="acceptTermsError"
+                    aria-live="polite"
+                ></div>
+
+                <button class="neon-button" type="submit">
+                    <span class="button-text">ساخت حساب آرکادیا</span>
+                </button>
+
+                <div class="separator">یا ثبت‌نام با</div>
+
+                <button
+                    class="google-button"
+                    type="button"
+                    data-google-auth
+                >
+                    <svg
+                        class="google-icon"
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                    >
+                        <path
+                            fill="#4285F4"
+                            d="M21.6 12.23c0-.71-.06-1.4-.18-2.07H12v3.92h5.38a4.6 4.6 0 0 1-2 3.02v2.55h3.24c1.9-1.75 2.98-4.33 2.98-7.42Z"
+                        />
+                        <path
+                            fill="#34A853"
+                            d="M12 22c2.7 0 4.98-.9 6.64-2.35l-3.24-2.55c-.9.6-2.05.96-3.4.96-2.61 0-4.82-1.76-5.61-4.13H3.04v2.62A10 10 0 0 0 12 22Z"
+                        />
+                        <path
+                            fill="#FBBC05"
+                            d="M6.39 13.93A6 6 0 0 1 6.07 12c0-.67.12-1.32.32-1.93V7.45H3.04A10 10 0 0 0 2 12c0 1.61.39 3.14 1.04 4.55l3.35-2.62Z"
+                        />
+                        <path
+                            fill="#EA4335"
+                            d="M12 5.94c1.47 0 2.79.51 3.83 1.5l2.88-2.88A9.65 9.65 0 0 0 12 2a10 10 0 0 0-8.96 5.45l3.35 2.62C7.18 7.7 9.39 5.94 12 5.94Z"
+                        />
+                    </svg>
+
+                    ثبت‌نام با Google
+                </button>
+
+                <div
+                    class="form-status"
+                    aria-live="polite"
+                ></div>
+            </form>
+        </section>
+    </main>
+
+    <!-- مودال فراموشی رمز عبور -->
+
+    <div
+        class="modal"
+        id="resetModal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="resetTitle"
+        hidden
+    >
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3 id="resetTitle">بازیابی رمز عبور</h3>
+
+                <button
+                    class="close-button"
+                    id="closeResetModal"
+                    type="button"
+                    aria-label="بستن"
+                >
+                    ×
+                </button>
+            </div>
+
+            <p class="modal-description">
+                ایمیل حساب خودت را وارد کن تا لینک بازیابی برایت ارسال شود.
+            </p>
+
+            <form id="resetForm" novalidate>
+                <input
+                    type="hidden"
+                    name="_csrf"
+                    value="{{CSRF_TOKEN}}"
+                >
+
+                <div class="field-group">
+                    <label class="field-label" for="resetEmail">
+                        ایمیل
+                    </label>
+
+                    <div class="input-wrapper">
+                        <span class="input-icon" aria-hidden="true">✉</span>
+
+                        <input
+                            id="resetEmail"
+                            name="email"
+                            type="email"
+                            autocomplete="email"
+                            placeholder="example@arcadia.ir"
+                            required
+                        >
+                    </div>
+
+                    <div
+                        class="field-error"
+                        id="resetEmailError"
+                        aria-live="polite"
+                    ></div>
+                </div>
+
+                <button class="neon-button" type="submit">
+                    <span class="button-text">ارسال لینک بازیابی</span>
+                </button>
+
+                <div
+                    class="form-status"
+                    aria-live="polite"
+                ></div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        "use strict";
+
+        /*
+         * آدرس‌های API را با آدرس واقعی بک‌اند جایگزین کنید.
+         */
+        const API_ENDPOINTS = {
+            login: "/api/auth/login",
+            register: "/api/auth/register",
+            resetPassword: "/api/auth/forgot-password",
+            google: "/api/auth/google"
+        };
+
+        const authTabs = document.getElementById("authTabs");
+        const tabButtons = document.querySelectorAll(".tab-button");
+
+        const forms = {
+            login: document.getElementById("loginForm"),
+            register: document.getElementById("registerForm")
+        };
+
+        const emailPattern =
+            /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+
+        /*
+         * حداقل:
+         * ۸ کاراکتر
+         * حرف کوچک انگلیسی
+         * حرف بزرگ انگلیسی
+         * عدد
+         * نماد
+         */
+        const strongPasswordPattern =
+            /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z\d\s]).{8,128}$/;
+
+        function switchForm(formName) {
+            authTabs.dataset.active = formName;
+
+            tabButtons.forEach((button) => {
+                const isActive = button.dataset.form === formName;
+
+                button.classList.toggle("active", isActive);
+                button.setAttribute("aria-selected", String(isActive));
+            });
+
+            Object.entries(forms).forEach(([name, form]) => {
+                const isActive = name === formName;
+
+                form.classList.toggle("active", isActive);
+                form.hidden = !isActive;
+            });
+
+            const firstInput =
+                forms[formName].querySelector("input:not([type='hidden'])");
+
+            window.setTimeout(() => firstInput?.focus(), 100);
+        }
+
+        tabButtons.forEach((button) => {
+            button.addEventListener("click", () => {
+                switchForm(button.dataset.form);
+            });
+        });
+
+        function setFieldError(input, errorElement, message = "") {
+            input.classList.toggle("invalid", Boolean(message));
+            input.setAttribute("aria-invalid", String(Boolean(message)));
+
+            errorElement.textContent = message;
+        }
+
+        function validateEmail(input, errorElement) {
+            const value = input.value.trim();
+
+            if (!value) {
+                setFieldError(
+                    input,
+                    errorElement,
+                    "وارد کردن ایمیل الزامی است."
+                );
+
+                return false;
+            }
+
+            if (!emailPattern.test(value)) {
+                setFieldError(
+                    input,
+                    errorElement,
+                    "فرمت ایمیل معتبر نیست."
+                );
+
+                return false;
+            }
+
+            setFieldError(input, errorElement);
+            return true;
+        }
+
+        function validateRequiredPassword(input, errorElement) {
+            if (!input.value) {
+                setFieldError(
+                    input,
+                    errorElement,
+                    "وارد کردن رمز عبور الزامی است."
+                );
+
+                return false;
+            }
+
+            setFieldError(input, errorElement);
+            return true;
+        }
+
+        /*
+         * نمایش یا مخفی کردن رمز عبور
+         */
+        document.querySelectorAll(".password-toggle").forEach((button) => {
+            button.addEventListener("click", () => {
+                const input = document.getElementById(button.dataset.target);
+                const shouldShow = input.type === "password";
+
+                input.type = shouldShow ? "text" : "password";
+
+                button.setAttribute(
+                    "aria-pressed",
+                    String(shouldShow)
+                );
+
+                button.setAttribute(
+                    "aria-label",
+                    shouldShow
+                        ? "مخفی کردن رمز عبور"
+                        : "نمایش رمز عبور"
+                );
+
+                button.textContent = shouldShow ? "◎" : "◉";
+            });
+        });
+
+        /*
+         * محاسبه قدرت رمز عبور
+         */
+        function calculatePasswordStrength(password) {
+            let score = 0;
+
+            if (password.length >= 8) score++;
+            if (/[a-z]/.test(password) && /[A-Z]/.test(password)) score++;
+            if (/\d/.test(password)) score++;
+            if (/[^A-Za-z\d\s]/.test(password)) score++;
+
+            return score;
+        }
+
+        function updatePasswordStrength(password) {
+            const container =
+                document.getElementById("passwordStrength");
+
+            const hint =
+                document.getElementById("passwordHint");
+
+            const bars =
+                container.querySelectorAll(".strength-bar");
+
+            const score = calculatePasswordStrength(password);
+
+            container.classList.toggle("visible", password.length > 0);
+            hint.classList.toggle("visible", password.length > 0);
+
+            const colors = {
+                1: "#ff5c7a",
+                2: "#ffbf47",
+                3: "#78d6ff",
+                4: "#23d18b"
+            };
+
+            bars.forEach((bar, index) => {
+                bar.style.background =
+                    index < score
+                        ? colors[score]
+                        : "rgba(255,255,255,.09)";
+            });
+        }
+
+        const registerPassword =
+            document.getElementById("registerPassword");
+
+        const confirmPassword =
+            document.getElementById("confirmPassword");
+
+        registerPassword.addEventListener("input", () => {
+            updatePasswordStrength(registerPassword.value);
+        });
+
+        /*
+         * اعتبارسنجی فرم ورود
+         */
+        const loginEmail =
+            document.getElementById("loginEmail");
+
+        const loginPassword =
+            document.getElementById("loginPassword");
+
+        const loginEmailError =
+            document.getElementById("loginEmailError");
+
+        const loginPasswordError =
+            document.getElementById("loginPasswordError");
+
+        loginEmail.addEventListener("blur", () => {
+            validateEmail(loginEmail, loginEmailError);
+        });
+
+        loginPassword.addEventListener("blur", () => {
+            validateRequiredPassword(
+                loginPassword,
+                loginPasswordError
+            );
+        });
+
+        /*
+         * اعتبارسنجی فرم ثبت‌نام
+         */
+        const registerName =
+            document.getElementById("registerName");
+
+        const registerEmail =
+            document.getElementById("registerEmail");
+
+        const acceptTerms =
+            document.getElementById("acceptTerms");
+
+        function validateRegisterForm() {
+            let isValid = true;
+
+            const nameError =
+                document.getElementById("registerNameError");
+
+            const emailError =
+                document.getElementById("registerEmailError");
+
+            const passwordError =
+                document.getElementById("registerPasswordError");
+
+            const confirmError =
+                document.getElementById("confirmPasswordError");
+
+            const termsError =
+                document.getElementById("acceptTermsError");
+
+            if (registerName.value.trim().length < 3) {
+                setFieldError(
+                    registerName,
+                    nameError,
+                    "نام باید حداقل ۳ کاراکتر باشد."
+                );
+
+                isValid = false;
+            } else {
+                setFieldError(registerName, nameError);
+            }
+
+            if (!validateEmail(registerEmail, emailError)) {
+                isValid = false;
+            }
+
+            if (!strongPasswordPattern.test(registerPassword.value)) {
+                setFieldError(
+                    registerPassword,
+                    passwordError,
+                    "رمز باید حداقل ۸ کاراکتر و شامل حرف بزرگ، حرف کوچک، عدد و نماد باشد."
+                );
+
+                isValid = false;
+            } else {
+                setFieldError(registerPassword, passwordError);
+            }
+
+            if (
+                !confirmPassword.value ||
+                confirmPassword.value !== registerPassword.value
+            ) {
+                setFieldError(
+                    confirmPassword,
+                    confirmError,
+                    "تکرار رمز عبور با رمز اصلی یکسان نیست."
+                );
+
+                isValid = false;
+            } else {
+                setFieldError(confirmPassword, confirmError);
+            }
+
+            if (!acceptTerms.checked) {
+                termsError.textContent =
+                    "برای ثبت‌نام باید قوانین آرکادیا را بپذیرید.";
+
+                isValid = false;
+            } else {
+                termsError.textContent = "";
+            }
+
+            return isValid;
+        }
+
+        /*
+         * تبدیل امن فرم به Object
+         * هرچند اعتبارسنجی واقعی همچنان باید سمت سرور انجام شود.
+         */
+        function getFormPayload(form) {
+            return Object.fromEntries(new FormData(form).entries());
+        }
+
+        function setSubmitting(form, isSubmitting, text) {
+            const button = form.querySelector(".neon-button");
+            const buttonText = button.querySelector(".button-text");
+
+            if (!button.dataset.originalText) {
+                button.dataset.originalText = buttonText.textContent;
+            }
+
+            button.disabled = isSubmitting;
+
+            buttonText.textContent =
+                isSubmitting
+                    ? text
+                    : button.dataset.originalText;
+        }
+
+        function setStatus(form, message = "", type = "") {
+            const status = form.querySelector(".form-status");
+
+            status.textContent = message;
+            status.className = `form-status ${type}`.trim();
+        }
+
+        async function sendRequest(url, payload) {
+            /*
+             * credentials: "include"
+             * برای ارسال Cookieهای HttpOnly و CSRF ضروری است.
+             */
+            const response = await fetch(url, {
+                method: "POST",
+                credentials: "include",
+
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json"
+                },
+
+                body: JSON.stringify(payload)
+            });
+
+            const data = await response
+                .json()
+                .catch(() => ({}));
+
+            if (!response.ok) {
+                /*
+                 * بک‌اند بهتر است برای ورود پیام عمومی برگرداند
+                 * تا مشخص نشود ایمیل وجود دارد یا نه.
+                 */
+                throw new Error(
+                    data.message ||
+                    "در انجام درخواست مشکلی پیش آمد."
+                );
+            }
+
+            return data;
+        }
+
+        /*
+         * ارسال فرم ورود
+         */
+        forms.login.addEventListener("submit", async (event) => {
+            event.preventDefault();
+
+            const isEmailValid =
+                validateEmail(loginEmail, loginEmailError);
+
+            const isPasswordValid =
+                validateRequiredPassword(
+                    loginPassword,
+                    loginPasswordError
+                );
+
+            if (!isEmailValid || !isPasswordValid) {
+                setStatus(
+                    forms.login,
+                    "لطفاً خطاهای فرم را بررسی کنید.",
+                    "error"
+                );
+
+                return;
+            }
+
+            setSubmitting(forms.login, true, "در حال ورود...");
+            setStatus(
+                forms.login,
+                "در حال بررسی اطلاعات...",
+                "loading"
+            );
+
+            try {
+                const result = await sendRequest(
+                    API_ENDPOINTS.login,
+                    getFormPayload(forms.login)
+                );
+
+                setStatus(
+                    forms.login,
+                    "ورود موفق بود؛ در حال انتقال...",
+                    "success"
+                );
+
+                window.location.assign(
+                    result.redirectUrl || "/dashboard"
+                );
+            } catch (error) {
+                setStatus(
+                    forms.login,
+                    error.message ||
+                    "ایمیل یا رمز عبور صحیح نیست.",
+                    "error"
+                );
+            } finally {
+                setSubmitting(forms.login, false);
+            }
+        });
+
+        /*
+         * ارسال فرم ثبت‌نام
+         */
+        forms.register.addEventListener("submit", async (event) => {
+            event.preventDefault();
+
+            if (!validateRegisterForm()) {
+                setStatus(
+                    forms.register,
+                    "لطفاً موارد مشخص‌شده را اصلاح کنید.",
+                    "error"
+                );
+
+                return;
+            }
+
+            setSubmitting(
+                forms.register,
+                true,
+                "در حال ساخت حساب..."
+            );
+
+            setStatus(
+                forms.register,
+                "در حال ایجاد حساب آرکادیا...",
+                "loading"
+            );
+
+            try {
+                const payload =
+                    getFormPayload(forms.register);
+
+                /*
+                 * confirmPassword لازم نیست به سرور ارسال شود.
+                 */
+                delete payload.confirmPassword;
+
+                const result = await sendRequest(
+                    API_ENDPOINTS.register,
+                    payload
+                );
+
+                setStatus(
+                    forms.register,
+                    "حساب با موفقیت ساخته شد.",
+                    "success"
+                );
+
+                window.location.assign(
+                    result.redirectUrl || "/onboarding"
+                );
+            } catch (error) {
+                setStatus(
+                    forms.register,
+                    error.message ||
+                    "امکان ساخت حساب وجود نداشت.",
+                    "error"
+                );
+            } finally {
+                setSubmitting(forms.register, false);
+            }
+        });
+
+        /*
+         * ورود با گوگل
+         *
+         * این مسیر باید OAuth را از سمت بک‌اند آغاز کند.
+         * Client Secret هرگز داخل JavaScript مرورگر قرار نمی‌گیرد.
+         */
+        document
+            .querySelectorAll("[data-google-auth]")
+            .forEach((button) => {
+                button.addEventListener("click", () => {
+                    window.location.assign(API_ENDPOINTS.google);
+                });
+            });
+
+        /*
+         * مدیریت مودال بازیابی رمز عبور
+         */
+        const resetModal =
+            document.getElementById("resetModal");
+
+        const resetForm =
+            document.getElementById("resetForm");
+
+        const resetEmail =
+            document.getElementById("resetEmail");
+
+        const resetEmailError =
+            document.getElementById("resetEmailError");
+
+        function openResetModal() {
+            resetModal.hidden = false;
+            resetModal.classList.add("open");
+
+            window.setTimeout(() => resetEmail.focus(), 80);
+        }
+
+        function closeResetModal() {
+            resetModal.classList.remove("open");
+            resetModal.hidden = true;
+
+            document.getElementById("openResetModal").focus();
+        }
+
+        docu
+            .getElementById("openResetModal")
+            .addEventListener("click", openResetModal);
+
+        document
+            .getElementById("closeResetModal")
+            .addEventListener("click", closeResetModal);
+
+        resetModal.addEventListener("click", (event) => {
+            if (event.target === resetModal) {
+                closeResetModal();
+            }
+        });
+
+        document.addEventListener("keydown", (event) => {
+            if (
+                event.key === "Escape" &&
+                resetModal.classList.contains("open")
+            ) {
+                closeResetModal();
+            }
+        });
+
+        resetForm.addEventListener("submit", async (event) => {
+            event.preventDefault();
+
+            if (!validateEmail(resetEmail, resetEmailError)) {
+                return;
+            }
+
+            setSubmitting(
+                resetForm,
+                true,
+                "در حال ارسال..."
+            );
+
+            setStatus(
+                resetForm,
+                "در حال پردازش درخواست...",
+                "loading"
+            );
+
+            try {
+                await sendRequest(
+                    API_ENDPOINTS.resetPassword,
+                    getFormPayload(resetForm)
+                );
+
+                /*
+                 * پیام باید همیشه عمومی باشد تا مهاجم نتواند
+                 * وجود یا عدم وجود ایمیل را تشخیص دهد.
+                 */
+                setStatus(
+                    resetForm,
+                    "اگر این ایمیل در آرکادیا ثبت شده باشد، لینک بازیابی ارسال می‌شود.",
+                    "success"
+                );
+            } catch (error) {
+                setStatus(
+                    resetForm,
+                    "اگر این ایمیل در آرکادیا ثبت شده باشد، لینک بازیابی ارسال می‌شود.",
+                    "success"
+                );
+            } finally {
+                setSubmitting(resetForm, false);
+            }
+        });
+    </script>
+</body>
+</html>

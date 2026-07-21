@@ -1,0 +1,2307 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="description"
+    content="رزرو مشاوره خصوصی با دانشجویان برتر، اساتید و مدیر مجموعه آرکادیا"
+  >
+
+  <title>رزرو مشاوره خصوصی | آرکادیا</title>
+
+  <!-- فونت فارسی وزیرمتن -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet"
+  >
+
+  <style>
+
+    /* ===================================
+       تنظیمات پایه
+    =================================== */
+
+    :root{
+      --bg-primary:#030712;
+      --bg-secondary:#061126;
+
+      --card-bg:rgba(8, 20, 45, .68);
+      --card-bg-hover:rgba(10, 29, 64, .82);
+
+      --blue:#247cff;
+      --cyan:#00c6ff;
+      --purple:#8b5cf6;
+      --pink:#ec4899;
+      --green:#2de2a6;
+
+      --text:#f8fbff;
+      --muted:#9eacc4;
+
+      --border:rgba(113, 183, 255, .18);
+      --border-hover:rgba(0, 198, 255, .7);
+
+      --radius-lg:26px;
+      --radius-md:18px;
+      --radius-sm:13px;
+
+      --container:1180px;
+    }
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
+    body{
+      min-height:100vh;
+
+      font-family:"Vazirmatn", sans-serif;
+
+      color:var(--text);
+
+      background:
+        radial-gradient(
+          circle at 15% 15%,
+          rgba(36, 124, 255, .16),
+          transparent 30%
+        ),
+        radial-gradient(
+          circle at 85% 30%,
+          rgba(139, 92, 246, .13),
+          transparent 30%
+        ),
+        radial-gradient(
+          circle at 50% 95%,
+          rgba(0, 198, 255, .1),
+          transparent 35%
+        ),
+        var(--bg-primary);
+
+      overflow-x:hidden;
+    }
+
+    body::before{
+      content:"";
+
+      position:fixed;
+      inset:0;
+      z-index:-2;
+
+      pointer-events:none;
+
+      background-image:
+        linear-gradient(
+          rgba(255,255,255,.018) 1px,
+          transparent 1px
+        ),
+        linear-gradient(
+          90deg,
+          rgba(255,255,255,.018) 1px,
+          transparent 1px
+        );
+
+      background-size:45px 45px;
+
+      mask-image:
+        linear-gradient(
+          to bottom,
+          rgba(0,0,0,.8),
+          transparent
+        );
+    }
+
+    a{
+      color:inherit;
+      text-decoration:none;
+    }
+
+    button,
+    input,
+    select,
+    textarea{
+      font:inherit;
+    }
+
+    .container{
+      width:min(calc(100% - 40px), var(--container));
+      margin-inline:auto;
+    }
+
+    .section{
+      position:relative;
+      padding:100px 0;
+    }
+
+
+    /* ===================================
+       نوار بالای صفحه
+    =================================== */
+
+    .navbar{
+      position:sticky;
+      top:0;
+      z-index:1000;
+
+      border-bottom:1px solid rgba(255,255,255,.06);
+
+      background:rgba(3, 7, 18, .72);
+      backdrop-filter:blur(18px);
+      -webkit-backdrop-filter:blur(18px);
+    }
+
+    .navbar-content{
+      min-height:76px;
+
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:25px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+
+    .brand-logo{
+      width:46px;
+      height:46px;
+
+      object-fit:cover;
+
+      border:1px solid rgba(0,198,255,.5);
+      border-radius:14px;
+
+      box-shadow:
+        0 0 20px rgba(0,198,255,.25);
+    }
+
+    .brand-text{
+      display:flex;
+      flex-direction:column;
+      line-height:1.2;
+    }
+
+    .brand-text strong{
+      font-size:17px;
+      font-weight:900;
+      letter-spacing:1px;
+    }
+
+    .brand-text span{
+      margin-top:5px;
+
+      color:var(--muted);
+      font-size:11px;
+    }
+
+    .back-link{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:9px;
+
+      min-height:43px;
+      padding:0 17px;
+
+      border:1px solid rgba(113, 183, 255, .2);
+      border-radius:12px;
+
+      color:#dceeff;
+      background:rgba(255,255,255,.035);
+
+      font-size:13px;
+      font-weight:700;
+
+      transition:.3s ease;
+    }
+
+    .back-link:hover{
+      border-color:rgba(0,198,255,.75);
+      background:rgba(0,198,255,.08);
+      transform:translateY(-2px);
+    }
+
+
+    /* ===================================
+       هدر معرفی
+    =================================== */
+
+    .consultation-hero{
+      position:relative;
+
+      min-height:640px;
+
+      display:flex;
+      align-items:center;
+
+      padding:110px 0 90px;
+
+      overflow:hidden;
+    }
+
+    .hero-glow{
+      position:absolute;
+      z-index:-1;
+
+      width:440px;
+      height:440px;
+
+      border-radius:50%;
+
+      background:rgba(0,198,255,.14);
+      filter:blur(100px);
+
+      animation:heroGlow 6s ease-in-out infinite alternate;
+    }
+
+    .hero-glow-one{
+      top:0;
+      right:-150px;
+    }
+
+    .hero-glow-two{
+      bottom:-180px;
+      left:-120px;
+
+      background:rgba(139,92,246,.14);
+      animation-delay:-2s;
+    }
+
+    @keyframes heroGlow{
+      from{
+        transform:scale(.85) translateY(0);
+        opacity:.55;
+      }
+
+      to{
+        transform:scale(1.15) translateY(30px);
+        opacity:1;
+      }
+    }
+
+    .hero-content{
+      max-width:850px;
+      margin-inline:auto;
+
+      text-align:center;
+    }
+
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:9px;
+
+      padding:9px 15px;
+
+      border:1px solid rgba(0,198,255,.28);
+      border-radius:999px;
+
+      color:#9eeeff;
+      background:rgba(0,198,255,.07);
+
+      font-size:13px;
+      font-weight:700;
+
+      box-shadow:
+        inset 0 0 20px rgba(0,198,255,.04);
+    }
+
+    .eyebrow-dot{
+      width:8px;
+      height:8px;
+
+      border-radius:50%;
+
+      background:var(--cyan);
+
+      box-shadow:
+        0 0 7px var(--cyan),
+        0 0 15px var(--cyan);
+
+      animation:eyebrowPulse 1.7s ease-in-out infinite;
+    }
+
+    @keyframes eyebrowPulse{
+      50%{
+        opacity:.4;
+        transform:scale(.7);
+      }
+    }
+
+    .hero-title{
+      margin-top:28px;
+
+      font-size:clamp(38px, 7vw, 75px);
+      line-height:1.25;
+      font-weight:900;
+      letter-spacing:-2px;
+    }
+
+    .hero-title span{
+      color:transparent;
+
+      background:
+        linear-gradient(
+          90deg,
+          #36d7ff,
+          #4d8dff,
+          #a879ff
+        );
+
+      background-clip:text;
+      -webkit-background-clip:text;
+
+      filter:
+        drop-shadow(0 0 18px rgba(0,198,255,.25));
+    }
+
+    .hero-description{
+      max-width:720px;
+      margin:27px auto 0;
+
+      color:var(--muted);
+
+      font-size:clamp(15px, 2vw, 18px);
+      line-height:2.1;
+      font-weight:400;
+    }
+
+    .hero-actions{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      flex-wrap:wrap;
+      gap:14px;
+
+      margin-top:36px;
+    }
+
+    .primary-action,
+    .secondary-action{
+      min-height:52px;
+
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+
+      padding:0 24px;
+
+      border-radius:14px;
+
+      font-size:14px;
+      font-weight:800;
+
+      transition:.3s ease;
+    }
+
+    .primary-action{
+      color:#fff;
+
+      background:
+        linear-gradient(
+          100deg,
+          #1769ff,
+          #00aee9
+        );
+
+      box-shadow:
+        0 10px 35px rgba(0,143,255,.26);
+    }
+
+    .primary-action:hover{
+      transform:translateY(-4px);
+
+      box-shadow:
+        0 15px 45px rgba(0,174,233,.42);
+    }
+
+    .secondary-action{
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.04);
+    }
+
+    .secondary-action:hover{
+      border-color:rgba(0,198,255,.5);
+      background:rgba(0,198,255,.07);
+      transform:translateY(-4px);
+    }
+
+    .hero-features{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      flex-wrap:wrap;
+      gap:18px 30px;
+
+      margin-top:48px;
+
+      color:#bac6d9;
+      font-size:13px;
+      font-weight:600;
+    }
+
+    .hero-feature{
+      display:flex;
+      align-items:center;
+      gap:9px;
+    }
+
+    .check-icon{
+      width:21px;
+      height:21px;
+
+      display:grid;
+      place-items:center;
+
+      border:1px solid rgba(45,226,166,.35);
+      border-radius:50%;
+
+      color:var(--green);
+      background:rgba(45,226,166,.08);
+
+      font-size:11px;
+    }
+
+
+    /* ===================================
+       عنوان بخش‌ها
+    =================================== */
+
+    .section-header{
+      max-width:760px;
+      margin:0 auto 55px;
+
+      text-align:center;
+    }
+
+    .section-label{
+      color:#70dcff;
+
+      font-size:13px;
+      font-weight:800;
+      letter-spacing:.5px;
+    }
+
+    .section-title{
+      margin-top:12px;
+
+      font-size:clamp(29px, 4vw, 45px);
+      line-height:1.45;
+      font-weight:900;
+    }
+
+    .section-title span{
+      color:#55d7ff;
+    }
+
+    .section-description{
+      margin-top:16px;
+
+      color:var(--muted);
+
+      font-size:15px;
+      line-height:2;
+    }
+
+
+    /* ===================================
+       مراحل رزرو
+    =================================== */
+
+    .steps-section{
+      padding-top:40px;
+      padding-bottom:70px;
+    }
+
+    .steps-grid{
+      display:grid;
+      grid-template-columns:repeat(3, 1fr);
+      gap:18px;
+    }
+
+    .step-card{
+      position:relative;
+
+      padding:25px;
+
+      border:1px solid var(--border);
+      border-radius:18px;
+
+      background:rgba(8,20,45,.48);
+      backdrop-filter:blur(15px);
+
+      overflow:hidden;
+    }
+
+    .step-number{
+      position:absolute;
+      top:14px;
+      left:18px;
+
+      color:rgba(255,255,255,.055);
+
+      font-size:60px;
+      font-weight:900;
+      line-height:1;
+    }
+
+    .step-icon{
+      width:46px;
+      height:46px;
+
+      display:grid;
+      place-items:center;
+
+      border:1px solid rgba(0,198,255,.23);
+      border-radius:14px;
+
+      color:#65dcff;
+      background:rgba(0,198,255,.08);
+
+      font-size:22px;
+    }
+
+    .step-card h3{
+      margin-top:20px;
+
+      font-size:17px;
+      font-weight:800;
+    }
+
+    .step-card p{
+      margin-top:10px;
+
+      color:var(--muted);
+
+      font-size:13px;
+      line-height:1.9;
+    }
+
+
+    /* ===================================
+       کارت‌های نوع مشاوره
+    =================================== */
+
+    .consultation-types{
+      padding-top:80px;
+    }
+
+    .consultation-grid{
+      display:grid;
+      grid-template-columns:repeat(3, 1fr);
+      align-items:stretch;
+      gap:22px;
+    }
+
+    .consultation-card{
+      --card-color:var(--cyan);
+
+      position:relative;
+      isolation:isolate;
+
+      min-height:525px;
+      padding:1px;
+
+      border-radius:var(--radius-lg);
+
+      overflow:hidden;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255,255,255,.2),
+          rgba(255,255,255,.035)
+        );
+
+      transition:
+        transform .4s ease,
+        filter .4s ease;
+    }
+
+    .consultation-card.student{
+      --card-color:#00c6ff;
+    }
+
+    .consultation-card.teacher{
+      --card-color:#8b5cf6;
+    }
+
+    .consultation-card.manager{
+      --card-color:#ffb23f;
+    }
+
+    .consultation-card::before{
+      content:"";
+
+      position:absolute;
+      z-index:-2;
+
+      top:-40%;
+      left:50%;
+
+      width:85%;
+      height:180%;
+
+      transform:translateX(-50%) rotate(0deg);
+
+      opacity:0;
+
+      background:
+        linear-gradient(
+          90deg,
+          transparent,
+          var(--card-color),
+          transparent
+        );
+
+      transition:opacity .4s ease;
+
+      animation:cardLightRotate 4s linear infinite;
+    }
+
+    .consultation-card:hover::before{
+      opacity:.8;
+    }
+
+    @keyframes cardLightRotate{
+      to{
+        transform:translateX(-50%) rotate(360deg);
+      }
+    }
+
+    .card-inner{
+      position:relative;
+      z-index:1;
+
+      width:100%;
+      height:100%;
+      min-height:523px;
+
+      display:flex;
+      flex-direction:column;
+
+      padding:31px;
+
+      border-radius:calc(var(--radius-lg) - 1px);
+
+      background:
+        linear-gradient(
+          155deg,
+          rgba(13,29,61,.96),
+          rgba(4,11,27,.98)
+        );
+
+      overflow:hidden;
+    }
+
+    .card-inner::before{
+      content:"";
+
+      position:absolute;
+      top:-130px;
+      left:-110px;
+
+      width:280px;
+      height:280px;
+
+      border-radius:50%;
+
+      background:var(--card-color);
+      opacity:.08;
+      filter:blur(60px);
+
+      transition:.4s ease;
+    }
+
+    .consultation-card:hover{
+      transform:translateY(-10px);
+      filter:drop-shadow(0 18px 35px rgba(0,0,0,.35));
+    }
+
+    .consultation-card:hover .card-inner::before{
+      opacity:.16;
+      transform:scale(1.2);
+    }
+
+    .card-top{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:15px;
+    }
+
+    .card-icon{
+      width:65px;
+      height:65px;
+
+      display:grid;
+      place-items:center;
+
+      border:1px solid color-mix(
+        in srgb,
+        var(--card-color) 38%,
+        transparent
+      );
+
+      border-radius:20px;
+
+      color:var(--card-color);
+
+      background:color-mix(
+        in srgb,
+        var(--card-color) 10%,
+        transparent
+      );
+
+      font-size:29px;
+
+      box-shadow:
+        inset 0 0 22px color-mix(
+          in srgb,
+          var(--card-color) 8%,
+          transparent
+        );
+    }
+
+    .card-badge{
+      padding:7px 11px;
+
+      border:1px solid color-mix(
+        in srgb,
+        var(--card-color) 28%,
+        transparent
+      );
+
+      border-radius:999px;
+
+      color:var(--card-color);
+
+      background:color-mix(
+        in srgb,
+        var(--card-color) 8%,
+        transparent
+      );
+
+      font-size:11px;
+      font-weight:800;
+    }
+
+    .consultation-card h3{
+      margin-top:25px;
+
+      font-size:23px;
+      line-height:1.55;
+      font-weight:900;
+    }
+
+    .card-description{
+      margin-top:13px;
+
+      color:var(--muted);
+
+      font-size:13.5px;
+      line-height:2;
+    }
+
+    .features-list{
+      display:flex;
+      flex-direction:column;
+      gap:13px;
+
+      margin-top:24px;
+      margin-bottom:28px;
+
+      list-style:none;
+    }
+
+    .features-list li{
+      display:flex;
+      align-items:flex-start;
+      gap:10px;
+
+      color:#d5dfed;
+
+      font-size:13px;
+      line-height:1.75;
+    }
+
+    .features-list li::before{
+      content:"✓";
+
+      flex:0 0 auto;
+
+      width:20px;
+      height:20px;
+
+      display:grid;
+      place-items:center;
+
+      margin-top:2px;
+
+      border-radius:50%;
+
+      color:var(--card-color);
+      background:color-mix(
+        in srgb,
+        var(--card-color) 11%,
+        transparent
+      );
+
+      font-size:10px;
+      font-weight:900;
+    }
+
+    .card-footer{
+      margin-top:auto;
+    }
+
+    .session-info{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+
+      margin-bottom:17px;
+
+      color:#aab7ca;
+      font-size:12px;
+    }
+
+    .session-duration{
+      display:flex;
+      align-items:center;
+      gap:7px;
+    }
+
+
+    /* ===================================
+       دکمه نئونی کارت‌ها
+    =================================== */
+
+    .select-consultation-btn{
+      position:relative;
+      isolation:isolate;
+
+      width:100%;
+      min-height:51px;
+
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+
+      padding:0 18px;
+
+      border:none;
+      border-radius:14px;
+
+      color:#fff;
+      background:#071329;
+
+      font-size:13px;
+      font-weight:900;
+
+      cursor:pointer;
+      overflow:hidden;
+
+      box-shadow:
+        0 0 12px color-mix(
+          in srgb,
+          var(--card-color) 28%,
+          transparent
+        );
+
+      transition:
+        transform .3s ease,
+        box-shadow .3s ease;
+    }
+
+    .select-consultation-btn::before{
+      content:"";
+
+      position:absolute;
+      z-index:-2;
+
+      top:50%;
+      left:50%;
+
+      width:140%;
+      aspect-ratio:1;
+
+      transform:
+        translate(-50%, -50%)
+        rotate(0deg);
+
+      background:
+        conic-gradient(
+          transparent 0deg,
+          transparent 65deg,
+          var(--card-color) 105deg,
+          #fff 123deg,
+          var(--card-color) 145deg,
+          transparent 190deg,
+          transparent 360deg
+        );
+
+      animation:buttonNeonRotate 3s linear infinite;
+    }
+
+    .select-consultation-btn::after{
+      content:"";
+
+      position:absolute;
+      z-index:-1;
+
+      inset:2px;
+
+      border-radius:12px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #0a1935,
+          #050d20
+        );
+    }
+
+    @keyframes buttonNeonRotate{
+      to{
+        transform:
+          translate(-50%, -50%)
+          rotate(360deg);
+      }
+    }
+
+    .select-consultation-btn:hover{
+      transform:translateY(-3px);
+
+      box-shadow:
+        0 0 16px color-mix(
+          in srgb,
+          var(--card-color) 65%,
+          transparent
+        ),
+        0 0 35px color-mix(
+          in srgb,
+          var(--card-color) 25%,
+          transparent
+        );
+    }
+
+    .select-consultation-btn:hover::before{
+      animation-duration:1.5s;
+    }
+
+    .select-consultation-btn span{
+      position:relative;
+      z-index:2;
+    }
+
+    .button-arrow{
+      font-size:18px;
+      transition:transform .3s ease;
+    }
+
+    .select-consultation-btn:hover .button-arrow{
+      transform:translateX(-5px);
+    }
+
+
+    /* ===================================
+       فرم رزرو
+    =================================== */
+
+    .booking-section{
+      padding-top:110px;
+    }
+
+    .booking-layout{
+      display:grid;
+      grid-template-columns:minmax(0, 1.25fr) minmax(280px, .75fr);
+      gap:25px;
+      align-items:start;
+    }
+
+    .booking-form-card,
+    .booking-side-card{
+      border:1px solid var(--border);
+      border-radius:24px;
+
+      background:rgba(8,20,45,.62);
+
+      backdrop-filter:blur(18px);
+      -webkit-backdrop-filter:blur(18px);
+
+      box-shadow:
+        0 20px 60px rgba(0,0,0,.24);
+    }
+
+    .booking-form-card{
+      padding:35px;
+    }
+
+    .booking-form-header{
+      margin-bottom:28px;
+    }
+
+    .booking-form-header h2{
+      font-size:27px;
+      font-weight:900;
+    }
+
+    .booking-form-header p{
+      margin-top:10px;
+
+      color:var(--muted);
+
+      font-size:13px;
+      line-height:1.9;
+    }
+
+    .form-grid{
+      display:grid;
+      grid-template-columns:repeat(2, 1fr);
+      gap:18px;
+    }
+
+    .form-group{
+      display:flex;
+      flex-direction:column;
+      gap:9px;
+    }
+
+    .form-group.full-width{
+      grid-column:1 / -1;
+    }
+
+    .form-group label{
+      color:#dce8f6;
+
+      font-size:13px;
+      font-weight:700;
+    }
+
+    .required{
+      color:#ff6b81;
+    }
+
+    .form-control{
+      width:100%;
+      min-height:51px;
+
+      padding:0 15px;
+
+      border:1px solid rgba(255,255,255,.1);
+      border-radius:13px;
+      outline:none;
+
+      color:#fff;
+      background:rgba(3,10,25,.62);
+
+      font-size:13px;
+
+      transition:
+        border-color .25s ease,
+        box-shadow .25s ease,
+        background .25s ease;
+    }
+
+    textarea.form-control{
+      min-height:130px;
+      padding:14px 15px;
+
+      line-height:1.9;
+      resize:vertical;
+    }
+
+    .form-control::placeholder{
+      color:#69778d;
+    }
+
+    .form-control:focus{
+      border-color:rgba(0,198,255,.7);
+      background:rgba(5,15,34,.9);
+
+      box-shadow:
+        0 0 0 4px rgba(0,198,255,.08),
+        0 0 18px rgba(0,198,255,.08);
+    }
+
+    select.form-control{
+      cursor:pointer;
+    }
+
+    select.form-control option{
+      color:#fff;
+      background:#071329;
+    }
+
+    .submit-booking{
+      width:100%;
+      min-height:55px;
+
+      margin-top:23px;
+
+      border:none;
+      border-radius:14px;
+
+      color:#fff;
+
+      background:
+        linear-gradient(
+          100deg,
+          #1769ff,
+          #00b9eb
+        );
+
+      font-weight:900;
+      cursor:pointer;
+
+      box-shadow:
+        0 12px 35px rgba(0,143,255,.25);
+
+      transition:.3s ease;
+    }
+
+    .submit-booking:hover{
+      transform:translateY(-3px);
+
+      box-shadow:
+        0 17px 45px rgba(0,174,233,.4);
+    }
+
+    .booking-side-card{
+      position:sticky;
+      top:100px;
+
+      padding:29px;
+    }
+
+    .booking-side-card h3{
+      font-size:20px;
+      font-weight:900;
+    }
+
+    .booking-side-card > p{
+      margin-top:11px;
+
+      color:var(--muted);
+
+      font-size:13px;
+      line-height:1.9;
+    }
+
+    .selected-consultation{
+      margin-top:23px;
+      padding:18px;
+
+      border:1px solid rgba(0,198,255,.17);
+      border-radius:16px;
+
+      background:rgba(0,198,255,.055);
+    }
+
+    .selected-label{
+      color:#8e9cb1;
+
+      font-size:11px;
+      font-weight:700;
+    }
+
+    .selected-title{
+      display:block;
+
+      margin-top:7px;
+
+      color:#7ce3ff;
+
+      font-size:15px;
+      font-weight:900;
+    }
+
+    .support-list{
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+
+      margin-top:24px;
+
+      list-style:none;
+    }
+
+    .support-list li{
+      display:flex;
+      align-items:center;
+      gap:10px;
+
+      color:#c5d1e2;
+
+      font-size:12px;
+      line-height:1.7;
+    }
+
+    .support-list-icon{
+      width:29px;
+      height:29px;
+
+      flex:0 0 auto;
+
+      display:grid;
+      place-items:center;
+
+      border-radius:9px;
+
+      color:#65dcff;
+      background:rgba(0,198,255,.08);
+    }
+
+
+    /* ===================================
+       پیام ثبت فرم
+    =================================== */
+
+    .success-message{
+      display:none;
+
+      margin-top:18px;
+      padding:15px;
+
+      border:1px solid rgba(45,226,166,.25);
+      border-radius:13px;
+
+      color:#80f3ca;
+      background:rgba(45,226,166,.08);
+
+      font-size:13px;
+      line-height:1.9;
+    }
+
+    .success-message.show{
+      display:block;
+      animation:messageIn .4s ease;
+    }
+
+    @keyframes messageIn{
+      from{
+        opacity:0;
+        transform:translateY(8px);
+      }
+
+      to{
+        opacity:1;
+        transform:translateY(0);
+      }
+    }
+
+
+    /* ===================================
+       فوتر
+    =================================== */
+
+    .footer{
+      margin-top:80px;
+      padding:32px 0;
+
+      border-top:1px solid rgba(255,255,255,.06);
+
+      color:#8290a5;
+
+      text-align:center;
+      font-size:12px;
+
+      background:rgba(2,6,15,.52);
+    }
+
+
+    /* ===================================
+       ریسپانسیو
+    =================================== */
+
+    @media (max-width:1000px){
+
+      .consultation-grid{
+        grid-template-columns:repeat(2, 1fr);
+      }
+
+      .consultation-card.manager{
+        grid-column:1 / -1;
+        width:calc(50% - 11px);
+        margin-inline:auto;
+      }
+
+      .booking-layout{
+        grid-template-columns:1fr;
+      }
+
+      .booking-side-card{
+        position:static;
+      }
+
+    }
+
+    @media (max-width:780px){
+
+      .section{
+        padding:75px 0;
+      }
+
+      .consultation-hero{
+        min-height:auto;
+        padding:85px 0 70px;
+      }
+
+      .steps-grid,
+      .consultation-grid{
+        grid-template-columns:1fr;
+      }
+
+      .consultation-card.manager{
+        grid-column:auto;
+        width:100%;
+      }
+
+      .hero-title{
+        letter-spacing:-1px;
+      }
+
+      .hero-description{
+        font-size:15px;
+      }
+
+      .form-grid{
+        grid-template-columns:1fr;
+      }
+
+      .form-group.full-width{
+        grid-column:auto;
+      }
+
+    }
+
+    @media (max-width:560px){
+
+      .container{
+        width:min(calc(100% - 24px), var(--container));
+      }
+
+      .navbar-content{
+        min-height:68px;
+      }
+
+      .brand-logo{
+        width:40px;
+        height:40px;
+      }
+
+      .brand-text span{
+        display:none;
+      }
+
+      .back-link{
+        min-height:39px;
+        padding:0 12px;
+
+        font-size:11px;
+      }
+
+      .hero-actions{
+        flex-direction:column;
+      }
+
+      .primary-action,
+      .secondary-action{
+        width:100%;
+      }
+
+      .hero-features{
+        align-items:flex-start;
+        flex-direction:column;
+
+        width:max-content;
+        max-width:100%;
+        margin-inline:auto;
+      }
+
+      .section-header{
+        margin-bottom:38px;
+      }
+
+      .card-inner{
+        padding:24px;
+      }
+
+      .booking-form-card,
+      .booking-side-card{
+        padding:23px;
+        border-radius:19px;
+      }
+
+    }
+
+    @media (prefers-reduced-motion:reduce){
+
+      html{
+        scroll-behavior:auto;
+      }
+
+      *,
+      *::before,
+      *::after{
+        animation-duration:.01ms !important;
+        animation-iteration-count:1 !important;
+        transition-duration:.01ms !important;
+      }
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- =========================
+       نوار بالای صفحه
+  ========================== -->
+
+  <nav class="navbar">
+    <div class="container navbar-content">
+
+      <a href="index.html" class="brand">
+
+        <!-- آدرس لوگوی اصلی آرکادیا را جایگزین کن -->
+        <img
+          src="arcadia_logo.jpg"
+          alt="لوگوی آرکادیا"
+          class="brand-logo"
+        >
+
+        <span class="brand-text">
+          <strong>ARCADIA</strong>
+          <span>Private Consultation</span>
+        </span>
+
+      </a>
+
+      <a href="amooozesh.html" class="back-link">
+        <span>بازگشت به آموزشگاه</span>
+        <span>←</span>
+      </a>
+
+    </div>
+  </nav>
+
+
+  <!-- =========================
+       معرفی اصلی
+  ========================== -->
+
+  <header class="consultation-hero">
+
+    <div class="hero-glow hero-glow-one"></div>
+    <div class="hero-glow hero-glow-two"></div>
+
+    <div class="container">
+
+      <div class="hero-content">
+
+        <div class="eyebrow">
+          <span class="eyebrow-dot"></span>
+          مشاوره تخصصی و شخصی‌سازی‌شده آرکادیا
+        </div>
+
+        <h1 class="hero-title">
+          برای آینده‌ات یک
+          <span>مسیر واقعی</span>
+          بساز
+        </h1>
+
+        <p class="hero-description">
+          اگر در انتخاب مسیر یادگیری، ورود به بازار کار، توسعه مهارت‌های
+          تخصصی یا پیشبرد پروژه‌های خود سردرگم هستید، مشاوران آرکادیا
+          به شما کمک می‌کنند تا متناسب با توانمندی‌ها و اهداف واقعی‌تان،
+          یک مسیر روشن، عملی و قابل‌اندازه‌گیری طراحی کنید.
+        </p>
+
+        <div class="hero-actions">
+
+          <a href="#consultation-types" class="primary-action">
+            انتخاب نوع مشاوره
+            <span>↓</span>
+          </a>
+
+          <a href="#booking-form" class="secondary-action">
+            تکمیل فرم رزرو
+          </a>
+
+        </div>
+
+        <div class="hero-features">
+
+          <div class="hero-feature">
+            <span class="check-icon">✓</span>
+            مشاوره آنلاین و خصوصی
+          </div>
+
+          <div class="hero-feature">
+            <span class="check-icon">✓</span>
+            انتخاب مشاور متناسب با هدف
+          </div>
+
+          <div class="hero-feature">
+            <span class="check-icon">✓</span>
+            ارائه راهکارهای قابل‌اجرا
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </header>
+
+
+  <!-- =========================
+       مراحل رزرو
+  ========================== -->
+
+  <section class="section steps-section">
+
+    <div class="container">
+
+      <div class="section-header">
+
+        <span class="section-label">فرایند رزرو</span>
+
+        <h2 class="section-title">
+          فقط در <span>سه مرحله ساده</span>
+        </h2>
+
+        <p class="section-description">
+          نوع مشاوره را انتخاب کنید، اطلاعات اولیه را ثبت کنید و پس از
+          هماهنگی تیم آرکادیا، جلسه تخصصی خود را برگزار کنید.
+        </p>
+
+      </div>
+
+      <div class="steps-grid">
+
+        <article class="step-card">
+          <span class="step-number">01</span>
+
+          <div class="step-icon">⌁</div>
+
+          <h3>انتخاب مشاور</h3>
+
+          <p>
+            براساس هدف، سطح مهارت و موضوع موردنظر خود، مناسب‌ترین نوع
+            مشاوره را انتخاب کنید.
+          </p>
+        </article>
+
+        <article class="step-card">
+          <span class="step-number">02</span>
+
+          <div class="step-icon">✎</div>
+
+          <h3>تکمیل اطلاعات</h3>
+
+          <p>
+            مشخصات، هدف جلسه و زمان پیشنهادی خود را در فرم رزرو وارد
+            کنید.
+          </p>
+        </article>
+
+        <article class="step-card">
+          <span class="step-number">03</span>
+
+          <div class="step-icon">✓</div>
+
+          <h3>هماهنگی جلسه</h3>
+
+          <p>
+            تیم آرکادیا پس از بررسی درخواست، برای هماهنگی نهایی با شما
+            ارتباط می‌گیرد.
+          </p>
+        </article>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- =========================
+       انواع مشاوره
+  ========================== -->
+
+  <section
+    class="section consultation-types"
+    id="consultation-types"
+  >
+
+    <div class="container">
+
+      <div class="section-header">
+
+        <span class="section-label">انتخاب سطح مشاوره</span>
+
+        <h2 class="section-title">
+          با چه کسی می‌خواهید
+          <span>مشورت کنید؟</span>
+        </h2>
+
+        <p class="section-description">
+          هر سطح از مشاوره برای نیاز متفاوتی طراحی شده است؛ از دریافت
+          تجربه‌های دانشجویی و یادگیری تا تصمیم‌های حرفه‌ای و مدیریتی.
+        </p>
+
+      </div>
+
+
+      <div class="consultation-grid">
+
+        <!-- دانشجویان برتر -->
+
+        <article class="consultation-card student">
+
+          <div class="card-inner">
+
+            <div class="card-top">
+
+              <div class="card-icon">♟</div>
+
+              <span class="card-badge">
+                مناسب شروع مسیر
+              </span>
+
+            </div>
+
+            <h3>
+              مشاوره با دانشجویان برتر آرکادیا
+            </h3>
+
+            <p class="card-description">
+              گفت‌وگویی دوستانه و کاربردی با دانشجویان موفق آرکادیا که
+              مسیر یادگیری را تجربه کرده‌اند و چالش‌های آن را به‌خوبی
+              می‌شناسند.
+            </p>
+
+            <ul class="features-list">
+
+              <li>
+                راهنمایی برای شروع برنامه‌نویسی و انتخاب حوزه
+              </li>
+
+              <li>
+                انتقال تجربه واقعی دوره‌ها و مسیرهای آموزشی
+              </li>
+
+              <li>
+                بررسی مشکلات یادگیری و مدیریت زمان
+              </li>
+
+              <li>
+                مناسب دانشجویان و افراد تازه‌وارد
+              </li>
+
+            </ul>
+
+            <div class="card-footer">
+
+              <div class="session-info">
+                <span class="session-duration">
+                  ◷ یک جلسه
+                </span>
+
+                <span>1.000.000</span>
+              </div>
+
+              <button
+                type="button"
+                class="select-consultation-btn"
+                data-consultation="مشاوره با دانشجویان برتر آرکادیا"
+              >
+                <span>انتخاب این مشاوره</span>
+                <span class="button-arrow">←</span>
+              </button>
+
+            </div>
+
+          </div>
+        </article>
+
+
+        <!-- اساتید آرکادیا -->
+
+        <article class="consultation-card teacher">
+
+          <div class="card-inner">
+
+            <div class="card-top">
+
+              <div class="card-icon">◆</div>
+
+              <span class="card-badge">
+                تخصصی و آموزشی
+              </span>
+
+            </div>
+
+            <h3>
+              مشاوره با اساتید آرکادیا
+            </h3>
+
+            <p class="card-description">
+              جلسه‌ای تخصصی با اساتید آرکادیا برای تحلیل مهارت‌ها،
+              طراحی نقشه راه یادگیری و دریافت راهنمایی حرفه‌ای در حوزه
+              تخصصی موردنظر شما.
+            </p>
+
+            <ul class="features-list">
+
+              <li>
+                ارزیابی سطح فعلی دانش و مهارت‌های تخصصی
+              </li>
+
+              <li>
+                طراحی نقشه راه متناسب با هدف شما
+              </li>
+
+              <li>
+                بررسی پروژه، رزومه یا مسیر آموزشی
+              </li>
+
+              <li>
+                مناسب رشد تخصصی و ورود به بازار کار
+              </li>
+
+            </ul>
+
+            <div class="card-footer">
+
+              <div class="session-info">
+                <span class="session-duration">
+                  ◷ یک جلسه
+                </span>
+
+                <span>6.000.000</span>
+              </div>
+
+              <button
+                type="button"
+                class="select-consultation-btn"
+                data-consultation="مشاوره با اساتید آرکادیا"
+              >
+                <span>انتخاب این مشاوره</span>
+                <span class="button-arrow">←</span>
+              </button>
+
+            </div>
+
+          </div>
+        </article>
+
+
+        <!-- مدیر آرکادیا -->
+
+        <article class="consultation-card manager">
+
+          <div class="card-inner">
+
+            <div class="card-top">
+
+              <div class="card-icon">✦</div>
+
+              <span class="card-badge">
+                ویژه و راهبردی
+              </span>
+
+            </div>
+
+            <h3>
+              مشاوره با مدیر آرکادیا
+            </h3>
+
+            <p class="card-description">
+              مشاوره‌ای سطح‌بالا برای تصمیم‌های راهبردی، توسعه پروژه،
+              ساخت تیم، مسیر حرفه‌ای و بررسی ایده‌های فناورانه و کسب‌وکار با مهندس مائده احسانی.
+            </p>
+
+            <ul class="features-list">
+
+              <li>
+                بررسی ایده‌های استارتاپی و پروژه‌های فناورانه
+              </li>
+
+              <li>
+                راهنمایی برای ساخت تیم و توسعه محصول
+              </li>
+
+              <li>
+                تحلیل مسیر حرفه‌ای و تصمیم‌های کلیدی
+              </li>
+
+              <li>
+                مناسب مدیران، متخصصان و صاحبان پروژه
+              </li>
+
+            </ul>
+
+            <div class="card-footer">
+
+              <div class="session-info">
+                <span class="session-duration">
+                  ◷ یک جلسه
+                </span>
+
+                <span>10.000.000</span>
+              </div>
+
+              <button
+                type="button"
+                class="select-consultation-btn"
+                data-consultation="مشاوره با مدیر آرکادیا"
+              >
+                <span>انتخاب این مشاوره</span>
+                <span class="button-arrow">←</span>
+              </button>
+
+            </div>
+
+          </div>
+        </article>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- =========================
+       فرم رزرو
+  ========================== -->
+
+  <section class="section booking-section" id="booking-form">
+
+    <div class="container">
+
+      <div class="booking-layout">
+
+        <div class="booking-form-card">
+
+          <div class="booking-form-header">
+
+            <h2>ثبت درخواست مشاوره</h2>
+
+            <p>
+              اطلاعات زیر را وارد کنید تا تیم آرکادیا برای بررسی و
+              هماهنگی زمان جلسه با شما تماس بگیرد.
+            </p>
+
+          </div>
+
+
+          <form id="consultationForm">
+
+            <div class="form-grid">
+
+              <div class="form-group">
+
+                <label for="fullName">
+                  نام و نام خانوادگی
+                  <span class="required">*</span>
+                </label>
+
+                <input
+                  type="text"
+                  id="fullName"
+                  name="fullName"
+                  class="form-control"
+                  placeholder="نام کامل شما"
+                  required
+                >
+
+              </div>
+
+
+              <div class="form-group">
+
+                <label for="phone">
+                  شماره تماس
+                  <span class="required">*</span>
+                </label>
+
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  class="form-control"
+                  placeholder="مثلاً 09123456789"
+                  inputmode="numeric"
+                  required
+                >
+
+              </div>
+
+
+              <div class="form-group">
+
+                <label for="consultationType">
+                  نوع مشاوره
+                  <span class="required">*</span>
+                </label>
+
+                <select
+                  id="consultationType"
+                  name="consultationType"
+                  class="form-control"
+                  required
+                >
+
+                  <option value="">
+                    نوع مشاوره را انتخاب کنید
+                  </option>
+
+                  <option value="مشاوره با دانشجویان برتر آرکادیا">
+                    مشاوره با دانشجویان برتر آرکادیا
+                  </option>
+
+                  <option value="مشاوره با اساتید آرکادیا">
+                    مشاوره با اساتید آرکادیا
+                  </option>
+
+                  <option value="مشاوره با مدیر آرکادیا">
+                    مشاوره با مدیر آرکادیا
+                  </option>
+
+                </select>
+
+              </div>
+
+
+              <div class="form-group">
+
+                <label for="field">
+                  حوزه موردنظر
+                  <span class="required">*</span>
+                </label>
+
+                <select
+                  id="field"
+                  name="field"
+                  class="form-control"
+                  required
+                >
+
+                  <option value="">
+                    انتخاب حوزه
+                  </option>
+
+                  <option value="برنامه‌نویسی">
+                    برنامه‌نویسی
+                  </option>
+
+                  <option value="هوش مصنوعی">
+                    هوش مصنوعی
+                  </option>
+
+                  <option value="امنیت سایبری">
+                    امنیت سایبری
+                  </option>
+
+                  <option value="وب ۳ و بلاک‌چین">
+                    وب ۳ و بلاک‌چین
+                  </option>
+
+                  <option value="بازار کار و رزومه">
+                    بازار کار و رزومه
+                  </option>
+
+                  <option value="استارتاپ و توسعه محصول">
+                    استارتاپ و توسعه محصول
+                  </option>
+
+                  <option value="سایر">
+                    سایر
+                  </option>
+
+                </select>
+
+              </div>
+
+
+              <div class="form-group">
+
+                <label for="preferredDate">
+                  تاریخ پیشنهادی
+                </label>
+
+                <input
+                  type="text"
+                  id="preferredDate"
+                  name="preferredDate"
+                  class="form-control"
+                  placeholder="مثلاً ۱۴۰۵/۰۵/۱۵"
+                >
+
+              </div>
+
+
+              <div class="form-group">
+
+                <label for="preferredTime">
+                  ساعت پیشنهادی
+                </label>
+
+                <select
+                  id="preferredTime"
+                  name="preferredTime"
+                  class="form-control"
+                >
+
+                  <option value="">
+                    انتخاب ساعت
+                  </option>
+
+                  <option value="۹ تا ۱۲">
+                    ۹ تا ۱۲
+                  </option>
+
+                  <option value="۱۲ تا ۱۵">
+                    ۱۲ تا ۱۵
+                  </option>
+
+                  <option value="۱۵ تا ۱۸">
+                    ۱۵ تا ۱۸
+                  </option>
+
+                  <option value="۱۸ تا ۲۱">
+                    ۱۸ تا ۲۱
+                  </option>
+
+                </select>
+
+              </div>
+
+
+              <div class="form-group full-width">
+
+                <label for="description">
+                  درباره هدف مشاوره توضیح دهید
+                  <span class="required">*</span>
+                </label>
+
+                <textarea
+                  id="description"
+                  name="description"
+                  class="form-control"
+                  placeholder="موضوع، هدف، سطح فعلی و انتظارتان از جلسه مشاوره را بنویسید..."
+                  required
+                ></textarea>
+
+              </div>
+
+            </div>
+
+
+            <button type="submit" class="submit-booking">
+              ثبت درخواست و ادامه فرایند رزرو
+            </button>
+
+
+            <div
+              class="success-message"
+              id="successMessage"
+              role="status"
+            >
+              درخواست شما با موفقیت ثبت شد. تیم آرکادیا برای هماهنگی
+              نهایی جلسه با شما تماس خواهد گرفت.
+            </div>
+
+          </form>
+
+        </div>
+
+
+        <!-- خلاصه رزرو -->
+
+        <aside class="booking-side-card">
+
+          <h3>خلاصه درخواست</h3>
+
+          <p>
+            نوع مشاوره انتخاب‌شده در این قسمت نمایش داده می‌شود.
+          </p>
+
+          <div class="selected-consultation">
+
+            <span class="selected-label">
+              مشاوره انتخاب‌شده
+            </span>
+
+            <strong
+              class="selected-title"
+              id="selectedConsultationTitle"
+            >
+              هنوز انتخاب نشده است
+            </strong>
+
+          </div>
+
+          <ul class="support-list">
+
+            <li>
+              <span class="support-list-icon">✓</span>
+              اطلاعات شما به‌صورت محرمانه نگهداری می‌شود.
+            </li>
+
+            <li>
+              <span class="support-list-icon">⌁</span>
+              هماهنگی نهایی توسط تیم آرکادیا انجام می‌شود.
+            </li>
+
+            <li>
+              <span class="support-list-icon">◷</span>
+              زمان جلسه پس از تأیید مشاور قطعی خواهد شد.
+            </li>
+
+          </ul>
+
+        </aside>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- =========================
+       فوتر
+  ========================== -->
+
+  <footer class="footer">
+
+    <div class="container">
+      تمامی حقوق این صفحه متعلق به مجموعه آرکادیا است.
+    </div>
+
+  </footer>
+
+
+  <!-- =========================
+       جاوااسکریپت
+  ========================== -->
+
+  <script>
+
+    const consultationButtons = document.querySelectorAll(
+      ".select-consultation-btn"
+    );
+
+    const consultationSelect = document.getElementById(
+      "consultationType"
+    );
+
+    const selectedConsultationTitle = document.getElementById(
+      "selectedConsultationTitle"
+    );
+
+    const bookingSection = document.getElementById(
+      "booking-form"
+    );
+
+    const consultationForm = document.getElementById(
+      "consultationForm"
+    );
+
+    const successMessage = document.getElementById(
+      "successMessage"
+    );
+
+
+    /* انتخاب نوع مشاوره از روی کارت */
+
+    consultationButtons.forEach((button) => {
+
+      button.addEventListener("click", () => {
+
+        const selectedType = button.dataset.consultation;
+
+        consultationSelect.value = selectedType;
+
+        selectedConsultationTitle.textContent = selectedType;
+
+        bookingSection.scrollIntoView({
+          behavior:"smooth",
+          block:"start"
+        });
+
+      });
+
+    });
+
+
+    /* تغییر انتخاب از داخل خود فرم */
+
+    consultationSelect.addEventListener("change", () => {
+
+      const selectedValue = consultationSelect.value;
+
+      selectedConsultationTitle.textContent =
+        selectedValue || "هنوز انتخاب نشده است";
+
+    });
+
+
+    /* ثبت آزمایشی فرم */
+
+    consultationForm.addEventListener("submit", (event) => {
+
+      event.preventDefault();
+
+      if(!consultationForm.checkValidity()){
+        consultationForm.reportValidity();
+        return;
+      }
+
+      successMessage.classList.add("show");
+
+      /*
+        این بخش فعلاً نمایشی است.
+
+        در مرحله اتصال به بک‌اند می‌توان اطلاعات فرم را
+        با fetch به API ارسال کرد.
+
+        مثال:
+
+        const formData = new FormData(consultationForm);
+
+        fetch("/api/consultations", {
+          method:"POST",
+          body:formData
+        });
+      */
+
+    });
+
+  </script>
+
+</body>
+</html>

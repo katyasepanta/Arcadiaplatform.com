@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>آموزشگاه آرکادیا</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+
+<style>
+    
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+:root{
+  --bg:#050816;
+  --panel:rgba(255,255,255,.06);
+  --border:rgba(255,255,255,.1);
+  --text:#ffffff;
+  --muted:#b8c4e6;
+  --blue:#2f80ff;
+  --cyan:#00c6ff;
+  --shadow:0 20px 50px rgba(0,0,0,.35);
+}
+
+body{
+  font-family:"Vazirmatn",sans-serif;
+  background:
+    radial-gradient(circle at 20% 20%,#0b1a3a,transparent 35%),
+    radial-gradient(circle at 80% 10%,#0c214f,transparent 35%),
+    var(--bg);
+  color:var(--text);
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+.stars{
+  position:fixed;
+  inset:0;
+  z-index:-1;
+  pointer-events:none;
+}
+
+.star{
+  position:absolute;
+  background:#fff;
+  border-radius:50%;
+  opacity:.8;
+  box-shadow:0 0 8px #4ea1ff;
+  animation:floatStar 6s ease-in-out infinite;
+}
+
+@keyframes floatStar{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-10px)}
+}
+
+.container{
+  width:min(1200px, 92%);
+  margin:0 auto;
+}
+
+.hero{
+  padding:110px 0 40px;
+  text-align:center;
+}
+
+.badge{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:8px 14px;
+  border:1px solid rgba(47,128,255,.35);
+  background:rgba(47,128,255,.12);
+  color:#dbe8ff;
+  border-radius:999px;
+  font-size:13px;
+  margin-bottom:18px;
+}
+
+.hero h1{
+  font-size:44px;
+  font-weight:900;
+  line-height:1.4;
+  margin-bottom:14px;
+}
+
+.hero h1 span{
+  color:var(--blue);
+}
+
+.hero p{
+  max-width:780px;
+  margin:0 auto;
+  color:var(--muted);
+  line-height:2;
+  font-size:16px;
+}
+
+.cta-row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:14px;
+  justify-content:center;
+  margin-top:28px;
+}
+
+.btn{
+  text-decoration:none;
+  padding:14px 24px;
+  border-radius:14px;
+  font-weight:700;
+  transition:.3s;
+}
+
+.btn-primary{
+  background:linear-gradient(90deg,var(--blue),var(--cyan));
+  color:white;
+  box-shadow:0 0 24px rgba(47,128,255,.45);
+}
+
+.btn-primary:hover{
+  transform:translateY(-2px);
+}
+
+.btn-secondary{
+  background:rgba(255,255,255,.05);
+  border:1px solid var(--border);
+  color:#dfe7ff;
+}
+
+.btn-secondary:hover{
+  background:rgba(255,255,255,.08);
+}
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:18px;
+  margin:36px auto 0;
+}
+
+.stat{
+  background:var(--panel);
+  border:1px solid var(--border);
+  backdrop-filter:blur(14px);
+  border-radius:20px;
+  padding:22px 18px;
+  box-shadow:var(--shadow);
+}
+
+.stat h3{
+  font-size:28px;
+  color:var(--cyan);
+  margin-bottom:6px;
+}
+
+.stat p{
+  color:var(--muted);
+  font-size:14px;
+}
+
+.section{
+  padding:70px 0;
+}
+
+.section-title{
+  text-align:center;
+  font-size:34px;
+  font-weight:900;
+  margin-bottom:14px;
+}
+
+.section-title span{
+  color:var(--blue);
+}
+
+.section-desc{
+  text-align:center;
+  max-width:720px;
+  margin:0 auto 28px;
+  color:var(--muted);
+  line-height:2;
+}
+
+.filters{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:12px;
+  margin-bottom:28px;
+}
+
+.filter-btn{
+  border:none;
+  cursor:pointer;
+  padding:11px 18px;
+  border-radius:999px;
+  background:rgba(255,255,255,.05);
+  color:#dfe7ff;
+  border:1px solid var(--border);
+  transition:.3s;
+  font-family:inherit;
+  font-size:14px;
+}
+
+.filter-btn.active,
+.filter-btn:hover{
+  background:rgba(47,128,255,.18);
+  border-color:rgba(47,128,255,.4);
+  color:white;
+}
+
+.cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:22px;
+}
+
+.card{
+  background:var(--panel);
+  border:1px solid var(--border);
+  backdrop-filter:blur(14px);
+  border-radius:22px;
+  overflow:hidden;
+  box-shadow:var(--shadow);
+  transition:.35s;
+  position:relative;
+}
+
+.card:hover{
+  transform:translateY(-8px);
+  box-shadow:0 25px 60px rgba(0,0,0,.45);
+}
+
+.card .thumb{
+  width:100%;
+  height:180px;
+  object-fit:cover;
+  display:block;
+}
+
+.card-body{
+  padding:20px;
+}
+
+.tag-row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-bottom:12px;
+}
+
+.tag{
+  display:inline-block;
+  padding:5px 10px;
+  border-radius:999px;
+  font-size:12px;
+  background:rgba(47,128,255,.12);
+  color:#d7e6ff;
+  border:1px solid rgba(47,128,255,.25);
+}
+
+.card h3{
+  font-size:20px;
+  margin-bottom:10px;
+}
+
+.card p{
+  color:var(--muted);
+  line-height:1.9;
+  font-size:14px;
+  min-height:78px;
+}
+
+.card-footer{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  margin-top:18px;
+}
+
+.meta{
+  font-size:13px;
+  color:#9fb2df;
+}
+
+.link-btn{
+  text-decoration:none;
+  padding:9px 14px;
+  border-radius:10px;
+  background:linear-gradient(90deg,var(--blue),var(--cyan));
+  color:white;
+  font-size:13px;
+  font-weight:700;
+  white-space:nowrap;
+}
+
+.learning-paths{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:20px;
+}
+
+.path-card{
+  background:var(--panel);
+  border:1px solid var(--border);
+  backdrop-filter:blur(14px);
+  border-radius:22px;
+  padding:24px;
+  box-shadow:var(--shadow);
+  transition:.3s;
+}
+
+.path-card:hover{
+  transform:translateY(-6px);
+}
+
+.path-card h3{
+  font-size:22px;
+  margin-bottom:10px;
+  color:#fff;
+}
+
+.path-card p{
+  color:var(--muted);
+  line-height:2;
+  margin-bottom:16px;
+}
+
+.steps{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+}
+
+.step{
+  padding:8px 12px;
+  border-radius:999px;
+  background:rgba(255,255,255,.05);
+  border:1px solid var(--border);
+  color:#dfe7ff;
+  font-size:13px;
+}
+
+.footer{
+  padding:30px 0 45px;
+  text-align:center;
+  color:#93a5cf;
+  font-size:13px;
+}
+
+/* responsive */
+@media (max-width: 900px){
+  .stats{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .learning-paths{
+    grid-template-columns:1fr;
+  }
+
+  .hero h1{
+    font-size:34px;
+  }
+}
+
+@media (max-width: 640px){
+  .hero{
+    padding-top:95px;
+  }
+
+  .section-title{
+    font-size:26px;
+  }
+
+  .stats{
+    grid-template-columns:1fr;
+  }
+
+  .card p{
+    min-height:auto;
+  }
+
+  .card-footer{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<canvas class="stars"></canvas>
+
+<section class="hero">
+  <div class="container">
+    <div class="badge">آموزشگاه آرکادیا • مسیرهای یادگیری واقعی</div>
+    <h1>مهارتت را با <span>آرکادیا</span> بساز، نه فقط یاد بگیر</h1>
+    <p>
+      اینجا جاییه که آموزش از حالت تئوری خارج میشه و تبدیل میشه به مسیرهای عملی،
+      پروژه‌محور و مناسب ورود به بازار کار. از برنامه‌نویسی و هوش مصنوعی تا Web3،
+      امنیت و مهارت‌های نرم.
+    </p>
+
+    <div class="cta-row">
+      <a href="#courses" class="btn btn-primary">شروع یادگیری</a>
+      <a href="#paths" class="btn btn-secondary">دیدن نقشه‌های آموزشی</a>
+    </div>
+
+    <div class="stats">
+      <div class="stat">
+        <h3>+25</h3>
+        <p>مسیر و دوره تخصصی</p>
+      </div>
+      <div class="stat">
+        <h3>+120</h3>
+        <p>پروژه و تمرین عملی</p>
+      </div>
+      <div class="stat">
+        <h3>+80</h3>
+        <p>جلسه آموزشی و لایو</p>
+      </div>
+      <div class="stat">
+        <h3>24/7</h3>
+        <p>دسترسی به محتوا و آپدیت‌ها</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="courses">
+  <div class="container">
+    <h2 class="section-title">دوره‌های <span>پیشنهادی</span> آرکادیا</h2>
+    <p class="section-desc">
+      با انتخاب هر مسیر، کاربر وارد یک جریان یادگیری منظم می‌شود؛ از سطح پایه تا ساخت پروژه واقعی.
+    </p>
+
+    <div class="filters">
+      <button class="filter-btn active" data-filter="all">همه</button>
+      <button class="filter-btn" data-filter="web">توسعه وب</button>
+      <button class="filter-btn" data-filter="ai">هوش مصنوعی</button>
+      <button class="filter-btn" data-filter="web3">Web3</button>
+      <button class="filter-btn" data-filter="security">امنیت</button>
+      <button class="filter-btn" data-filter="soft">مهارت نرم</button>
+    </div>
+
+    <div class="cards">
+      <article class="card" data-category="web">
+        <img src="web.jpg" class="thumb" alt="توسعه وب">
+        <div class="card-body">
+          <div class="tag-row">
+            <span class="tag">مبتدی تا پیشرفته</span>
+            <span class="tag">پروژه‌محور</span>
+          </div>
+          <h3>مسیر توسعه وب</h3>
+          <p>از HTML و CSS تا JavaScript و ساخت فرانت‌اند حرفه‌ای. مناسب برای شروع سریع و ساخت نمونه‌کار واقعی.</p>
+          <div class="card-footer">
+            <span class="meta">مدت: 8 هفته</span>
+            <a href="web_n.html" class="link-btn">شروع مسیر</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="card" data-category="ai">
+        <img src="ai.jpg" class="thumb" alt="هوش مصنوعی">
+        <div class="card-body">
+          <div class="tag-row">
+            <span class="tag">مدل‌سازی</span>
+            <span class="tag">Python</span>
+          </div>
+          <h3>مسیر هوش مصنوعی</h3>
+          <p>مفاهیم پایه تا ساخت پروژه‌های AI. تمرکز روی ابزارهای کاربردی، داده، مدل و استقرار هوشمند.</p>
+          <div class="card-footer">
+            <span class="meta">مدت: 10 هفته</span>
+            <a href="eror.html" class="link-btn">به‌زودی</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="card" data-category="web3">
+        <img src="metachain_logo.jpg" class="thumb" alt="Web3">
+        <div class="card-body">
+          <div class="tag-row">
+            <span class="tag">بلاکچین</span>
+            <span class="tag">قرارداد هوشمند</span>
+          </div>
+          <h3>مسیر Web3 و بلاکچین</h3>
+          <p>آشنایی با معماری غیرمتمرکز، کیف پول، قرارداد هوشمند و ساخت محصول روی شبکه‌های Web3.</p>
+          <div class="card-footer">
+            <span class="meta">مدت: 9 هفته</span>
+            <a href="eror.html" class="link-btn">به‌زودی</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="card" data-category="security">
+        <img src="ha.jpg" class="thumb" alt="امنیت">
+        <div class="card-body">
+          <div class="tag-row">
+            <span class="tag">امنیت</span>
+            <span class="tag">تحلیل آسیب‌پذیری</span>
+          </div>
+          <h3>مسیر هک و امنیت</h3>
+          <p>مقدمات امنیت، شناخت تهدیدها، مبانی تست نفوذ و نگاه حرفه‌ای به ایمن‌سازی محصولات دیجیتال.</p>
+          <div class="card-footer">
+            <span class="meta">مدت: 12 هفته</span>
+            <a href="eror.html" class="link-btn">به‌زودی</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="card" data-category="soft">
+        <img src="arcadia_logo.jpg" class="thumb" alt="مهارت نرم">
+        <div class="card-body">
+          <div class="tag-row">
+            <span class="tag">مصاحبه</span>
+            <span class="tag">ارتباطات</span>
+          </div>
+          <h3>مهارت‌های نرم</h3>
+          <p>نقشه راه برای رشد حرفه‌ای؛ از ساخت رزومه و پرتفولیو تا ارائه، مذاکره و کار تیمی.</p>
+          <div class="card-footer">
+            <span class="meta">مدت: 4 هفته</span>
+            <a href="eror.html" class="link-btn">به‌زودی</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="card" data-category="web">
+        <img src="shabake.jpg" class="thumb" alt="شبکه">
+        <div class="card-body">
+          <div class="tag-row">
+            <span class="tag">زیرساخت</span>
+            <span class="tag">Network</span>
+          </div>
+          <h3>مبانی شبکه</h3>
+          <p>آشنایی با مفاهیم شبکه، پروتکل‌ها و زیرساخت‌هایی که هر توسعه‌دهنده حرفه‌ای باید بشناسد.</p>
+          <div class="card-footer">
+            <span class="meta">مدت: 6 هفته</span>
+            <a href="eror.html" class="link-btn">به‌زودی</a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="paths">
+  <div class="container">
+    <h2 class="section-title">نقشه‌های <span>یادگیری</span></h2>
+    <p class="section-desc">
+      اگر کاربر ندونه از کجا شروع کنه، این بخش کمک می‌کنه مسیر مناسب خودش رو پیدا کنه.
+    </p>
+
+    <div class="learning-paths">
+      <div class="path-card">
+        <h3>مسیر ورود به برنامه‌نویسی</h3>
+        <p>
+          مناسب کسی که تازه شروع کرده و می‌خواهد از صفر تا ساخت اولین پروژه واقعی پیش برود.
+          این مسیر شامل HTML، CSS، JavaScript و اصول کار با ابزارهای توسعه است.
+        </p>
+        <div class="steps">
+          <span class="step">HTML</span>
+          <span class="step">CSS</span>
+          <span class="step">JavaScript</span>
+          <span class="step">Git</span>
+          <span class="step">پروژه عملی</span>
+        </div>
+      </div>
+
+      <div class="path-card">
+        <h3>مسیر حرفه‌ای‌سازی</h3>
+        <p>
+          برای کسی که پایه‌ها را بلد است و حالا می‌خواهد وارد سطح بالاتر شود؛ شامل پروژه‌سازی،
+          نمونه‌کار، کار تیمی، انتشار و آمادگی بازار کار.
+        </p>
+        <div class="steps">
+          <span class="step">پروژه واقعی</span>
+          <span class="step">رزومه</span>
+          <span class="step">پرتفولیو</span>
+          <span class="step">مصاحبه</span>
+          <span class="step">ورود به بازار کار</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section" id="paths">
+    <div class="container">
+      <h2 class="section-title">نقشه راه <span>خصوصی سازی شده</span></h2>
+      <p class="section-desc">
+    
+      </p>
+  
+      <div class="learning-paths">
+        <div class="path-card">
+          <h3>مسیر اختصاصی شما، نه یک نسخه عمومی</h3>
+          <p>
+          در آرکادیا، مسیر رشد هر فرد براساس ویژگی‌ها و اهداف واقعی او طراحی می‌شود. مشاوران متخصص ما با بهره‌گیری از ارزیابی‌های تخصصی، تحلیل توانمندی‌ها و شناخت دقیق اهداف شما، یک نقشه راه اختصاصی، هدفمند و مرحله‌به‌مرحله ارائه می‌دهند تا مسیر یادگیری و پیشرفت خود را آگاهانه و مطمئن طی کنید.
+          </p>
+          <div class="path-card private-consultation-card">
+
+            <h3>نمی‌دونی از کجا شروع کنی؟ اینجا دقیقاً نقطه شروع توئه!</h3>
+          
+            <p>
+                ما با کمک تست‌های تخصصی و جلسات مشاوره، علایق، توانمندی‌ها و هدف تو را بهتر می‌شناسیم و براساس آن‌ها، یک نقشه راه اختصاصی و قابل‌اجرا برات طراحی می‌کنیم؛ بدون سردرگمی، آزمون‌وخطای بی‌پایان و دوره خریدن‌های معروفِ «شاید یه روز به دردم بخوره»! 😄
+            </p>
+          
+            <a
+              href="consultation.html"
+              class="private-consultation-btn"
+            >
+              رزرو مشاوره خصوصی
+              <span class="consultation-arrow">←</span>
+            </a>
+          
+          </div>
+          
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<div class="footer">
+  © 2025 Arcadia Academy
+</div>
+
+<script>
+const canvas = document.querySelector(".stars");
+const ctx = canvas.getContext("2d");
+
+function resizeCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+
+resizeCanvas();
+
+let stars = [];
+for (let i = 0; i < 150; i++) {
+  stars.push({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    size: Math.random() * 2
+  });
+}
+
+function drawStars() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.fillStyle = "white";
+
+  stars.forEach(star => {
+    ctx.beginPath();
+    ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
+    ctx.fill();
+  });
+
+  requestAnimationFrame(drawStars);
+}
+
+drawStars();
+
+window.addEventListener("resize", () => {
+  resizeCanvas();
+  stars = [];
+  for (let i = 0; i < 150; i++) {
+    stars.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      size: Math.random() * 2
+    });
+  }
+});
+
+const buttons = document.querySelectorAll(".filter-btn");
+const cards = document.querySelectorAll(".card");
+
+buttons.forEach(btn => {
+  btn.addEventListener("click", () => {
+    buttons.forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+
+    const filter = btn.dataset.filter;
+
+    cards.forEach(card => {
+      const category = card.dataset.category;
+      const show = filter === "all" || category === filter;
+      card.style.display = show ? "block" : "none";
+    });
+  });
+});
+</script>
+
+</body>
+</html>
