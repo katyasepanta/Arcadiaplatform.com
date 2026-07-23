@@ -4,31 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>درباره ما، دستاوردها و تیم فنی | آرکادیا</title>
-    
-    <!-- فونت وزیر متن جهت نمایش استاندارد متون فارسی -->
+    <meta name="description" content="آرکادیا؛ اکوسیستم توسعه فناوری، آموزش پروژه‌محور، امنیت سایبری، هوش مصنوعی و Web3.">
+    <meta name="theme-color" content="#03030c">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
 
     <style>
-        /* تعریف متغیرهای اصلی تم دارک نئونی آرکادیا */
         :root {
             --primary-neon: #00f2ff;
             --secondary-neon: #7000ff;
+            --accent-pink: #ff4ecd;
             --success-neon: #39ff14;
+            --warning-neon: #ffc44a;
             --dark-bg: #03030c;
+            --dark-surface: #080a18;
             --card-bg: rgba(10, 10, 25, 0.7);
+            --card-bg-soft: rgba(255, 255, 255, 0.03);
             --border-color: rgba(0, 242, 255, 0.15);
+            --border-soft: rgba(255, 255, 255, 0.08);
             --text-primary: #f5f5f7;
             --text-secondary: #94a3b8;
+            --text-muted: #8e98b5;
+            --shadow-main: 0 24px 80px rgba(0, 0, 0, 0.45);
+            --blur: blur(14px);
         }
 
-        /* ریست و تنظیمات پایه */
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Vazirmatn', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: "Vazirmatn", -apple-system, BlinkMacSystemFont, sans-serif;
         }
 
         html {
@@ -40,34 +47,148 @@
             background-color: var(--dark-bg);
             color: var(--text-primary);
             min-height: 100vh;
-            line-height: 1.8;
+            line-height: 1.85;
             overflow-x: hidden;
-            background-image: 
-                radial-gradient(circle at 10% 20%, rgba(112, 0, 255, 0.15) 0%, transparent 40%),
-                radial-gradient(circle at 90% 80%, rgba(0, 242, 255, 0.12) 0%, transparent 40%);
+            background-image:
+                radial-gradient(circle at 10% 20%, rgba(112, 0, 255, 0.16) 0%, transparent 36%),
+                radial-gradient(circle at 90% 80%, rgba(0, 242, 255, 0.12) 0%, transparent 36%),
+                linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0));
         }
 
-        /* افکت ماتریکسی/سایبری پس‌زمینه */
         body::before {
-            content: '';
+            content: "";
             position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 255, 0, 0.06));
+            inset: 0;
+            background:
+                linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.22) 50%),
+                linear-gradient(90deg, rgba(255, 0, 76, 0.03), rgba(0, 242, 255, 0.02), rgba(140, 82, 255, 0.03));
             background-size: 100% 4px, 6px 100%;
             z-index: 999;
             pointer-events: none;
-            opacity: 0.25;
+            opacity: 0.22;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
         }
 
         .container {
-            max-width: 1200px;
+            width: min(1200px, calc(100% - 32px));
             margin: 0 auto;
-            padding: 50px 20px;
+            padding: 48px 0 72px;
+            position: relative;
+            z-index: 1;
         }
 
-        /* بخش معرفی و هیرو آرکادیا */
+        .section-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 28px;
+            padding: 40px;
+            backdrop-filter: var(--blur);
+            -webkit-backdrop-filter: var(--blur);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+            margin-bottom: 36px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section-card::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(140deg, rgba(255,255,255,0.025), transparent 35%);
+            pointer-events: none;
+        }
+
+        .section-heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 28px;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-eyebrow {
+            display: block;
+            margin-bottom: 6px;
+            color: #a78bfa;
+            font-family: monospace;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 1.2px;
+        }
+
+        .section-title {
+            font-size: clamp(1.4rem, 3vw, 1.95rem);
+            font-weight: 900;
+            line-height: 1.35;
+        }
+
+        .section-description {
+            max-width: 470px;
+            color: var(--text-secondary);
+            font-size: 0.93rem;
+            text-align: left;
+        }
+
+        .btn-neon {
+            background: transparent;
+            border: 1px solid var(--primary-neon);
+            color: var(--primary-neon);
+            padding: 12px 24px;
+            border-radius: 14px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: 0.3s ease;
+            text-decoration: none;
+            box-shadow: 0 0 12px rgba(0, 242, 255, 0.14);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-neon:hover {
+            transform: translateY(-2px);
+            background: var(--primary-neon);
+            color: #001013;
+            box-shadow: 0 0 24px rgba(0, 242, 255, 0.34);
+        }
+
+        .primary-btn {
+            color: #001013;
+            background: var(--primary-neon);
+            box-shadow: 0 0 24px rgba(0, 242, 255, 0.24);
+        }
+
+        .text-link,
+        .document-link,
+        .back-link {
+            color: var(--primary-neon);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 800;
+            transition: 0.25s ease;
+        }
+
+        .text-link:hover,
+        .document-link:hover,
+        .back-link:hover {
+            color: #fff;
+        }
+
         .arcadia-hero {
-            min-height: 480px;
+            min-height: 520px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -75,12 +196,12 @@
             position: relative;
             isolation: isolate;
             overflow: hidden;
-            padding: 60px 45px;
-            margin-bottom: 40px;
+            padding: 64px 46px;
+            margin-bottom: 36px;
             border: 1px solid rgba(0, 242, 255, 0.18);
-            border-radius: 28px;
-            background: linear-gradient(135deg, rgba(6, 8, 25, 0.92), rgba(16, 8, 38, 0.78));
-            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+            border-radius: 30px;
+            background: linear-gradient(135deg, rgba(6, 8, 25, 0.94), rgba(16, 8, 38, 0.82));
+            box-shadow: var(--shadow-main), inset 0 1px 0 rgba(255, 255, 255, 0.06);
         }
 
         .arcadia-hero::before {
@@ -90,9 +211,9 @@
             width: 420px;
             height: 420px;
             top: -180px;
-            left: -100px;
+            left: -90px;
             border-radius: 50%;
-            background: rgba(112, 0, 255, 0.28);
+            background: rgba(112, 0, 255, 0.26);
             filter: blur(80px);
         }
 
@@ -102,17 +223,17 @@
             z-index: -1;
             width: 350px;
             height: 350px;
-            right: -150px;
-            bottom: -170px;
+            right: -120px;
+            bottom: -150px;
             border-radius: 50%;
-            background: rgba(0, 242, 255, 0.2);
-            filter: blur(80px);
+            background: rgba(0, 242, 255, 0.18);
+            filter: blur(85px);
         }
 
         .hero-badge {
             display: inline-flex;
             align-items: center;
-            gap: 9px;
+            gap: 10px;
             margin-bottom: 22px;
             padding: 8px 14px;
             border: 1px solid rgba(0, 242, 255, 0.25);
@@ -135,85 +256,68 @@
 
         @keyframes statusPulse {
             0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.45; transform: scale(0.8); }
+            50% { opacity: 0.45; transform: scale(0.84); }
         }
 
         .arcadia-hero h1 {
-            max-width: 850px;
+            max-width: 900px;
             margin-bottom: 18px;
-            font-size: clamp(1.8rem, 5vw, 3.2rem);
-            line-height: 1.3;
+            font-size: clamp(2rem, 5vw, 3.4rem);
+            line-height: 1.28;
             font-weight: 900;
-            background: linear-gradient(120deg, #ffffff, var(--primary-neon), #a78bfa);
+            background: linear-gradient(120deg, #ffffff, var(--primary-neon), #b794ff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         .arcadia-hero p {
-            max-width: 750px;
+            max-width: 760px;
             color: var(--text-secondary);
-            font-size: 1.05rem;
-            margin-bottom: 20px;
+            font-size: 1.04rem;
+            margin-bottom: 22px;
         }
 
         .hero-actions {
             display: flex;
             flex-wrap: wrap;
             gap: 12px;
-            margin-top: 20px;
+            margin-top: 8px;
         }
 
-        /* ساختار عمومی کارت‌ها */
-        .section-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 24px;
-            padding: 40px;
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.05);
-            margin-bottom: 40px;
+        .hero-metrics {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 14px;
+            width: 100%;
+            margin-top: 30px;
         }
 
-        /* عنوان بخش‌ها */
-        .section-heading {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            gap: 30px;
-            margin-bottom: 35px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-            padding-bottom: 20px;
+        .hero-metric {
+            padding: 16px 18px;
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 18px;
+            background: rgba(255,255,255,0.03);
         }
 
-        .section-eyebrow {
+        .hero-metric strong {
             display: block;
-            margin-bottom: 5px;
-            color: #a78bfa;
+            color: var(--primary-neon);
             font-family: monospace;
-            font-size: 0.8rem;
-            letter-spacing: 1px;
-            font-weight: bold;
+            font-size: 1.15rem;
+            margin-bottom: 4px;
         }
 
-        .section-title {
-            font-size: 1.8rem;
-            font-weight: 900;
-            color: var(--text-primary);
-        }
-
-        .section-description {
-            max-width: 450px;
+        .hero-metric span {
             color: var(--text-secondary);
-            font-size: 0.9rem;
-            text-align: left;
+            font-size: 0.88rem;
         }
 
-        /* گرید دستاوردها */
         .achievements-grid {
             display: grid;
             grid-template-columns: repeat(4, minmax(0, 1fr));
-            gap: 20px;
+            gap: 18px;
+            position: relative;
+            z-index: 1;
         }
 
         .achievement-card {
@@ -222,22 +326,22 @@
             padding: 24px;
             overflow: hidden;
             border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 18px;
+            border-radius: 20px;
             background: rgba(255, 255, 255, 0.025);
-            transition: all 0.3s ease;
+            transition: 0.3s ease;
         }
 
         .achievement-card:hover {
             transform: translateY(-6px);
-            border-color: rgba(0, 242, 255, 0.45);
+            border-color: rgba(0, 242, 255, 0.4);
             background: rgba(0, 242, 255, 0.04);
         }
 
         .achievement-icon {
             position: absolute;
-            top: 14px;
+            top: 16px;
             left: 18px;
-            color: rgba(0, 242, 255, 0.15);
+            color: rgba(0, 242, 255, 0.14);
             font-size: 2rem;
             font-family: monospace;
             font-weight: 900;
@@ -258,16 +362,16 @@
 
         .achievement-card p {
             color: var(--text-secondary);
-            font-size: 0.85rem;
+            font-size: 0.86rem;
         }
 
         .data-status {
             display: inline-flex;
-            margin-top: 15px;
-            padding: 4px 10px;
+            margin-top: 16px;
+            padding: 5px 10px;
             border-radius: 999px;
             font-size: 0.72rem;
-            font-weight: bold;
+            font-weight: 800;
         }
 
         .data-status.verified {
@@ -282,78 +386,238 @@
             background: rgba(255, 196, 74, 0.06);
         }
 
-        /* استایل مقام‌ها و جوایز */
-        .honors-list {
+        .honors-section {
             display: grid;
-            gap: 20px;
+            gap: 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .honors-overview {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 16px;
+        }
+
+        .honors-stat {
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 18px;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+        }
+
+        .honors-stat strong {
+            display: block;
+            margin-bottom: 8px;
+            color: #7c5cff;
+            font-size: 1.45rem;
+            font-weight: 900;
+        }
+
+        .honors-stat span {
+            color: #b8bfd6;
+            font-size: 0.94rem;
+        }
+
+        .honors-group {
+            display: grid;
+            gap: 18px;
+        }
+
+        .honors-group__header {
+            display: grid;
+            gap: 8px;
+        }
+
+        .honors-group__header h3 {
+            margin: 0;
+            font-size: 1.35rem;
+            color: #f5f7ff;
+        }
+
+        .honors-group__header p {
+            margin: 0;
+            color: #aeb6cd;
+            line-height: 1.9;
+        }
+
+        .group-badge {
+            display: inline-flex;
+            align-items: center;
+            width: fit-content;
+            padding: 6px 12px;
+            border-radius: 999px;
+            font-size: 0.78rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+        }
+
+        .group-badge.international {
+            color: #00e5ff;
+            background: rgba(0, 229, 255, 0.1);
+            border: 1px solid rgba(0, 229, 255, 0.2);
+        }
+
+        .group-badge.national {
+            color: #ff4ecd;
+            background: rgba(255, 78, 205, 0.1);
+            border: 1px solid rgba(255, 78, 205, 0.2);
+        }
+
+        .group-badge.compliance {
+            color: #54f7a6;
+            background: rgba(84, 247, 166, 0.1);
+            border: 1px solid rgba(84, 247, 166, 0.2);
+        }
+
+        .honors-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
         }
 
         .honor-card {
             display: grid;
-            grid-template-columns: 160px 1fr;
-            gap: 24px;
-            padding: 24px;
-            border: 1px solid rgba(255, 255, 255, 0.07);
-            border-radius: 18px;
-            background: rgba(255, 255, 255, 0.02);
-            align-items: center;
+            grid-template-columns: 108px 1fr;
+            gap: 18px;
+            padding: 22px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 22px;
+            background: rgba(255, 255, 255, 0.035);
+            backdrop-filter: blur(12px);
+            transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .honor-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(0, 229, 255, 0.25);
+            box-shadow: 0 16px 36px rgba(0, 0, 0, 0.24);
+        }
+
+        .honor-card.featured {
+            background:
+                linear-gradient(135deg, rgba(124, 92, 255, 0.09), rgba(0, 229, 255, 0.06)),
+                rgba(255, 255, 255, 0.035);
         }
 
         .honor-rank {
             display: flex;
             flex-direction: column;
+            align-items: center;
             justify-content: center;
-            padding: 18px;
-            border-radius: 14px;
+            gap: 8px;
+            padding: 16px 12px;
+            border-radius: 18px;
+            background: rgba(8, 14, 30, 0.75);
+            border: 1px solid rgba(255, 255, 255, 0.07);
             text-align: center;
-            background: linear-gradient(135deg, rgba(112, 0, 255, 0.22), rgba(0, 242, 255, 0.1));
-            border: 1px solid rgba(0, 242, 255, 0.15);
         }
 
         .rank-label {
-            color: var(--text-secondary);
-            font-size: 0.75rem;
-            margin-bottom: 4px;
+            color: var(--text-muted);
+            font-size: 0.82rem;
         }
 
         .honor-rank strong {
-            color: var(--primary-neon);
-            font-size: 1.1rem;
+            color: #ffffff;
+            font-size: 1.5rem;
+            font-weight: 900;
+        }
+
+        .honor-content h3 {
+            margin: 0 0 10px;
+            color: #f7f9ff;
+            font-size: 1.12rem;
+            line-height: 1.6;
+        }
+
+        .honor-content p {
+            margin: 0;
+            color: #b6bfd6;
+            line-height: 1.9;
+            font-size: 0.9rem;
         }
 
         .honor-meta {
             display: flex;
             flex-wrap: wrap;
-            gap: 15px;
-            margin-bottom: 8px;
-            color: #a78bfa;
-            font-size: 0.8rem;
-            font-weight: bold;
+            gap: 8px 14px;
+            margin-bottom: 12px;
+            color: #8d97b2;
+            font-size: 0.88rem;
         }
 
-        .honor-content h3 {
-            font-size: 1.2rem;
-            color: var(--text-primary);
+        .honor-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 16px;
         }
 
-        .honor-content p {
-            margin: 8px 0 14px;
-            color: var(--text-secondary);
-            font-size: 0.9rem;
+        .honor-tags span {
+            padding: 5px 10px;
+            border-radius: 999px;
+            font-size: 0.78rem;
+            color: #dce4ff;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.07);
         }
 
         .honor-actions {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            gap: 15px;
+            margin-top: 18px;
         }
 
-        /* کارت اعضای تیم (مدرسین و موسس) */
+        .verification-badge {
+            display: inline-flex;
+            padding: 8px 12px;
+            border-radius: 12px;
+            color: #00e5ff;
+            font-size: 0.82rem;
+            font-weight: 800;
+            background: rgba(0, 229, 255, 0.08);
+            border: 1px solid rgba(0, 229, 255, 0.16);
+        }
+
+        .compliance-list {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .compliance-card {
+            padding: 22px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: 0.25s ease;
+        }
+
+        .compliance-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(84, 247, 166, 0.22);
+            background: rgba(84, 247, 166, 0.035);
+        }
+
+        .compliance-card h4 {
+            margin: 0 0 10px;
+            color: #f7f9ff;
+            font-size: 1rem;
+        }
+
+        .compliance-card p {
+            margin: 0 0 16px;
+            color: #b6bfd6;
+            line-height: 1.9;
+            font-size: 0.88rem;
+        }
+
         .team-grid {
             display: grid;
             grid-template-columns: repeat(2, minmax(0, 1fr));
             gap: 20px;
+            position: relative;
+            z-index: 1;
         }
 
         .person-card {
@@ -364,7 +628,7 @@
             color: var(--text-primary);
             text-decoration: none;
             border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 20px;
+            border-radius: 22px;
             background: rgba(255, 255, 255, 0.025);
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
@@ -381,7 +645,7 @@
         }
 
         .founder-card:hover {
-            border-color: #a78bfa;
+            border-color: #b794ff;
             box-shadow: 0 18px 40px rgba(112, 0, 255, 0.2);
         }
 
@@ -396,14 +660,14 @@
             content: "";
             position: absolute;
             inset: 0;
-            background: linear-gradient(to top, rgba(3, 3, 12, 0.75), transparent 55%);
+            background: linear-gradient(to top, rgba(3, 3, 12, 0.78), transparent 55%);
         }
 
         .person-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            filter: saturate(0.9);
+            filter: saturate(0.92);
             transition: transform 0.45s ease;
         }
 
@@ -420,9 +684,9 @@
             border: 1px solid rgba(0, 242, 255, 0.35);
             border-radius: 7px;
             color: var(--primary-neon);
-            background: rgba(3, 3, 12, 0.82);
+            background: rgba(3, 3, 12, 0.84);
             font-size: 0.7rem;
-            font-weight: bold;
+            font-weight: 800;
         }
 
         .founder-card .person-status {
@@ -442,25 +706,25 @@
             color: rgba(0, 242, 255, 0.72);
             font-family: monospace;
             font-size: 0.75rem;
-            font-weight: bold;
+            font-weight: 800;
         }
 
         .person-content h3 {
             font-size: 1.3rem;
-            font-weight: 700;
+            font-weight: 800;
         }
 
         .person-role {
             margin: 2px 0 10px;
             color: #a78bfa;
             font-size: 0.88rem;
-            font-weight: 600;
+            font-weight: 700;
         }
 
         .person-summary {
             color: var(--text-secondary);
             font-size: 0.85rem;
-            line-height: 1.6;
+            line-height: 1.7;
         }
 
         .person-tags {
@@ -485,13 +749,13 @@
             padding-top: 18px;
             color: var(--primary-neon);
             font-size: 0.85rem;
-            font-weight: bold;
-            display: flex;
+            font-weight: 800;
+            display: inline-flex;
             align-items: center;
             gap: 6px;
+            text-decoration: none;
         }
 
-        /* استایل‌های بخش نمایش جزئیات و اسناد (مقصد هشتگ‌ها) */
         section[id] {
             scroll-margin-top: 40px;
         }
@@ -499,10 +763,9 @@
         .profile-details {
             margin-top: 35px;
             border: 1px solid rgba(255, 255, 255, 0.08);
-            transition: all 0.3s ease;
+            transition: 0.3s ease;
         }
 
-        /* افکت نئونی خیره‌کننده پس از زدن روی هشتگ */
         .profile-details:target {
             border-color: var(--primary-neon);
             box-shadow: 0 0 45px rgba(0, 242, 255, 0.15);
@@ -521,6 +784,8 @@
             gap: 20px;
             padding-bottom: 24px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            position: relative;
+            z-index: 1;
         }
 
         .profile-avatar {
@@ -541,7 +806,7 @@
             color: var(--primary-neon);
             font-family: monospace;
             font-size: 0.75rem;
-            font-weight: bold;
+            font-weight: 800;
         }
 
         .profile-identity h2 {
@@ -552,7 +817,7 @@
 
         .profile-main-role {
             color: #a78bfa;
-            font-weight: 600;
+            font-weight: 700;
         }
 
         .profile-details-grid {
@@ -560,6 +825,8 @@
             grid-template-columns: 1.5fr 1fr;
             gap: 30px;
             padding: 30px 0;
+            position: relative;
+            z-index: 1;
         }
 
         .profile-biography h3,
@@ -568,14 +835,14 @@
             margin-bottom: 14px;
             color: var(--primary-neon);
             font-size: 1.2rem;
-            font-weight: 700;
+            font-weight: 800;
         }
 
         .profile-biography p {
             margin-bottom: 12px;
             color: var(--text-secondary);
             font-size: 0.92rem;
-            line-height: 1.7;
+            line-height: 1.8;
         }
 
         .profile-facts {
@@ -616,6 +883,8 @@
             padding-top: 27px;
             margin-top: 5px;
             border-top: 1px solid rgba(255, 255, 255, 0.08);
+            position: relative;
+            z-index: 1;
         }
 
         .subsection-heading {
@@ -631,38 +900,6 @@
             font-size: 0.75rem;
             border-right: 2px solid var(--secondary-neon);
             padding-right: 8px;
-        }
-
-        .experience-list {
-            display: grid;
-            gap: 14px;
-        }
-
-        .experience-item {
-            display: grid;
-            grid-template-columns: 100px 1fr;
-            gap: 20px;
-            padding: 18px;
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 14px;
-            background: rgba(255, 255, 255, 0.01);
-        }
-
-        .experience-year {
-            color: var(--primary-neon);
-            font-family: monospace;
-            font-size: 0.85rem;
-            font-weight: 900;
-        }
-
-        .experience-item h4 {
-            font-size: 1rem;
-            margin-bottom: 5px;
-        }
-
-        .experience-item p {
-            color: var(--text-secondary);
-            font-size: 0.85rem;
         }
 
         .documents-grid {
@@ -694,60 +931,18 @@
             background: rgba(112, 0, 255, 0.08);
             font-family: monospace;
             font-size: 0.8rem;
-            font-weight: bold;
+            font-weight: 800;
         }
 
         .document-info h4 {
             font-size: 0.9rem;
-            font-weight: 700;
+            font-weight: 800;
         }
 
         .document-info p {
             color: var(--text-secondary);
             font-size: 0.75rem;
             margin-top: 2px;
-        }
-
-        /* دکمه‌های عمومی نئونی */
-        .btn-neon {
-            background: transparent;
-            border: 1px solid var(--primary-neon);
-            color: var(--primary-neon);
-            padding: 12px 24px;
-            border-radius: 12px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            box-shadow: 0 0 10px rgba(0, 242, 255, 0.15);
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .btn-neon:hover {
-            background: var(--primary-neon);
-            color: #000;
-            box-shadow: 0 0 20px rgba(0, 242, 255, 0.4);
-            transform: translateY(-2px);
-        }
-
-        .primary-btn {
-            color: #001013;
-            background: var(--primary-neon);
-            box-shadow: 0 0 25px rgba(0, 242, 255, 0.28);
-        }
-
-        .text-link, .document-link, .back-link {
-            color: var(--primary-neon);
-            text-decoration: none;
-            font-size: 0.85rem;
-            font-weight: bold;
-            transition: color 0.2s ease;
-        }
-
-        .text-link:hover, .document-link:hover, .back-link:hover {
-            color: #fff;
         }
 
         .document-link {
@@ -766,7 +961,7 @@
         .back-link {
             font-size: 0.8rem;
             border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 6px 12px;
+            padding: 7px 12px;
             border-radius: 8px;
             background: rgba(255, 255, 255, 0.02);
         }
@@ -781,13 +976,14 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: 14px;
             padding: 16px;
             color: var(--text-primary);
             text-decoration: none;
             border: 1px solid rgba(255, 255, 255, 0.06);
             border-radius: 12px;
             background: rgba(255, 255, 255, 0.01);
-            transition: all 0.25s ease;
+            transition: 0.25s ease;
         }
 
         .course-item:hover {
@@ -797,413 +993,692 @@
         }
 
         .course-item span {
-            font-weight: bold;
+            font-weight: 700;
             font-size: 0.92rem;
         }
 
         .course-item small {
             color: var(--primary-neon);
-            font-weight: bold;
+            font-weight: 800;
         }
 
-        /* انیمیشن‌ها و ریپونسیوسازی تخصصی */
         @media (max-width: 992px) {
-            .achievements-grid {
+            .achievements-grid,
+            .honors-overview,
+            .compliance-list {
                 grid-template-columns: repeat(2, minmax(0, 1fr));
             }
-            .team-grid {
+
+            .team-grid,
+            .honors-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-metrics {
                 grid-template-columns: 1fr;
             }
         }
 
         @media (max-width: 768px) {
+            .container {
+                width: min(100% - 20px, 1200px);
+                padding-top: 24px;
+            }
+
+            .section-card {
+                padding: 26px 18px;
+                border-radius: 22px;
+            }
+
             .arcadia-hero {
                 min-height: auto;
-                padding: 45px 24px;
+                padding: 42px 22px;
             }
+
             .section-heading {
                 align-items: flex-start;
                 flex-direction: column;
                 gap: 15px;
             }
-            .honor-card {
-                grid-template-columns: 1fr;
+
+            .section-description {
+                text-align: right;
             }
-            .honor-rank {
-                padding: 14px;
-            }
+
             .person-card {
                 grid-template-columns: 140px 1fr;
             }
+
+            .honor-card {
+                grid-template-columns: 1fr;
+            }
+
+            .honor-rank {
+                align-items: flex-start;
+                text-align: right;
+            }
+
             .profile-details-header {
                 grid-template-columns: 80px 1fr;
             }
+
             .profile-avatar {
                 width: 80px;
                 height: 80px;
                 border-radius: 16px;
             }
+
             .back-link {
                 grid-column: 1 / -1;
-                text-align: center;
-                margin-top: 10px;
+                width: fit-content;
+                margin-top: 8px;
             }
-            .profile-details-grid, .documents-grid {
+
+            .profile-details-grid,
+            .documents-grid {
                 grid-template-columns: 1fr;
             }
         }
 
         @media (max-width: 576px) {
-            .achievements-grid {
+            .achievements-grid,
+            .honors-overview,
+            .compliance-list {
                 grid-template-columns: 1fr;
             }
+
             .person-card {
                 grid-template-columns: 1fr;
             }
+
             .person-image {
-                height: 220px;
+                height: 240px;
             }
-            .experience-item {
-                grid-template-columns: 1fr;
-            }
+
             .document-card {
                 grid-template-columns: 45px 1fr;
             }
+
             .document-link {
                 grid-column: 1 / -1;
                 text-align: center;
                 margin-top: 5px;
             }
+
+            .course-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
         }
     </style>
 </head>
 <body>
-
     <div class="container">
-        
-        <!-- بخش هیرو و بیانیه ماموریت پلتفرم -->
+
         <section class="arcadia-hero" id="arcadia">
             <div class="hero-badge">
                 <span class="status-dot"></span>
-                ARCΛDIA PLATFORM
+                ARCΛDIA ECOSYSTEM
             </div>
-            <h1>آرکادیا؛ بستر توسعه فناوری و امنیت سیستم‌ها</h1>
+
+            <h1>آرکادیا؛ اکوسیستم توسعه فناوری، امنیت سایبری و آموزش پروژه‌محور</h1>
+
             <p>
-                ماموریت ما طراحی مسیرهای یادگیری پروژه محور، ارزیابی امنیتی محصولات فناورانه و توسعه ابزارهای هوش مصنوعی بر بستر وب آزاد (Web3) است.
+                آرکادیا بستری برای طراحی مسیرهای یادگیری تخصصی، ارزیابی امنیتی محصولات دیجیتال،
+                توسعه ابزارهای هوش مصنوعی و ساخت راهکارهای نوآورانه بر بستر وب آزاد است.
+                تمرکز ما بر ترکیب آموزش کاربردی، معماری فنی، امنیت و تجربه محصول در یک اکوسیستم یکپارچه است.
             </p>
+
             <div class="hero-actions">
                 <a href="#achievements" class="btn-neon primary-btn">بررسی دستاوردها</a>
+                <a href="#honors" class="btn-neon">افتخارات رسمی</a>
                 <a href="#team" class="btn-neon">تیم فنی و موسسان</a>
+            </div>
+
+            <div class="hero-metrics">
+                <div class="hero-metric">
+                    <strong>+2500</strong>
+                    <span>دانشجوی فعال در مسیرهای تخصصی</span>
+                </div>
+                <div class="hero-metric">
+                    <strong>3</strong>
+                    <span>هسته اصلی اکوسیستم: Arcadia, Nova AI, MetaChain</span>
+                </div>
+                <div class="hero-metric">
+                    <strong>ملی + بین‌المللی</strong>
+                    <span>دامنه فعالیت در آموزش، امنیت، AI و Web3</span>
+                </div>
             </div>
         </section>
 
-        <!-- بخش دستاوردها و خروجی‌های معتبر آرکادیا -->
         <section class="section-card" id="achievements">
             <div class="section-heading">
                 <div>
                     <span class="section-eyebrow">KEY PERFORMANCE INDICATORS</span>
-                    <h2 class="section-title">دستاوردهای ثبت‌شده</h2>
+                    <h2 class="section-title">دستاوردهای ثبت‌شده و شاخص‌های عملکرد</h2>
                 </div>
                 <p class="section-description">
-                    سنجه‌ها و آمارهای کلیدی مربوط به توسعه دوره‌ها و دپارتمان‌های فعال آرکادیا.
+                    سنجه‌های کلیدی مرتبط با رشد پلتفرم، توسعه آموزشی، تیم‌های تخصصی و پروژه‌های فعال اکوسیستم آرکادیا.
                 </p>
             </div>
 
             <div class="achievements-grid">
                 <article class="achievement-card">
                     <div class="achievement-icon">01</div>
-                    <div class="achievement-number">+۵۰۰</div>
+                    <div class="achievement-number">+3000</div>
                     <h3>دانشجوی فعال</h3>
-                    <p>کاربران در حال ارتقا مهارت‌های کدنویسی و تست نفوذ.</p>
+                    <p>کاربران در حال ارتقای مهارت در برنامه‌نویسی، امنیت، هوش مصنوعی و Web3.</p>
                     <span class="data-status verified">اطلاعات تایید شده</span>
                 </article>
 
                 <article class="achievement-card">
                     <div class="achievement-icon">02</div>
-                    <div class="achievement-number">+۱۲</div>
+                    <div class="achievement-number">+15</div>
                     <h3>نقشه راه تخصصی</h3>
-                    <p>مسیرهای گام‌به‌گام از برنامه‌نویسی مقدماتی تا مهندسی محصول.</p>
+                    <p>مسیرهای مرحله‌به‌مرحله از مبانی فنی تا مهندسی محصول و توسعه حرفه‌ای.</p>
                     <span class="data-status verified">اطلاعات تایید شده</span>
                 </article>
 
                 <article class="achievement-card">
                     <div class="achievement-icon">03</div>
-                    <div class="achievement-number">۰۳</div>
+                    <div class="achievement-number">05</div>
                     <h3>دپارتمان فعال</h3>
-                    <p>پلتفرم آرکادیا، بخش هوش مصنوعی نوا و دپارتمان متاچین.</p>
+                    <p>آرکادیا، Nova AI و MetaChain به‌عنوان هسته‌های تخصصی توسعه و آموزش.</p>
                     <span class="data-status verified">اطلاعات تایید شده</span>
                 </article>
 
                 <article class="achievement-card">
                     <div class="achievement-icon">04</div>
-                    <div class="achievement-number">+۸</div>
+                    <div class="achievement-number">+5</div>
                     <h3>پروژه در حال توسعه</h3>
-                    <p>ابزارهای تحلیل کد هوشمند و پروژه‌های وب ۳ مبتنی بر بلاکچین.</p>
-                    <span class="data-status pending">درحال بروزرسانی آمار</span>
+                    <p>از دستیارهای تحلیل کد تا زیرساخت‌های آموزشی، امنیتی و راهکارهای Web3.</p>
+                    <span class="data-status pending">در حال بروزرسانی آمار</span>
                 </article>
             </div>
         </section>
 
-        <!-- بخش افتخارات و مقام‌های اکوسیستم آرکادیا -->
-        <section class="section-card" id="honors">
+        <section class="section-card honors-section" id="honors">
             <div class="section-heading">
                 <div>
-                    <span class="section-eyebrow">AWARDS & COMPLIANCES</span>
-                    <h2 class="section-title">مقام‌ها و افتخارات رسمی</h2>
+                    <span class="section-eyebrow">AWARDS, RECOGNITIONS & COMPLIANCES</span>
+                    <h2 class="section-title">افتخارات، مقام‌ها و اعتبارنامه‌های رسمی</h2>
                 </div>
+
                 <p class="section-description">
-                    عناوین کسب‌شده توسط پلتفرم و اعضای تیم در چالش‌های ملی و بین‌المللی فناوری.
+                    دستاوردهای ملی و بین‌المللی آرکادیا در حوزه آموزش فناوری، امنیت سایبری، هوش مصنوعی،
+                    Web3 و توسعه زیرساخت‌های دیجیتال.
                 </p>
             </div>
 
-            <div class="honors-list">
-                <article class="honor-card">
-                    <div class="honor-rank">
-                        <span class="rank-label">مقام</span>
-                        <strong>اول</strong>
-                    </div>
-                    <div class="honor-content">
-                        <div class="honor-meta">
-                            <span>جشنواره ملی فناوری‌های وب آزاد</span>
-                            <span>سال ۱۴۰۴</span>
-                        </div>
-                        <h3>بهترین زیرساخت آموزشی غیرمتمرکز</h3>
-                        <p>
-                            کسب عنوان نخست در رقابت توسعه ابزارهای آموزشی تحت وب به دلیل بهره‌گیری از معماری Glassmorphism و امنیت بالای تراکنش‌ها.
-                        </p>
-                        <div class="honor-actions">
-                            <span class="verification-badge">کد استعلام: ARC-9082</span>
-                        </div>
-                    </div>
-                </article>
+            <div class="honors-overview">
+                <div class="honors-stat">
+                    <strong>18+</strong>
+                    <span>افتخار و عنوان تخصصی</span>
+                </div>
+                <div class="honors-stat">
+                    <strong>4</strong>
+                    <span>گواهی ثبت اختراع</span>
+                </div>
+                <div class="honors-stat">
+                    <strong>3دوره</strong>
+                    <span>افتخار حضور در کنفرانس بین المللی بلاکچین</span>
+                </div>
+                <div class="honors-stat">
+                    <strong>12</strong>
+                    <span>حوزه ارزیابی تخصصی</span>
+                </div>
 
-                <article class="honor-card">
-                    <div class="honor-rank">
-                        <span class="rank-label">عنوان</span>
-                        <strong>برگزیده</strong>
-                    </div>
-                    <div class="honor-content">
-                        <div class="honor-meta">
-                            <span>چالش ملی توسعه ابزارهای هوش مصنوعی</span>
-                            <span>سال ۱۴۰۴</span>
+                <div class="honors-stat">
+                    <strong>ملی + بین‌المللی</strong>
+                    <span>دامنه اعتبار و حضور</span>
+                </div>
+            </div>
+            <div class="honors-stat">
+                <strong>5</strong>
+                <span>ارائه پروپزال به مجلس شورای اسلامی</span>
+            </div>
+            <div class="honors-group">
+                <div class="honors-group__header">
+                    <span class="group-badge international">INTERNATIONAL</span>
+                    <h3>مقام‌ها و افتخارات بین‌المللی</h3>
+                    <p>
+                        دستاوردهای مرتبط با رقابت‌ها، چالش‌های نوآوری، ارزیابی‌های جهانی و محصولات
+                        تخصصی مبتنی بر آموزش، AI، امنیت و Web3.
+                    </p>
+                </div>
+
+                <div class="honors-grid">
+                    <article class="honor-card featured">
+                        <div class="honor-rank">
+                            <span class="rank-label">مقام</span>
+                            <strong>اول</strong>
                         </div>
-                        <h3>نوآوری در دستیار کدنویسی نوا (Nova AI)</h3>
+
+                        <div class="honor-content">
+                            <div class="honor-meta">
+                                <span>Global Web Innovation Challenge</span>
+                                <span>سال 2025</span>
+                                <span>EdTech Infrastructure</span>
+                            </div>
+
+                            <h3>برترین زیرساخت آموزش تعاملی مبتنی بر وب</h3>
+
+                            <p>
+                                تقدیر به دلیل طراحی اکوسیستم آموزشی با معماری مقیاس‌پذیر، تجربه کاربری
+                                پیشرفته و ارائه مسیرهای یادگیری تخصصی در برنامه‌نویسی، هوش مصنوعی و Web3.
+                            </p>
+
+                            <div class="honor-tags">
+                                <span>EdTech</span>
+                                <span>UX Architecture</span>
+                                <span>Scalable Platform</span>
+                            </div>
+
+                            <div class="honor-actions">
+                                <span class="verification-badge">کد استعلام: INT-ARC-2025-1182</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="honor-card">
+                        <div class="honor-rank">
+                            <span class="rank-label">عنوان</span>
+                            <strong>Finalist</strong>
+                        </div>
+
+                        <div class="honor-content">
+                            <div class="honor-meta">
+                                <span>International AI Product Award</span>
+                                <span>سال 2025</span>
+                                <span>Developer Tools</span>
+                            </div>
+
+                            <h3>راه‌یافته نهایی برای Nova AI Coding Assistant</h3>
+
+                            <p>
+                                حضور در میان پروژه‌های برتر به دلیل توسعه دستیار هوشمند تحلیل، رفع خطا و
+                                بهینه‌سازی کد برای توسعه‌دهندگان و تیم‌های مهندسی.
+                            </p>
+
+                            <div class="honor-tags">
+                                <span>AI Assistant</span>
+                                <span>Code Analysis</span>
+                                <span>Developer Experience</span>
+                            </div>
+
+                            <div class="honor-actions">
+                                <span class="verification-badge">کد استعلام: INT-NOVA-7741</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+
+            <div class="honors-group">
+                <div class="honors-group__header">
+                    <span class="group-badge national">NATIONAL</span>
+                    <h3>مقام‌ها و افتخارات ملی</h3>
+                    <p>
+                        عناوین کسب‌شده در جشنواره‌ها، رقابت‌ها و رویدادهای تخصصی داخلی در حوزه فناوری،
+                        امنیت نرم‌افزار و نوآوری آموزشی.
+                    </p>
+                </div>
+
+                <div class="honors-grid">
+                    <article class="honor-card">
+                        <div class="honor-rank">
+                            <span class="rank-label">مقام</span>
+                            <strong>اول</strong>
+                        </div>
+
+                        <div class="honor-content">
+                            <div class="honor-meta">
+                                <span>جشنواره ملی فناوری‌های وب آزاد</span>
+                                <span>سال ۱۴۰۴</span>
+                                <span>زیرساخت آموزشی</span>
+                            </div>
+
+                            <h3>بهترین زیرساخت آموزشی غیرمتمرکز</h3>
+
+                            <p>
+                                کسب عنوان نخست به دلیل توسعه پلتفرم آموزشی مدرن با رویکرد تعاملی،
+                                معماری امن، طراحی رابط کاربری پیشرفته و مقیاس‌پذیری سرویس.
+                            </p>
+
+                            <div class="honor-tags">
+                                <span>آموزش دیجیتال</span>
+                                <span>زیرساخت وب</span>
+                                <span>امنیت پلتفرم</span>
+                            </div>
+
+                            <div class="honor-actions">
+                                <span class="verification-badge">کد استعلام: ARC-9082</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="honor-card">
+                        <div class="honor-rank">
+                            <span class="rank-label">عنوان</span>
+                            <strong>برگزیده</strong>
+                        </div>
+
+                        <div class="honor-content">
+                            <div class="honor-meta">
+                                <span>چالش ملی توسعه ابزارهای هوش مصنوعی</span>
+                                <span>سال ۱۴۰۴</span>
+                                <span>AI Tools</span>
+                            </div>
+
+                            <h3>نوآوری در دستیار کدنویسی نوا (Nova AI)</h3>
+
+                            <p>
+                                کسب نشان خلاقیت برای طراحی ابزار هوشمند تحلیل و عیب‌یابی کد با تمرکز بر
+                                افزایش بهره‌وری برنامه‌نویسان، بررسی امنیت و پشتیبانی از توسعه عملیاتی.
+                            </p>
+
+                            <div class="honor-tags">
+                                <span>هوش مصنوعی</span>
+                                <span>Code Review</span>
+                                <span>Automation</span>
+                            </div>
+
+                            <div class="honor-actions">
+                                <span class="verification-badge">کد استعلام: ARC-3401</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="honor-card">
+                        <div class="honor-rank">
+                            <span class="rank-label">مقام</span>
+                            <strong>دوم</strong>
+                        </div>
+
+                        <div class="honor-content">
+                            <div class="honor-meta">
+                                <span>رویداد ملی امنیت نرم‌افزار و تست نفوذ</span>
+                                <span>سال ۱۴۰۴</span>
+                                <span>Secure Architecture</span>
+                            </div>
+
+                            <h3>برترین طراحی معماری امن برای سرویس‌های تحت وب</h3>
+
+                            <p>
+                                کسب رتبه دوم برای پیاده‌سازی الگوی معماری امن، کنترل دسترسی لایه‌ای و طراحی
+                                فرایندهای ارزیابی آسیب‌پذیری در محصولات دیجیتال.
+                            </p>
+
+                            <div class="honor-tags">
+                                <span>امنیت سایبری</span>
+                                <span>OWASP</span>
+                                <span>Secure Design</span>
+                            </div>
+
+                            <div class="honor-actions">
+                                <span class="verification-badge">کد استعلام: SEC-2144</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="honor-card">
+                        <div class="honor-rank">
+                            <span class="rank-label">عنوان</span>
+                            <strong>شایسته تقدیر</strong>
+                        </div>
+
+                        <div class="honor-content">
+                            <div class="honor-meta">
+                                <span>همایش ملی نوآوری در آموزش مهندسی</span>
+                                <span>سال ۱۴۰۳</span>
+                                <span>Learning Experience</span>
+                            </div>
+
+                            <h3>الگوی نوآورانه در طراحی مسیر یادگیری تخصصی</h3>
+
+                            <p>
+                                تقدیر برای طراحی تجربه یادگیری پروژه‌محور و ساختار آموزشی مبتنی بر مهارت،
+                                ویژه توسعه‌دهندگان، تحلیل‌گران امنیت و سازندگان محصول.
+                            </p>
+
+                            <div class="honor-tags">
+                                <span>Learning Design</span>
+                                <span>Project-Based</span>
+                                <span>Skill Path</span>
+                            </div>
+
+                            <div class="honor-actions">
+                                <span class="verification-badge">کد استعلام: EDU-7730</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+
+            <div class="honors-group">
+                <div class="honors-group__header">
+                    <span class="group-badge compliance">COMPLIANCE</span>
+                    <h3>اعتبارنامه‌ها، انطباق‌ها و شاخص‌های حرفه‌ای</h3>
+                    <p>
+                        مجموعه‌ای از شاخص‌های کیفیت، ارزیابی فنی و اعتبارهای قابل استعلام مرتبط با سرویس‌ها،
+                        گزارش‌ها و خروجی‌های اکوسیستم آرکادیا.
+                    </p>
+                </div>
+
+                <div class="compliance-list">
+                    <article class="compliance-card">
+                        <h4>ممیزی امنیتی پروژه‌ها</h4>
                         <p>
-                            کسب نشان خلاقیت برای توسعه مدل بومی عیب‌یابی و بررسی کدهای امنیتی برنامه‌نویسان به صورت خودکار.
+                            گزارش‌های ارزیابی امنیت برای سرویس‌ها، APIها و قراردادهای هوشمند
+                            با خروجی ساختاریافته، قابل پیگیری و قابل ارائه به تیم فنی.
                         </p>
-                        <div class="honor-actions">
-                            <span class="verification-badge">کد استعلام: ARC-3401</span>
-                        </div>
-                    </div>
-                </article>
+                        <span class="verification-badge">شناسه نمونه: AUD-ARC-5512</span>
+                    </article>
+
+                    <article class="compliance-card">
+                        <h4>گواهی پایان مسیر تخصصی</h4>
+                        <p>
+                            صدور گواهی قابل استعلام برای دانشجویان و تیم‌هایی که مسیرهای آموزشی
+                            پروژه‌محور آرکادیا را با موفقیت طی کرده‌اند.
+                        </p>
+                        <span class="verification-badge">شناسه نمونه: CERT-MC-8804</span>
+                    </article>
+
+                    <article class="compliance-card">
+                        <h4>اعتبارسنجی ایده و محصول</h4>
+                        <p>
+                            ارزیابی اولیه محصول از منظر بازار، تجربه کاربری، معماری فنی و آمادگی توسعه
+                            همراه با گزارش تخصصی برای تصمیم‌گیری بهتر.
+                        </p>
+                        <span class="verification-badge">شناسه نمونه: VAL-PR-1402</span>
+                    </article>
+                </div>
             </div>
         </section>
 
-        <!-- بخش کارت‌های هشتگ‌دار معرفی موسس و استادها -->
         <section class="section-card" id="team">
             <div class="section-heading">
                 <div>
-                    <span class="section-eyebrow">EXECUTIVE TEAM</span>
-                    <h2 class="section-title">موسس و اعضای تیم فنی</h2>
-                </div>
-                <p class="section-description">
-                    جهت دسترسی به رزومه، بیوگرافی و مدارک هر فرد، روی دکمه مربوطه کلیک کنید.
-                </p>
-            </div>
-
-            <div class="team-grid">
-                
-                <!-- کارت موسس: مائده (کاتیا) -->
-                <div class="person-card founder-card">
-                    <div class="person-image">
-                        <!-- آدرس تصویر خودت را اینجا بگذار کاتیا -->
-                        <img src="images/founder-maede.webp" alt="مائده (کاتیا)" loading="lazy">
-                        <span class="person-status">موسس آرکادیا</span>
-                    </div>
-                    <div class="person-content">
-                        <span class="person-code">ARC-FOUNDER-01</span>
-                        <h3>مائده «کاتیا»</h3>
-                        <p class="person-role">مدیر ارشد و معمار امنیت سیستم</p>
-                        <p class="person-summary">
-                            مهندس کامپیوتر شاخه امنیت شبکه، مسئول نظارت بر امنیت پلتفرم و مدیریت استراتژیک دپارتمان‌های نوا و متاچین.
-                        </p>
-                        <div class="person-tags">
-                            <span>#CyberSecurity</span>
-                            <span>#Web3</span>
-                            <span>#ArcadiaFounder</span>
+                    <section class="team-section" id="team">
+                        <div class="section-wrap">
+                            <div class="section-heading">
+                                <div>
+                                    <span class="section-eyebrow">EXECUTIVE & TECHNICAL TEAM</span>
+                                    <h2 class="section-title">تیم فنی و اساتید آرکادیا</h2>
+                                </div>
+                                <p class="section-description">
+                                    تیم متخصصین آرکادیا؛ از امنیت و هوش مصنوعی تا Web3، فرانت‌اند، DevOps و موبایل.
+                                </p>
+                            </div>
+            
+                            <div class="team-grid">
+                                <article class="person-card">
+                                    <div class="person-image"><img src="ehsani.jpg" alt="مائده کاتیا"><span class="person-status">موسس آرکادیا</span></div>
+                                    <div class="person-content">
+                                        <span class="person-code">ARC-01</span>
+                                        <h3>مائده احسانی «کاتیا»</h3>
+                                        <p class="person-role">موسس مدیرو مدرس پلتفرم آرکادیا</p>
+                                        <p class="person-summary">راهبر استراتژیک دپارتمان‌ها و طراح مسیر توسعه آرکادیا.</p>
+                                    </div>
+                                </article>
+            
+                                <article class="person-card">
+                                    <div class="person-image"><img src="ost.jpg" alt="سید رضا موسوی"><span class="person-status">مدرس امنیت</span></div>
+                                    <div class="person-content">
+                                        <span class="person-code">ARC-02</span>
+                                        <h3>سید رضا موسوی</h3>
+                                        <p class="person-role">مدرس ارشد تست نفوذ</p>
+                                        <p class="person-summary">متخصص ارزیابی امنیتی، تحلیل تهدید و امنیت زیرساخت‌های ابری.</p>
+                                    </div>
+                                </article>
+            
+                                <article class="person-card">
+                                    <div class="person-image"><img src="ost.jpg" alt="مدرس هوش مصنوعی"><span class="person-status">دپارتمان Nova</span></div>
+                                    <div class="person-content">
+                                        <span class="person-code">ARC-03</span>
+                                        <h3>دکتر آریا راد</h3>
+                                        <p class="person-role">مدرس هوش مصنوعی و Deep Learning</p>
+                                        <p class="person-summary">متخصص معماری مدل‌های زبانی و بهینه‌سازی الگوریتم‌های یادگیری ماشین.</p>
+                                    </div>
+                                </article>
+            
+                                <article class="person-card">
+                                    <div class="person-image"><img src="ost.jpg" alt="مدرس Web3"><span class="person-status">دپارتمان MetaChain</span></div>
+                                    <div class="person-content">
+                                        <span class="person-code">ARC-04</span>
+                                        <h3>مهندس سارا نیک‌نام</h3>
+                                        <p class="person-role">مدرس Solidity و امنیت بلاکچین</p>
+                                        <p class="person-summary">تحلیل‌گر قراردادهای هوشمند و توسعه‌دهنده dAppهای غیرمتمرکز.</p>
+                                    </div>
+                                </article>
+            
+                                <article class="person-card">
+                                    <div class="person-image"><img src="ost.jpg" alt="فرانت‌اند" style="display:none;"><span class="person-status">توسعه رابط کاربری</span></div>
+                                    <div class="person-content">
+                                        <span class="person-code">ARC-05</span>
+                                        <h3>نیما سپهر</h3>
+                                        <p class="person-role">مدرس Advanced Frontend</p>
+                                        <p class="person-summary">متخصص انیمیشن‌های تعاملی، پرفورمنس وب و فریم‌ورک‌های مدرن JS.</p>
+                                    </div>
+                                </article>
+            
+                                <article class="person-card">
+                                    <div class="person-image"><img src="ost.jpg" alt="دوآپس"><span class="person-status">معماری سیستم</span></div>
+                                    <div class="person-content">
+                                        <span class="person-code">ARC-06</span>
+                                        <h3>امیرحسین پارسا</h3>
+                                        <p class="person-role">مدرس DevOps و Kubernetes</p>
+                                        <p class="person-summary">متخصص زیرساخت‌های مقیاس‌پذیر، کانتینریزیشن و CI/CD.</p>
+                                    </div>
+                                </article>
+            
+                                <article class="person-card">
+                                    <div class="person-image"><img src="ost.jpg" alt="دیتا ساینس"><span class="person-status">تحلیل داده</span></div>
+                                    <div class="person-content">
+                                        <span class="person-code">ARC-07</span>
+                                        <h3>هلیا رادمان</h3>
+                                        <p class="person-role">مدرس Data Science و Python</p>
+                                        <p class="person-summary">متخصص تحلیل داده‌های حجیم، مصورسازی و سیستم‌های توصیه‌گر.</p>
+                                    </div>
+                                </article>
+            
+                                <article class="person-card">
+                                    <div class="person-image"><img src="ost.jpg" alt="موبایل"><span class="person-status">توسعه موبایل</span></div>
+                                    <div class="person-content">
+                                        <span class="person-code">ARC-08</span>
+                                        <h3>شایان مهر</h3>
+                                        <p class="person-role">مدرس Cross-Platform</p>
+                                        <p class="person-summary">متخصص Flutter و React Native برای توسعه اپلیکیشن‌های موبایل.</p>
+                                    </div>
+                                </article>
+                                <article class="person-card">
+                                    <div class="person-image"><img src="khad.jpg" alt="موبایل"><span class="person-status">توسعه موبایل</span></div>
+                                    <div class="person-content">
+                                        <span class="person-code">ARC-01</span>
+                                        <h3>علیرضا شادمان</h3>
+                                        <p class="person-role">خدمات وب </p>
+                                        <p class="person-summary">انجام دهنده خدمات  طراحی سایت با قالب آماده.</p>
+                                    </div>
+                                </article> <article class="person-card">
+                                    <div class="person-image"><img src="khad.jpg" alt="موبایل"><span class="person-status">توسعه وب</span></div>
+                                    <div class="person-content">
+                                        <span class="person-code">ARC-02</span>
+                                        <h3>امیر حسام احسانی</h3>
+                                        <p class="person-role">خدمات وب</p>
+                                        <p class="person-summary">انجام دهنده خدمات تخصصی فرانت اند.</p>
+                                    </div>
+                                </article> <article class="person-card">
+                                    <div class="person-image"><img src="khad.jpg" alt="موبایل"><span class="person-status">توسعه وب</span></div>
+                                    <div class="person-content">
+                                        <span class="person-code">ARC-03</span>
+                                        <h3>شایان مهر</h3>
+                                        <p class="person-role">مدرس Cross-Platform</p>
+                                        <p class="person-summary">متخصص Flutter و React Native برای توسعه اپلیکیشن‌های موبایل.</p>
+                                    </div>
+                                </article> <article class="person-card">
+                                    <div class="person-image"><img src="khad.jpg" alt="موبایل"><span class="person-status">توسعه وب</span></div>
+                                    <div class="person-content">
+                                        <span class="person-code">ARC-04</span>
+                                        <h3>المیرا رضوانی</h3>
+                                        <p class="person-role">خدمات وب </p>
+                                        <p class="person-summary"> انجام دهنده تخصصی خدمات بک اند .</p>
+                                    </div>
+                                </article> <article class="person-card">
+                                    <div class="person-image"><img src="khad.jpg" alt="موبایل"><span class="person-status">سئو</span></div>
+                                    <div class="person-content">
+                                        <span class="person-code">ARC-05</span>
+                                        <h3>امیر  رضایی</h3>
+                                        <p class="person-role">خدمات وب </p>
+                                        <p class="person-summary">انجام دهنده نیمه تخصصی خدمات سئو</p>
+                                    </div>
+                                </article> <article class="person-card">
+                                    <div class="person-image"><img src="khad.jpg" alt="موبایل"><span class="person-status">توسعه نرم افزار</span></div>
+                                    <div class="person-content">
+                                        <span class="person-code">ARC-06</span>
+                                        <h3>محمد علی نجاتی</h3>
+                                        <p class="person-role">خدمات نرم افزار</p>
+                                        <p class="person-summary">متخصص Flutter و React Native برای توسعه اپلیکیشن‌های موبایل.</p>
+                                    </div>
+                                </article> <article class="person-card">
+                                    <div class="person-image"><img src="khad.jpg" alt="موبایل"><span class="person-status">امنیت وب </span></div>
+                                    <div class="person-content">
+                                        <span class="person-code">ARC-07</span>
+                                        <h3>امین فاضلی</h3>
+                                        <p class="person-role">خدمات امنیت وب</p>
+                                        <p class="person-summary">انجام دهنده خدمات امنیت وب.</p>
+                                    </div>
+                                </article> <article class="person-card">
+                                    <div class="person-image"><img src="khad.jpg" alt="موبایل"><span class="person-status">امنیت نرم افزار</span></div>
+                                    <div class="person-content">
+                                        <span class="person-code">ARC-08</span>
+                                        <h3>علی میرانی</h3>
+                                        <p class="person-role">خدمات امنیت نرم افزار</p>
+                                
+                                </article> <article class="person-card">
+                                    <div class="person-image"><img src="khad.jpg" alt="موبایل"><span class="person-status">توسعه وب 3</span></div>
+                                    <div class="person-content">
+                                        <span class="person-code">ARC-09</span>
+                                        <h3>ساسان نجار</h3>
+                                        <p class="person-role">خدمات بلاکچین</p>
+                                        <p class="person-summary">به زودی ...</p>
+                                    </div>
+                                </article> <article class="person-card">
+                                    <div class="person-image"><img src="khad.jpg" alt="موبایل"><span class="person-status">توسعه وب 3</span></div>
+                                    <div class="person-content">
+                                        <span class="person-code">ARC-10</span>
+                                        <h3>کمیل شفیعی</h3>
+                                        <p class="person-role">خدمات بلاکچین </p>
+                                        <p class="person-summary">به زودی...</p>
+                                    </div>
+                                </article>
+                            </div>
                         </div>
-                        <a href="#founder-maede" class="person-link">
-                            توضیحات و گواهی‌ها ←
-                        </a>
-                    </div>
-                </div>
-
-                <!-- کارت استاد دپارتمان امنیت -->
-                <div class="person-card">
-                    <div class="person-image">
-                        <img src="images/instructor-sec.webp" alt="مدرس دپارتمان امنیت" loading="lazy">
-                        <span class="person-status">مدرس امنیت</span>
-                    </div>
-                    <div class="person-content">
-                        <span class="person-code">ARC-INSTRUCTOR-02</span>
-                        <h3>سید مجید موسوی</h3>
-                        <p class="person-role">مدرس ارشد امنیت و تست نفوذ</p>
-                        <p class="person-summary">
-                            متخصص ارزیابی امنیتی، تحلیل بدافزار و تست نفوذ زیرساخت‌های بزرگ وب و شبکه‌های ابری.
-                        </p>
-                        <div class="person-tags">
-                            <span>#Pentesting</span>
-                            <span>#LinuxSecurity</span>
-                            <span>#MalwareAnalysis</span>
-                        </div>
-                        <a href="#instructor-security" class="person-link">
-                            توضیحات و گواهی‌ها ←
-                        </a>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- بخش توضیحات تکمیلی و مدارک موسس (لینک هشتگ #founder-maede) -->
-        <section class="section-card profile-details" id="founder-maede">
-            <div class="profile-details-header">
-                <div class="profile-avatar">
-                    <img src="images/founder-maede.webp" alt="مائده (کاتیا)">
-                </div>
-                <div class="profile-identity">
-                    <span class="profile-label">FOUNDER PORTFOLIO</span>
-                    <h2>مائده «کاتیا»</h2>
-                    <p class="profile-main-role">موسس، مدیر محصول و طراح امنیت آرکادیا</p>
-                    <div class="person-tags">
-                        <span>#IdentityVerified</span>
-                        <span>#ArcadiaLeader</span>
-                    </div>
-                </div>
-                <a href="#team" class="back-link">بازگشت به تیم ↑</a>
-            </div>
-
-            <div class="profile-details-grid">
-                <div class="profile-biography">
-                    <h3>درباره موسس</h3>
-                    <p>
-                        مائده با تکیه بر تخصص آکادمیک خود در حوزه مهندسی کامپیوتر گرایش امنیت و سال‌ها فعالیت در این شاخه، اکوسیستم آموزشی آرکادیا را بنیان‌گذاری کرد. دغدغه اصلی او ایجاد دسترسی عادلانه به آموزش‌های طراز اول حوزه وب۳ و هوش مصنوعی در بستری کاملاً کاربردی و امن است.
-                    </p>
-                    <p>
-                        او هم‌اکنون به عنوان مدیر ارشد پلتفرم، ناظر استقرار استانداردهای امنیتی پروژه، دپارتمان‌های تحقیق و توسعه Nova AI و MetaChain را هدایت می‌کند.
-                    </p>
-                </div>
-
-                <aside class="profile-facts">
-                    <h3>اطلاعات تکمیلی</h3>
-                    <ul>
-                        <li><span>نام مستعار</span><strong>کاتیا (Katya)</strong></li>
-                        <li><span>سمت رسمی</span><strong>بنیان‌گذار و مدیر محصول</strong></li>
-                        <li><span>شاخه تخصصی</span><strong>امنیت سایبری و توسعه وب ۳</strong></li>
-                        <li><span>حضور در آرکادیا</span><strong>از ۱۴۰۲ تاکنون</strong></li>
-                    </ul>
-                </aside>
-            </div>
-
-            <div class="profile-subsection">
-                <div class="subsection-heading">
-                    <h3>مدارک، گواهینامه‌ها و سوابق علمی</h3>
-                    <span class="document-notice">مدارک ثبت‌شده در دپارتمان اداری آرکادیا</span>
-                </div>
-
-                <div class="documents-grid">
-                    <article class="document-card">
-                        <div class="document-icon">SEC</div>
-                        <div class="document-info">
-                            <h4>مهندسی امنیت سیستم و شبکه</h4>
-                            <p>گواهینامه تایید صلاحیت فنی ـ ۱۴۰۳</p>
-                        </div>
-                        <a href="documents/maede-sec-cert.pdf" target="_blank" rel="noopener noreferrer" class="document-link">مشاهده فایل</a>
-                    </article>
-
-                    <article class="document-card">
-                        <div class="document-icon">W3</div>
-                        <div class="document-info">
-                            <h4>طراحی و توسعه معماری توزیع‌شده</h4>
-                            <p>دپارتمان وب ۳ متاچین آرکادیا ـ ۱۴۰۴</p>
-                        </div>
-                        <a href="documents/maede-web3-cert.pdf" target="_blank" rel="noopener noreferrer" class="document-link">مشاهده فایل</a>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <!-- بخش توضیحات تکمیلی و مدارک مدرسین (لینک هشتگ #instructor-security) -->
-        <section class="section-card profile-details" id="instructor-security">
-            <div class="profile-details-header">
-                <div class="profile-avatar">
-                    <img src="images/instructor-sec.webp" alt="سید مجید موسوی">
-                </div>
-                <div class="profile-identity">
-                    <span class="profile-label">INSTRUCTOR PORTFOLIO</span>
-                    <h2>سید مجید موسوی</h2>
-                    <p class="profile-main-role">مدرس ارشد دوره‌های هک قانون‌مند و لینوکس</p>
-                    <div class="person-tags">
-                        <span>#CEH</span>
-                        <span>#PWK</span>
-                        <span>#CyberSecInstructor</span>
-                    </div>
-                </div>
-                <a href="#team" class="back-link">بازگشت به تیم ↑</a>
-            </div>
-
-            <div class="profile-details-grid">
-                <div class="profile-biography">
-                    <h3>سوابق آموزشی و تدریس</h3>
-                    <p>
-                        سید مجید موسوی با سابقه درخشان در زمینه کشف و گزارش آسیب‌پذیری‌های امنیتی در وب‌اپلیکیشن‌ها، هدایت کارگاه‌های فشرده امنیت شبکه و لینوکس سرور را در پلتفرم آرکادیا بر عهده دارد. روش تدریس او مبتنی بر سناریوهای نفوذ شبیه‌سازی‌شده در دنیای واقعی است.
-                    </p>
-                </div>
-
-                <aside class="profile-facts">
-                    <h3>مشخصات فنی</h3>
-                    <ul>
-                        <li><span>عنوان موقعیت</span><strong>مدرس ارشد امنیت اطلاعات</strong></li>
-                        <li><span>فناوری‌های تحت تدریس</span><strong>Linux, OWASP Top 10, Bash Scripting</strong></li>
-                        <li><span>وضعیت کاربری</span><strong>استاد تایید شده</strong></li>
-                    </ul>
-                </aside>
-            </div>
-
-            <div class="profile-subsection">
-                <h3>دوره‌های در حال ارائه</h3>
-                <div class="course-list">
-                    <a href="courses/security-essentials.html" class="course-item">
-                        <span>مبانی امنیت و هک قانون‌مند (به زبان ساده)</span>
-                        <small>مشاهده صفحه دوره ←</small>
-                    </a>
-                    <a href="courses/advanced-pentest.html" class="course-item">
-                        <span>دوره جامع تست نفوذ پیشرفته وب و اپلیکیشن‌ها</span>
-                        <small>مشاهده صفحه دوره ←</small>
-                    </a>
-                </div>
-            </div>
-
-            <div class="profile-subsection">
-                <div class="subsection-heading">
-                    <h3>مدارک تایید صلاحیت تدریس</h3>
-                    <span class="document-notice">گواهینامه‌های رسمی تدریس و کار آزمودگی</span>
-                </div>
-
-                <div class="documents-grid">
-                    <article class="document-card">
-                        <div class="document-icon">PDF</div>
-                        <div class="document-info">
-                            <h4>مدرک بین‌المللی تست نفوذ وب</h4>
-                            <p>مرجع صادرکننده رسمی ـ ۱۴۰۲</p>
-                        </div>
-                        <a href="documents/instructor-sec-cert.pdf" target="_blank" rel="noopener noreferrer" class="document-link">مشاهده فایل</a>
-                    </article>
+                    </section>
+                </main>
                 </div>
             </div>
         </section>
 
     </div>
-
 </body>
 </html>
